@@ -1,4 +1,4 @@
-# [DCOP](https://en.wikipedia.org/wiki/Distributed_constraint_optimization)-MST simulator (version 3)
+# [DCOP](https://en.wikipedia.org/wiki/Distributed_constraint_optimization)-MST Simulator (Version 3)
 
 ## Graph Example
 
