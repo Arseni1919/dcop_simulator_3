@@ -2,7 +2,7 @@
 
 ## Graph Example
 
-<img src="static/g3.png" alt="drawing" width="680"/>
+<img src="static/g3.png" alt="drawing" width="480"/>
 
 ## Credits
 
