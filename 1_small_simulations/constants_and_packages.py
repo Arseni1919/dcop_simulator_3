@@ -12,8 +12,9 @@ import math
 import pickle
 from pprint import pprint
 
-ITERATIONS = 10
+ITERATIONS = 50
 FLATTEN = True
+MINUS_INF = -70000
 
 
 

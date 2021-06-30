@@ -13,6 +13,7 @@ def main():
     for iteration in range(ITERATIONS):
         send_messages(all_agents, iteration)
         print_table_of_messages(all_agents, iteration)
+        print_choices(all_agents, iteration)
         # collisions.append(print_choices(all_agents, iteration))
 
 
