@@ -1,11 +1,8 @@
-import random
-
-import matplotlib.pyplot as plt
-
 from IMPORTS import *
 
 
-def main():
+def create_graph():
+    graph = []
 
     x_list = [np.random.uniform(0, WIDTH) for _ in range(N_NODES)]
     y_list = [np.random.uniform(0, WIDTH) for _ in range(N_NODES)]
@@ -24,7 +21,7 @@ def main():
         for j, nei in enumerate(indc_list[1:n_nei]):
             x_edges_list = []
             y_edges_list = []
-            if dists[node][j+1] < 50:
+            if dists[node][j + 1] < 50:
                 x_edges_list.append(xy[self_cell][0])
                 y_edges_list.append(xy[self_cell][1])
 
@@ -35,5 +32,18 @@ def main():
     plt.show()
 
 
-if __name__ == '__main__':
-    main()
+    return graph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
