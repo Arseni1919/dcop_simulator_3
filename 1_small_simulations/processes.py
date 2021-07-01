@@ -40,7 +40,7 @@ def print_table_of_messages(all_agents, iteration):
     print(table)
 
 
-def print_choices(all_agents, iteration):
+def print_and_return_choices(all_agents, iteration):
     assignments = []
     return_value = {}
     for a in all_agents:

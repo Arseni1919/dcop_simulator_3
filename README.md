@@ -19,6 +19,7 @@
 - [Scikit-Learn - NearestNeighbors](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html)
 - [`abc` class - Python](https://docs.python.org/3/library/abc.html)
 - [`prettytable` package](https://zetcode.com/python/prettytable/)
+- [`matplotlib.pyplot.plot`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
 
 
 

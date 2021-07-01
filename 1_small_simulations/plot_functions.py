@@ -1,19 +1,21 @@
 from functions import *
 
 
-def plot_collisions(all_agents, collisions):
+def plot_position_choices(all_agents, collisions):
     robots = list(filter(lambda x: 'rob' in x.name, all_agents))
+    plot_dict_y = {x.name: [] for x in robots}
+    plot_dict_x = {x.name: [] for x in robots}
+
     position_objects = list(filter(lambda x: 'pos' in x.name, all_agents))
-    robot_dict = {x.name: x.num for x in robots}
     position_dict = {x.name: x.num for x in position_objects}
 
-    plot_dict = {x.name: [] for x in robots}
     for iteration, robot_name_to_pos_dict in enumerate(collisions):
-        for robot_name, positions in robot_name_to_pos_dict.items():
-            plot_dict[robot_name].extend([position_dict[x] for x in positions])
+        for robot_name, position_names in robot_name_to_pos_dict.items():
+            plot_dict_y[robot_name].extend([position_dict[x] for x in position_names])
+            plot_dict_x[robot_name].extend([iteration for _ in position_names])
 
-    for name, positions in plot_dict.items():
-        plt.plot(list(range(len(positions))), positions, label=name)
+    for robot_name, position_nums in plot_dict_y.items():
+        plt.plot(plot_dict_x[robot_name], position_nums, 'o-', label=robot_name, alpha=0.5)
 
     plt.legend()
     plt.xlabel('Iterations')
@@ -23,7 +25,7 @@ def plot_collisions(all_agents, collisions):
 
 
 def plot_results(all_agents, collisions):
-    plot_collisions(all_agents, collisions)
+    plot_position_choices(all_agents, collisions)
 
 
 
