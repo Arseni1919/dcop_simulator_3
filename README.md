@@ -2,6 +2,8 @@
 
 ## Small Simulations
 
+[Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)
+
 ## Big Simulations
 
 ### Graph Example

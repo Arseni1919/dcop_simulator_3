@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 from functions import *
 
 
@@ -40,6 +42,7 @@ def print_table_of_messages(all_agents, iteration):
 
 def print_choices(all_agents, iteration):
     assignments = []
+    return_value = {}
     for a in all_agents:
         if 'robot' in a.name:
             counter_dict = {}
@@ -57,8 +60,14 @@ def print_choices(all_agents, iteration):
             print(f'{choose_str}: {cells_with_highest_value}', end=' ')
             print(f'with the highest value: {max_value:.2f}')
             assignments.extend(cells_with_highest_value)
+            return_value[a.name] = cells_with_highest_value
     # print_all_pos_sum_weights(all_agents, iteration)
-    return len(assignments) > len(set(assignments))
+    return return_value
+
+
+
+
+
 
 
 
