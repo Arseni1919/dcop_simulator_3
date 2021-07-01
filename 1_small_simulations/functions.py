@@ -11,7 +11,9 @@ def flatten_message(message):
 
 
 def create_dict_of_weights(robots):
-    return {robot.name: random.uniform(1e-5, 1e-2) for robot in robots}
+    # return_value = {robot.name: random.uniform(1e-3, 1e-1) for robot in robots}
+    return_value = {robot.name: 0 for robot in robots}
+    return return_value
 
 
 

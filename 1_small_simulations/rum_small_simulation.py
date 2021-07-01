@@ -5,7 +5,8 @@ from processes import *
 
 def main():
     print('Hello')
-    scenario_func = scenario_3_1  # !
+    scenario_func = scenario_n_1  # !
+    scenario_func = scenario_n_2
 
     all_agents = scenario_func()
     init_message_boxes(all_agents, ITERATIONS)
