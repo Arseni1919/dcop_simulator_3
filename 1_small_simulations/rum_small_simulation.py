@@ -5,11 +5,12 @@ from plot_functions import *
 
 
 def main():
-    print('Hello')
+
     # scenario_func = scenario_n_1  # !
-    # scenario_func = scenario_n_2
+    scenario_func = scenario_n_2
     # scenario_func = scenario_n_3
-    scenario_func = scenario_n_4
+    # scenario_func = scenario_n_4
+    print(scenario_func.__name__)
 
     all_agents = scenario_func()
     init_message_boxes(all_agents, ITERATIONS)

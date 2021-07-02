@@ -21,6 +21,7 @@ def plot_position_choices(all_agents, collisions):
     plt.xlabel('Iterations')
     plt.ylabel('Positions')
     plt.yticks([x.num for x in position_objects])
+    plt.xticks(list(range(len(collisions))))
     plt.show()
 
 

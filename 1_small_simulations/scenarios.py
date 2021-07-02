@@ -6,8 +6,8 @@ def scenario_n_1():
         TargetNode('target0', 0, req=30, cells_near_me=['pos0']),
     ]
     robots = [
-        RobotNode('robot0', 0, cred=25, domain=['pos0', 'pos1']),
-        RobotNode('robot1', 1, cred=13, domain=['pos0', 'pos2'])
+        RobotNode('robot0', 0, cred=16, domain=['pos0', 'pos1']),
+        RobotNode('robot1', 1, cred=17, domain=['pos0', 'pos2'])
     ]
     positions = [
         PositionNode('pos0', 0, dict_of_weights=create_dict_of_weights(robots)),
@@ -27,11 +27,11 @@ def scenario_n_1():
 
 def scenario_n_2():
     targets = [
-        TargetNode('target0', 0, req=30, cells_near_me=['pos0']),
+        TargetNode('target0', 0, req=10, cells_near_me=['pos0']),
     ]
     robots = [
-        RobotNode('robot0', 0, cred=25, domain=['pos0', 'pos1']),
-        RobotNode('robot1', 1, cred=13, domain=['pos0', 'pos1'])
+        RobotNode('robot0', 0, cred=7, domain=['pos0', 'pos1']),
+        RobotNode('robot1', 1, cred=6, domain=['pos0', 'pos1'])
     ]
     positions = [
         PositionNode('pos0', 0, dict_of_weights=create_dict_of_weights(robots)),
