@@ -56,9 +56,10 @@ class FunctionNode(Node):
             for pos_i in var_nei.domain:
                 message[pos_i] = max(message[pos_i],
                                      (
-                                         self.func(self.comb_for_func(var_nei, pos_i, comb_of_other_nei_pos, list_of_other_nei)
-                                                   ) +
-                                         self._prev_iter_brings(iteration, comb_of_other_nei_pos, list_of_other_nei)
+                                             self.func(self.comb_for_func(var_nei, pos_i, comb_of_other_nei_pos,
+                                                                          list_of_other_nei)
+                                                       ) +
+                                             self._prev_iter_brings(iteration, comb_of_other_nei_pos, list_of_other_nei)
                                      )
                                      )
         if self.name == 'pos1' and var_nei.name == 'robot1':
@@ -148,16 +149,17 @@ class BigSimulationPositionNode(PositionNode):
 
 
 class BigSimulationTargetNode(TargetNode):
-    def __init__(self, name, num, req: int, cells_near_me: [int], pos):
+    def __init__(self, name, num, req: int, cells_near_me=None, pos_node=None):
         super().__init__(name, num, req, cells_near_me)
-        self.pos = pos
+        if cells_near_me is None:
+            cells_near_me = []
+        self.pos = pos_node
 
 
 class BigSimulationRobotNode(RobotNode):
-    def __init__(self, name, num, cred: int, domain: list, pos):
+    def __init__(self, name, num, cred: int, domain=None, pos_node=None):
         super().__init__(name, num, cred, domain)
-        self.pos = pos
-
-
-
-
+        if domain is None:
+            domain = [None]
+        self.pos_node = pos_node
+        self.prev_pos_node = None

@@ -15,7 +15,7 @@ a = ['a', 'b', 'c']
 b = ['d', 'e', 'f']
 c = ['g', 'h', 'i']
 
-print(random.uniform(1e-15, 1e-7))
+print(len(comb))
 
 
 

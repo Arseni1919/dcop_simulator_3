@@ -38,19 +38,19 @@ def plot_positions_graph(graph):
     plt.rcParams["figure.figsize"] = [6.4, 6.4]
     # node points of the graph
     plt.scatter(
-        [pos_node.pos[0] for pos_node in graph],
-        [pos_node.pos[1] for pos_node in graph]
+        [pos_node.pos_node[0] for pos_node in graph],
+        [pos_node.pos_node[1] for pos_node in graph]
     )
 
     for pos_node in graph:
-        plt.annotate(pos_node.num, pos_node.pos, fontsize=5)
+        plt.annotate(pos_node.num, pos_node.pos_node, fontsize=7)
 
     # edge lines on the graph
     for pos_node in graph:
         x_edges_list, y_edges_list = [], []
         for nearby_node_name, nearby_node in pos_node.nearby_position_nodes.items():
-            x_edges_list.extend([pos_node.pos[0], nearby_node.pos[0]])
-            y_edges_list.extend([pos_node.pos[1], nearby_node.pos[1]])
+            x_edges_list.extend([pos_node.pos_node[0], nearby_node.pos_node[0]])
+            y_edges_list.extend([pos_node.pos_node[1], nearby_node.pos_node[1]])
         plt.plot(x_edges_list, y_edges_list, alpha=0.5)
 
     plt.show()
