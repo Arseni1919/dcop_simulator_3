@@ -147,5 +147,17 @@ class BigSimulationPositionNode(PositionNode):
         self.pos = pos
 
 
+class BigSimulationTargetNode(TargetNode):
+    def __init__(self, name, num, req: int, cells_near_me: [int], pos):
+        super().__init__(name, num, req, cells_near_me)
+        self.pos = pos
+
+
+class BigSimulationRobotNode(RobotNode):
+    def __init__(self, name, num, cred: int, domain: list, pos):
+        super().__init__(name, num, cred, domain)
+        self.pos = pos
+
+
 
 
