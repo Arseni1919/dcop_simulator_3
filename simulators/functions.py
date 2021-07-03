@@ -1,10 +1,10 @@
 import random
 
-from constants_and_packages import *
+from simulators.constants_and_packages import *
 
 
 def flatten_message(message):
-    if FLATTEN:
+    if S_FLATTEN:
         min_value = min(message.values())
         return {pos_i: value-min_value for pos_i, value in message.items()}
     return message

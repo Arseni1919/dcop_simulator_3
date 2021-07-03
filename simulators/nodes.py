@@ -1,9 +1,4 @@
-import abc
-import itertools
-
-import numpy as np
-
-from functions import *
+from simulators.functions import *
 
 
 class Node(abc.ABC):
@@ -143,6 +138,14 @@ class RobotNode(Node):
 
         message = flatten_message(message)
         func_nei.message_box[iteration][self.name] = message
+
+
+class BigSimulationPositionNode(PositionNode):
+    def __init__(self, name, num, dict_of_weights: dict, pos: tuple):
+        super().__init__(name, num, dict_of_weights)
+        self.nearby_position_nodes = {}
+        self.pos = pos
+
 
 
 

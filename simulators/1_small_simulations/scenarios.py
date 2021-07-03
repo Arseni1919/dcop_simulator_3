@@ -1,4 +1,4 @@
-from nodes import *
+from simulators.nodes import *
 
 
 def scenario_n_1():

@@ -1,7 +1,6 @@
-from nodes import *
 from scenarios import *
 from processes import *
-from plot_functions import *
+from simulators.plot_functions import *
 
 
 def main():
@@ -13,9 +12,9 @@ def main():
     print(scenario_func.__name__)
 
     all_agents = scenario_func()
-    init_message_boxes(all_agents, ITERATIONS)
+    init_message_boxes(all_agents, S_ITERATIONS)
     collisions = []
-    for iteration in range(ITERATIONS):
+    for iteration in range(S_ITERATIONS):
         send_messages(all_agents, iteration)
         print_table_of_messages(all_agents, iteration)
         choices = print_and_return_choices(all_agents, iteration)

@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
-
-from functions import *
-
+from simulators.functions import *
+from simulators.plot_functions import *
 
 def send_messages(agents, iteration):
     for agent in agents:
@@ -63,6 +61,10 @@ def print_and_return_choices(all_agents, iteration):
             return_value[a.name] = cells_with_highest_value
     # print_all_pos_sum_weights(all_agents, iteration)
     return return_value
+
+
+def plot_results(all_agents, collisions):
+    plot_position_choices(all_agents, collisions)
 
 
 
