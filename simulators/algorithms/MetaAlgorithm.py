@@ -22,6 +22,10 @@ class MetaAlgorithm(abc.ABC):
     def init_nodes_before_small_loops(self, graph, robots, targets):
         pass
 
+    @abc.abstractmethod
+    def send_messages(self, iteration, graph, robots, targets):
+        pass
+
 
 
 

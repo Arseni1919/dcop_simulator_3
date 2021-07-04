@@ -19,17 +19,18 @@ def main():
         for alg_num, (alg_name, params) in enumerate(ALGORITHMS_TO_CHECK):
             algorithm = get_the_algorithm_object(alg_name)
             reset_agents(graph, robots, targets, algorithm)
+            algorithm.init_nodes_before_big_loops(graph, robots, targets)
 
             for iteration in range(B_ITERATIONS_IN_BIG_LOOPS):
                 algorithm.init_nodes_before_small_loops(graph, robots, targets)
-                send_messages(iteration, graph, robots, targets, algorithm)
+                algorithm.send_messages(iteration, graph, robots, targets)
                 move_to_new_positions(iteration, graph, robots, targets, algorithm)
 
                 tracker.step(problem, alg_num, iteration)
-                # plot_field(graph, robots, targets, fig, ax)
+                plot_field(graph, robots, targets, fig, ax)
                 choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], iteration=iteration)
                 update_statistics(graph, robots, targets, collisions, choices,
-                                  dict_for_results, dict_for_plots, algorithm, iteration, problem)
+                                  dict_for_results, dict_for_plots, algorithm, iteration, problem)  # !
 
     print_minutes(start)
     pickle_results(dict_for_results, dict_for_plots)

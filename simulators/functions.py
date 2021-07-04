@@ -3,6 +3,21 @@ import random
 from simulators.constants_and_packages import *
 
 
+def distance(pos1, pos2):
+    return math.sqrt(math.pow(pos1[0] - pos2[0], 2) + math.pow(pos1[1] - pos2[1], 2))
+
+
+def calculate_convergence(robots, targets):
+    convergence = 0
+    for target in targets:
+        curr_conv = target.req
+        for robot in robots:
+            if distance(target.pos_node.pos, robot.pos_node.pos) <= robot.sr:
+                curr_conv = max(0, curr_conv - robot.cred)
+        convergence += curr_conv
+    return convergence
+
+
 def update_domain(x):
     x.update_domain()
     return x

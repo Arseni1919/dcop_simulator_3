@@ -30,6 +30,7 @@ class RandomWalk(MetaAlgorithm):
     def init_nodes_before_small_loops(self, graph, robots, targets):
         list(map(update_domain, robots))
 
+    def send_messages(self, iteration, graph, robots, targets):
         pass
 
 

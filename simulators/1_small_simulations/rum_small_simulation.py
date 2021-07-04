@@ -1,6 +1,6 @@
 from scenarios import *
 from processes import *
-from simulators.plot_functions import *
+from simulators.plots.plot_functions import *
 
 
 def main():

@@ -1,8 +1,4 @@
-import matplotlib.pyplot as plt
-
-from simulators.constants_and_packages import *
 from simulators.nodes import *
-from simulators.plot_functions import *
 from simulators.algorithms.algorithms import *
 
 
@@ -80,11 +76,6 @@ def reset_delay(x):
 def reset_agents(graph, robots, targets, algorithm: MetaAlgorithm):
     list(map(init_pos, robots))
     list(map(reset_delay, robots))
-    algorithm.init_nodes_before_big_loops(graph, robots, targets)
-
-
-def send_messages(iteration, graph, robots, targets, algorithm):
-    pass
 
 
 def move_to_new_positions(iteration, graph, robots, targets, algorithm: MetaAlgorithm):
@@ -100,7 +91,7 @@ def update_statistics(graph, robots, targets,
                       iteration,
                       problem):
     collisions.append(choices)
-    plot_position_choices([*graph, *robots, *targets], collisions)
+    # plot_position_choices([*graph, *robots, *targets], collisions)
 
 
 def initialize_start_positions(graph, robots, targets):
@@ -121,7 +112,7 @@ def plot_field(graph, robots, targets, fig, ax):
     ax.scatter(
         [pos_node.pos[0] for pos_node in graph],
         [pos_node.pos[1] for pos_node in graph],
-        color='g', alpha=0.3
+        color='g', alpha=0.3, marker="s"
     )
 
     # POSITION ANNOTATIONS
@@ -157,4 +148,5 @@ def plot_field(graph, robots, targets, fig, ax):
 
 
 def pickle_results(dict_for_results, dict_for_plots):
-    pass
+    if PICKLE_RESULTS:
+        pass

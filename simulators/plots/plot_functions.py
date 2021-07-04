@@ -2,6 +2,11 @@ import matplotlib.pyplot as plt
 
 from simulators.functions import *
 
+lines = ['-', '--', '-.', ':', ]
+lines.reverse()
+markers = ['o', '+', '.', ',', '_', '*']
+markers.reverse()
+
 
 def plot_position_choices(all_agents, collisions):
     """
@@ -56,6 +61,35 @@ def plot_positions_graph(graph):
         plt.plot(x_edges_list, y_edges_list, alpha=0.5)
 
     plt.show()
+
+
+# ------------ ADD ------------ #
+def add_graph(to_ax, line_index, marker_index, graph_dict, dimension_to_look_at, alg_name, alg_label, color):
+    line_index = 0 if line_index == len(lines) else line_index
+    marker_index = 0 if marker_index == len(markers) else marker_index
+    matrix = graph_dict[alg_name]
+    avr = np.average(matrix, dimension_to_look_at)
+    std = np.std(matrix, dimension_to_look_at)
+    line = lines[line_index]
+    marker = markers[marker_index]
+    print(f'{alg_name}: li:{line_index} mi:{marker_index}')
+    to_ax.plot(range(len(avr)), avr, '%s%s' % (marker, line), label=alg_label, color=color)
+
+    to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
+                       alpha=0.2, antialiased=True, color=color)
+
+
+# ----------------------------- #
+
+
+
+
+
+
+
+
+
+
 
 
 

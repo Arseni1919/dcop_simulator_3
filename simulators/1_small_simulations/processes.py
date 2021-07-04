@@ -1,5 +1,4 @@
-from simulators.functions import *
-from simulators.plot_functions import *
+from simulators.plots.plot_functions import *
 
 
 def send_messages(agents, iteration):
