@@ -17,6 +17,6 @@ class CAMS(MetaAlgorithm):
         pass
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
-        pass
+        list(map(update_domain, robots))
 
 CAMS_alg = CAMS('CAMS')

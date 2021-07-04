@@ -1,4 +1,5 @@
 from simulators.constants_and_packages import *
+from simulators.functions import *
 
 
 class MetaAlgorithm(abc.ABC):

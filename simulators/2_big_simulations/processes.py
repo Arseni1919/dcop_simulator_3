@@ -22,7 +22,7 @@ def create_graph():
     x_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
     y_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
     xy = np.array(list(zip(x_list, y_list)))
-    nbrs = NearestNeighbors(n_neighbors=B_MAX_NEARBY_POS+1, algorithm='ball_tree').fit(xy)
+    nbrs = NearestNeighbors(n_neighbors=B_MAX_NEARBY_POS + 1, algorithm='ball_tree').fit(xy)
     dists, indcs = nbrs.kneighbors(xy)
 
     for pos_indx, pos in enumerate(xy):
@@ -42,12 +42,13 @@ def create_graph():
     return graph
 
 
-def plot_results():
+def plot_results(robots, targets, collisions):
     # print_results(results_dict)
     # plot_collisions(results_dict)
     # plot_results_if(graphs)
     # print_t_test(graphs)
     # plot_positions_graph(graph)
+
     pass
 
 
@@ -76,33 +77,30 @@ def reset_delay(x):
     x.delay = 0
 
 
-def init_message_box(x):
-    x.message_box = {i: {} for i in range(B_ITERATIONS_IN_BIG_LOOPS)}
-
-
-def reset_agents(graph, robots, targets, algorithm):
-    map(init_pos, robots)
-    map(reset_delay, robots)
-
+def reset_agents(graph, robots, targets, algorithm: MetaAlgorithm):
+    list(map(init_pos, robots))
+    list(map(reset_delay, robots))
+    algorithm.init_nodes_before_big_loops(graph, robots, targets)
 
 
 def send_messages(iteration, graph, robots, targets, algorithm):
-    map(init_message_box, [*graph, *robots, *targets])
+    pass
 
 
 def move_to_new_positions(iteration, graph, robots, targets, algorithm: MetaAlgorithm):
-    for agent in robots:
-        algorithm.move(agent)
+    list(map(algorithm.move, robots))
 
 
-def update_statistics(dict_for_results,
-                      dict_for_plots,
-                      all_agents,
+def update_statistics(graph, robots, targets,
+                      collisions: list,
                       choices,
+                      dict_for_results,
+                      dict_for_plots,
                       algorithm,
                       iteration,
                       problem):
-    pass
+    collisions.append(choices)
+    plot_position_choices([*graph, *robots, *targets], collisions)
 
 
 def initialize_start_positions(graph, robots, targets):
@@ -113,12 +111,11 @@ def initialize_start_positions(graph, robots, targets):
 
 
 def plot_field(graph, robots, targets, fig, ax):
-
     # fig.clf()
     ax.clear()
     padding = 4
-    ax.set_xlim([0-padding, B_WIDTH+padding])
-    ax.set_ylim([0-padding, B_WIDTH+padding])
+    ax.set_xlim([0 - padding, B_WIDTH + padding])
+    ax.set_ylim([0 - padding, B_WIDTH + padding])
 
     # POSITIONS
     ax.scatter(
@@ -147,7 +144,8 @@ def plot_field(graph, robots, targets, fig, ax):
 
     # TARGETS
     for target in targets:
-        rect = plt.Rectangle(target.pos_node.pos - (B_SIZE_TARGET_NODE/2, B_SIZE_TARGET_NODE/2), B_SIZE_TARGET_NODE, B_SIZE_TARGET_NODE, color='r', alpha=0.3)
+        rect = plt.Rectangle(target.pos_node.pos - (B_SIZE_TARGET_NODE / 2, B_SIZE_TARGET_NODE / 2), B_SIZE_TARGET_NODE,
+                             B_SIZE_TARGET_NODE, color='r', alpha=0.3)
         ax.add_patch(rect)
         ax.annotate(target.name, target.pos_node.pos, fontsize=5)
 
@@ -158,23 +156,5 @@ def plot_field(graph, robots, targets, fig, ax):
     plt.pause(0.05)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def pickle_results(dict_for_results, dict_for_plots):
+    pass

@@ -10,6 +10,7 @@ def plot_position_choices(all_agents, collisions):
     :param collisions: [{'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}, ...]
     :return: None
     """
+    fig1, ax1 = plt.subplots()  # figsize=[6.4, 6.4]
     robots = list(filter(lambda x: 'rob' in x.name, all_agents))
     plot_dict_y = {x.name: [] for x in robots}
     plot_dict_x = {x.name: [] for x in robots}
@@ -23,13 +24,14 @@ def plot_position_choices(all_agents, collisions):
             plot_dict_x[robot_name].extend([iteration for _ in position_names])
 
     for robot_name, position_nums in plot_dict_y.items():
-        plt.plot(plot_dict_x[robot_name], position_nums, 'o-', label=robot_name, alpha=0.5)
+        ax1.plot(plot_dict_x[robot_name], position_nums, 'o-', label=robot_name, alpha=0.5)
 
-    plt.legend()
-    plt.xlabel('Iterations')
-    plt.ylabel('Positions')
-    plt.yticks([x.num for x in position_objects])
-    plt.xticks(list(range(len(collisions))))
+    ax1.legend()
+    ax1.set_xlabel('Iterations')
+    ax1.set_ylabel('Positions')
+    if len(position_objects) < 20:
+        ax1.set_yticks([x.num for x in position_objects])
+    ax1.set_xticks(list(range(len(collisions))))
     plt.show()
 
 

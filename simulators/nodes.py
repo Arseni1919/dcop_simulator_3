@@ -160,10 +160,13 @@ class BigSimulationTargetNode(TargetNode):
 
 
 class BigSimulationRobotNode(RobotNode):
-    def __init__(self, name, num, cred: int, domain=None, pos_node=None):
+    def __init__(self, name, num, cred: int, domain=None, pos_node:BigSimulationPositionNode=None):
         super().__init__(name, num, cred, domain)
         # if domain is None:
         #     domain = []
         # self.domain = domain
         self.pos_node = pos_node
         self.prev_pos_node = None
+
+    def update_domain(self):
+        self.domain = [node.name for node in self.pos_node.nearby_position_nodes.values()]

@@ -6,6 +6,7 @@ from simulators.algorithms.algorithms import *
 def main():
     start = time.time()
     dict_for_results, dict_for_plots = create_measurement_dicts(ALGORITHMS_TO_CHECK)
+    collisions = []
     fig, ax = plt.subplots(figsize=[6.4, 6.4])
 
     targets = create_targets()
@@ -20,18 +21,19 @@ def main():
             reset_agents(graph, robots, targets, algorithm)
 
             for iteration in range(B_ITERATIONS_IN_BIG_LOOPS):
+                algorithm.init_nodes_before_small_loops(graph, robots, targets)
                 send_messages(iteration, graph, robots, targets, algorithm)
                 move_to_new_positions(iteration, graph, robots, targets, algorithm)
 
                 tracker.step(problem, alg_num, iteration)
-                plot_field(graph, robots, targets, fig, ax)
+                # plot_field(graph, robots, targets, fig, ax)
                 choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], iteration=iteration)
-                # update_statistics(dict_for_results, dict_for_plots, all_agents, choices, algorithm,
-                #                   iteration=iteration, problem=problem)
+                update_statistics(graph, robots, targets, collisions, choices,
+                                  dict_for_results, dict_for_plots, algorithm, iteration, problem)
 
     print_minutes(start)
-    # pickle_results(graphs, results_dict)
-    plot_results()
+    pickle_results(dict_for_results, dict_for_plots)
+    plot_results(robots, targets, collisions=collisions)
 
 
 if __name__ == '__main__':

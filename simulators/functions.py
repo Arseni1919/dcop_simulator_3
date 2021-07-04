@@ -3,6 +3,15 @@ import random
 from simulators.constants_and_packages import *
 
 
+def update_domain(x):
+    x.update_domain()
+    return x
+
+
+def init_message_box(x):
+    x.message_box = {i: {} for i in range(B_ITERATIONS_IN_BIG_LOOPS)}
+
+
 def print_minutes(start):
     end = time.time()
     print(f'\nThe program finished in {(end - start) / 60 :.2f} minutes.')
@@ -39,10 +48,10 @@ def print_and_return_choices(all_agents, iteration):
 
             max_value = max(counter_dict.values())
             cells_with_highest_value = [k for k, v in counter_dict.items() if v == max_value]
-            print(colored(a.name, 'green'), end=' ')
             choose_str = 'chooses one of' if len(cells_with_highest_value) > 1 else 'chooses'
-            print(f'{choose_str}: {cells_with_highest_value}', end=' ')
-            print(f'with the highest value: {max_value:.2f}')
+            str_for_print = f'\n{colored(a.name, "green")} {choose_str}: ' \
+                            f'{cells_with_highest_value} with the highest value: {max_value:.2f}'
+            # print(str_for_print, end=' ')
             assignments.extend(cells_with_highest_value)
             return_value[a.name] = cells_with_highest_value
     # print_all_pos_sum_weights(all_agents, iteration)

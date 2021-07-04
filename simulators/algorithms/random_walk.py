@@ -4,6 +4,7 @@ import time
 from simulators.algorithms.MetaAlgorithm import *
 
 
+
 class RandomWalk(MetaAlgorithm):
 
     def __init__(self, name):
@@ -24,9 +25,11 @@ class RandomWalk(MetaAlgorithm):
             # time.sleep(1)
 
     def init_nodes_before_big_loops(self, graph, robots, targets):
-        pass
+        list(map(init_message_box, robots))
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
+        list(map(update_domain, robots))
+
         pass
 
 
