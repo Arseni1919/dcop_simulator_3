@@ -24,8 +24,9 @@ def create_dict_of_weights(robots):
 
 def print_and_return_choices(all_agents, iteration):
     # return_value: {'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}
-    assignments = []
     return_value = {}
+    assignments = []
+
     for a in all_agents:
         if 'robot' in a.name:
             counter_dict = {}

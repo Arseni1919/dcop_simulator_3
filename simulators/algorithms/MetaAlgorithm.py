@@ -13,6 +13,14 @@ class MetaAlgorithm(abc.ABC):
     def move(self, node):
         pass
 
+    @abc.abstractmethod
+    def init_nodes_before_big_loops(self, graph, robots, targets):
+        pass
+
+    @abc.abstractmethod
+    def init_nodes_before_small_loops(self, graph, robots, targets):
+        pass
+
 
 
 

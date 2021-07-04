@@ -75,6 +75,8 @@ SAVE_RESULTS = True
 NEED_TO_PLOT_RESULTS = True
 # NEED_TO_PLOT_VARIANCE, NEED_TO_PLOT_MIN_MAX = False, True
 NEED_TO_PLOT_VARIANCE, NEED_TO_PLOT_MIN_MAX = True, False
+LIGHT_UP_THE_CHANGES = True
+# LIGHT_UP_THE_CHANGES = False
 AMOUNT_OF_STD = 1
 # -------------------------------------------------- #
 FILE_NAME = "last_weights.txt"

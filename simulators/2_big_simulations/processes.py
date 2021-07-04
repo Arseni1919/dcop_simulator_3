@@ -67,27 +67,31 @@ def create_robots():
     return robots
 
 
-def go_back_to_initial_positions(all_agents):
-    pass
+def init_pos(x):
+    x.pos_node = x.initial_pos_node
+    x.prev_pos_node = None
 
 
-def reset_delay(all_agents):
-    for agent in all_agents:
-        if 'robot' in agent.name:
-            agent.delay = 0
+def reset_delay(x):
+    x.delay = 0
 
 
-def reset_agents(all_agents):
-    go_back_to_initial_positions(all_agents)
-    reset_delay(all_agents)
+def init_message_box(x):
+    x.message_box = {i: {} for i in range(B_ITERATIONS_IN_BIG_LOOPS)}
 
 
-def send_messages(iteration, all_agents, algorithm):
-    pass
+def reset_agents(graph, robots, targets, algorithm):
+    map(init_pos, robots)
+    map(reset_delay, robots)
 
 
-def move_to_new_positions(iteration, all_agents, algorithm: MetaAlgorithm):
-    for agent in all_agents:
+
+def send_messages(iteration, graph, robots, targets, algorithm):
+    map(init_message_box, [*graph, *robots, *targets])
+
+
+def move_to_new_positions(iteration, graph, robots, targets, algorithm: MetaAlgorithm):
+    for agent in robots:
         algorithm.move(agent)
 
 
@@ -105,6 +109,7 @@ def initialize_start_positions(graph, robots, targets):
     pos_to_robots = random.sample(graph, len(robots) + len(targets))
     for pos_node, agent in zip(pos_to_robots, [*robots, *targets]):
         agent.pos_node = pos_node
+        agent.initial_pos_node = pos_node
 
 
 def plot_field(graph, robots, targets, fig, ax):
@@ -145,6 +150,10 @@ def plot_field(graph, robots, targets, fig, ax):
         rect = plt.Rectangle(target.pos_node.pos - (B_SIZE_TARGET_NODE/2, B_SIZE_TARGET_NODE/2), B_SIZE_TARGET_NODE, B_SIZE_TARGET_NODE, color='r', alpha=0.3)
         ax.add_patch(rect)
         ax.annotate(target.name, target.pos_node.pos, fontsize=5)
+
+    # light up nodes upon the changes
+    if LIGHT_UP_THE_CHANGES:
+        pass
 
     plt.pause(0.05)
 

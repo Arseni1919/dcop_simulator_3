@@ -8,6 +8,9 @@ class Node(abc.ABC):
         self.neighbours = []
         # iteration -> name -> position -> value
         self.message_box = {}
+        # --- for big sim --- #
+        self.initial_pos_node = None
+        self.delay = 0
 
         if str(num) not in name:
             raise RuntimeError('num is not in name')
@@ -159,7 +162,8 @@ class BigSimulationTargetNode(TargetNode):
 class BigSimulationRobotNode(RobotNode):
     def __init__(self, name, num, cred: int, domain=None, pos_node=None):
         super().__init__(name, num, cred, domain)
-        if domain is None:
-            domain = [None]
+        # if domain is None:
+        #     domain = []
+        # self.domain = domain
         self.pos_node = pos_node
         self.prev_pos_node = None

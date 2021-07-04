@@ -14,18 +14,18 @@ def main():
     for problem in range(B_NUMBER_OF_PROBLEMS):
         graph = create_graph()
         initialize_start_positions(graph, robots, targets)
-        all_agents = [*graph, *robots, *robots]
 
         for alg_num, (alg_name, params) in enumerate(ALGORITHMS_TO_CHECK):
             algorithm = get_the_algorithm_object(alg_name)
-            reset_agents(all_agents)
+            reset_agents(graph, robots, targets, algorithm)
 
             for iteration in range(B_ITERATIONS_IN_BIG_LOOPS):
-                send_messages(iteration, all_agents, algorithm)
-                move_to_new_positions(iteration, all_agents, algorithm)
+                send_messages(iteration, graph, robots, targets, algorithm)
+                move_to_new_positions(iteration, graph, robots, targets, algorithm)
+
                 tracker.step(problem, alg_num, iteration)
                 plot_field(graph, robots, targets, fig, ax)
-                # choices = print_and_return_choices(all_agents, iteration)
+                choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], iteration=iteration)
                 # update_statistics(dict_for_results, dict_for_plots, all_agents, choices, algorithm,
                 #                   iteration=iteration, problem=problem)
 
