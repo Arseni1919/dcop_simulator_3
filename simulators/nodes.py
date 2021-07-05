@@ -19,6 +19,9 @@ class Node(abc.ABC):
     def send_message_to(self, nei, iteration):
         pass
 
+    def clean_neighbours(self):
+        self.neighbours = []
+
 
 class FunctionNode(Node):
     def __init__(self, name, num):
@@ -150,17 +153,32 @@ class BigSimulationPositionNode(PositionNode):
         self.nearby_position_nodes = {}
         self.pos = pos
 
+    def update_dict_of_weights(self, robots):
+        self.dict_of_weights = create_dict_of_weights(robots)
+
 
 class BigSimulationTargetNode(TargetNode):
-    def __init__(self, name, num, req: int, cells_near_me=None, pos_node=None):
+    def __init__(self, name, num, req: int, cells_near_me=None, pos_node: BigSimulationPositionNode = None):
         super().__init__(name, num, req, cells_near_me)
         if cells_near_me is None:
-            cells_near_me = []
-        self.pos = pos_node
+            self.cells_near_me = []
+        self.pos_node = pos_node
+
+    def update_cells_near_me(self, robots, graph):
+        self.clear_cells_near_me()
+        pos_dict = {pos.name: pos for pos in graph}
+        for robot in robots:
+            for nearby_pos_node_name in robot.domain:
+                nearby_pos_node = pos_dict[nearby_pos_node_name]
+                if distance(self.pos_node.pos, nearby_pos_node.pos) < robot.sr:
+                    self.cells_near_me.append(nearby_pos_node_name)
+
+    def clear_cells_near_me(self):
+        self.cells_near_me = []
 
 
 class BigSimulationRobotNode(RobotNode):
-    def __init__(self, name, num, cred: int, domain=None, pos_node:BigSimulationPositionNode=None):
+    def __init__(self, name, num, cred: int, domain=None, pos_node: BigSimulationPositionNode = None):
         super().__init__(name, num, cred, domain)
         # if domain is None:
         #     domain = []
@@ -169,6 +187,8 @@ class BigSimulationRobotNode(RobotNode):
         self.prev_pos_node = None
         self.next_pos_node = None
         self.sr = SR
+        self.mr = MR
 
     def update_domain(self):
         self.domain = [node.name for node in self.pos_node.nearby_position_nodes.values()]
+        self.domain.insert(0, self.pos_node.name)

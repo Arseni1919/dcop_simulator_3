@@ -1,4 +1,7 @@
+from typing import List
+
 from simulators.algorithms.MetaAlgorithm import *
+from simulators.nodes import *
 
 
 class CAMS(MetaAlgorithm):
@@ -6,21 +9,71 @@ class CAMS(MetaAlgorithm):
         super(CAMS, self).__init__(name)
         pass
 
-    def init_nodes_before_big_loops(self, graph, robots, targets):
-        pass
+    def init_nodes_before_big_loops(self,
+                                    graph: List[BigSimulationPositionNode],
+                                    robots: List[BigSimulationRobotNode],
+                                    targets: List[BigSimulationTargetNode]):
+        # update
+        _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
 
-    def init_nodes_before_small_loops(self, graph, robots, targets):
+    def init_nodes_before_small_loops(self,
+                                      graph: List[BigSimulationPositionNode],
+                                      robots: List[BigSimulationRobotNode],
+                                      targets: List[BigSimulationTargetNode]):
+
+        # update robots domains
         _ = [robot.update_domain() for robot in robots]
 
+        # update targets cells_near_me
+        _ = [target.update_cells_near_me(robots, graph) for target in targets]
 
-    def send_messages(self, iteration, graph, robots, targets):
-        pass
+        # clean neighbours
+        _ = [agent.clean_neighbours() for agent in [*graph, *robots, *targets]]
+
+        # neighbours - Targets and Robots
+        self.add_nei_targets_robots(targets, robots)
+
+        # neighbours - Positions and Robots
+        self.add_nei_positions_robots(graph, robots)
+
+        # init message boxes
+        init_message_boxes([*graph, *robots, *targets], B_ITERATIONS_IN_SMALL_LOOPS)
+
+    def send_messages(self, big_iteration, graph, robots, targets):
+        for iteration in range(B_ITERATIONS_IN_SMALL_LOOPS):
+            for agent in [*graph, *robots, *targets]:
+                for nei in agent.neighbours:
+                    agent.send_message_to(nei, iteration)
 
     def send_message(self, from_node, to_node):
         pass
 
     def move(self, graph, robots, targets):
-        pass
+        pos_nodes_dict = {pos_node.name: pos_node for pos_node in graph}
+        # choices: {'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}
+        choices = print_and_return_choices([*graph, *robots, *targets], B_ITERATIONS_IN_SMALL_LOOPS-1)
+        for robot in robots:
+            list_of_robot_choices = choices[robot.name]
+            next_position = pos_nodes_dict[random.sample(list_of_robot_choices, 1)[0]]
+            robot.prev_pos_node = robot.pos_node
+            robot.pos_node = next_position
+
+
+    def add_nei_targets_robots(self, targets, robots):
+        for target in targets:
+            for robot in robots:
+                for pos_node_name in robot.domain:
+                    if pos_node_name in target.cells_near_me:
+                        target.neighbours.append(robot)
+                        robot.neighbours.append(target)
+
+    def add_nei_positions_robots(self, graph, robots):
+        for pos_node in graph:
+            for robot in robots:
+                for pos_node_name in robot.domain:
+                    if pos_node_name == pos_node.name:
+                        pos_node.neighbours.append(robot)
+                        robot.neighbours.append(pos_node)
 
 
 CAMS_alg = CAMS('CAMS')

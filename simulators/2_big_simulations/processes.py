@@ -48,10 +48,9 @@ def print_t_test(file_name):
 def print_and_plot_results(file_name):
     plt.close()
     print('Plotting the results...')
-    # plot_results_if(graphs)
-    print_t_test(file_name)
-    plot_collisions_vs_iters(file_name)
     plot_coverage_vs_iters(file_name)
+    plot_collisions_vs_iters(file_name)
+    print_t_test(file_name)
 
 
 def create_targets():
