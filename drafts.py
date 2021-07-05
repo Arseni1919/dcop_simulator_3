@@ -15,7 +15,9 @@ a = ['a', 'b', 'c']
 b = ['d', 'e', 'f']
 c = ['g', 'h', 'i']
 
-print(len(comb))
+for a1, a2 in itertools.product(a,a):
+    print(f'{a1} amd {a2}')
+print(list(itertools.product(a,a)))
 
 
 

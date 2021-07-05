@@ -8,14 +8,6 @@ def send_messages(agents, iteration):
             agent.send_message_to(nei, iteration)
 
 
-def init_message_boxes(agents, iterations):
-    for agent in agents:
-        for itr in range(iterations):
-            agent.message_box[itr] = {}
-            for nei in agent.neighbours:
-                agent.message_box[itr][nei.name] = {}
-
-
 def print_table_of_messages(all_agents, iteration):
     headers = ["to \ from", ]
     for a in all_agents:

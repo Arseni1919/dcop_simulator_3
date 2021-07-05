@@ -7,14 +7,6 @@ class MetaAlgorithm(abc.ABC):
         self.name = name
 
     @abc.abstractmethod
-    def send_message(self, from_node, to_node):
-        pass
-
-    @abc.abstractmethod
-    def move(self, node):
-        pass
-
-    @abc.abstractmethod
     def init_nodes_before_big_loops(self, graph, robots, targets):
         pass
 
@@ -25,6 +17,18 @@ class MetaAlgorithm(abc.ABC):
     @abc.abstractmethod
     def send_messages(self, iteration, graph, robots, targets):
         pass
+
+    @abc.abstractmethod
+    def send_message(self, from_node, to_node):
+        pass
+
+    @abc.abstractmethod
+    def move(self, graph, robots, targets):
+        pass
+
+
+
+
 
 
 

@@ -1,19 +1,14 @@
+import matplotlib.pyplot as plt
+
 from simulators.nodes import *
 from simulators.algorithms.algorithms import *
+from simulators.plots.coverage_vs_iters import *
+from simulators.plots.collisions_vs_iters import *
+
+# from simulators.constants_and_packages import *
 
 
-def create_measurement_dicts(algorithms):
-    # dict_for_results = {'alg_name': {'col': [], 'new_positions': []}}
-    # dict_for_plots[algorithm][iteration][problem] = convergence
-    dict_for_results = {}
-    dict_for_plots = {}
-    for alg_name, params in algorithms:
-        dict_for_results[alg_name] = {'col': [], 'new_positions': []}
-        dict_for_plots[alg_name] = np.zeros((B_ITERATIONS_IN_BIG_LOOPS, B_NUMBER_OF_PROBLEMS))
-    return dict_for_results, dict_for_plots
-
-
-def create_graph():
+def create_graph(dict_for_results, problem):
     graph = []
     x_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
     y_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
@@ -34,18 +29,29 @@ def create_graph():
                     if len(nearby_pos.nearby_position_nodes) < B_MAX_NEARBY_POS:
                         self_pos.nearby_position_nodes[nearby_pos.name] = nearby_pos
                         nearby_pos.nearby_position_nodes[self_pos.name] = self_pos
-
+    dict_for_results['problems'][problem] = graph
     return graph
 
 
-def plot_results(robots, targets, collisions):
-    # print_results(results_dict)
-    # plot_collisions(results_dict)
-    # plot_results_if(graphs)
-    # print_t_test(graphs)
-    # plot_positions_graph(graph)
+def print_t_test(file_name):
+    results_dict = load_file(file_name)
+    length_of_name = min([len(x) for x, y in ALGORITHMS_TO_CHECK])
+    for alg_name1, _ in ALGORITHMS_TO_CHECK:
+        matrix1 = results_dict[alg_name1]['coverage']
+        for alg_name2, _ in ALGORITHMS_TO_CHECK:
+            if alg_name1 != alg_name2:
+                matrix2 = results_dict[alg_name2]['coverage']
+                print(f'{alg_name1[:length_of_name]} <-> {alg_name2[:length_of_name]} '
+                      f'\tP_value: {ttest_ind(matrix1[-1], matrix2[-1])[1]: 10.2f}')
 
-    pass
+
+def print_and_plot_results(file_name):
+    plt.close()
+    print('Plotting the results...')
+    # plot_results_if(graphs)
+    print_t_test(file_name)
+    plot_collisions_vs_iters(file_name)
+    plot_coverage_vs_iters(file_name)
 
 
 def create_targets():
@@ -67,31 +73,87 @@ def create_robots():
 def init_pos(x):
     x.pos_node = x.initial_pos_node
     x.prev_pos_node = None
+    x.next_pos_node = None
 
 
 def reset_delay(x):
     x.delay = 0
 
 
-def reset_agents(graph, robots, targets, algorithm: MetaAlgorithm):
+def reset_agents(graph, robots, targets):
     list(map(init_pos, robots))
     list(map(reset_delay, robots))
 
 
 def move_to_new_positions(iteration, graph, robots, targets, algorithm: MetaAlgorithm):
-    list(map(algorithm.move, robots))
+    pass
 
 
-def update_statistics(graph, robots, targets,
-                      collisions: list,
-                      choices,
-                      dict_for_results,
-                      dict_for_plots,
-                      algorithm,
-                      iteration,
-                      problem):
-    collisions.append(choices)
-    # plot_position_choices([*graph, *robots, *targets], collisions)
+def create_measurement_dicts():
+    """
+    :return: dict_for_results = {
+        'alg_name': {
+            'coverage': matrix[iteration][problem] = coverage,
+            'collisions': matrix[iteration][problem] = collisions,
+            'positions': {
+                iteration: {
+                    problem: {
+                        'agent_name (robot, target)': 'pos_name'
+                    }
+                }
+            }
+        }
+    }
+    """
+    dict_for_results = {}
+    for alg_name, params in ALGORITHMS_TO_CHECK:
+        positions_dict = {
+            itr: {
+                prob: {} for prob in range(B_NUMBER_OF_PROBLEMS)
+            }
+            for itr in range(B_ITERATIONS_IN_BIG_LOOPS)
+        }
+
+        dict_for_results[alg_name] = {
+            'coverage': np.zeros((B_ITERATIONS_IN_BIG_LOOPS, B_NUMBER_OF_PROBLEMS)),
+            'collisions': np.zeros((B_ITERATIONS_IN_BIG_LOOPS, B_NUMBER_OF_PROBLEMS)),
+            'positions': positions_dict,
+        }
+        dict_for_results['problems'] = {i: 0 for i in range(B_NUMBER_OF_PROBLEMS)}
+    return dict_for_results
+
+
+def update_statistics(graph, robots, targets, big_iteration, algorithm, problem, dict_for_results):
+    """
+    Update dict_for_results.
+    :param graph: list
+    :param robots: list
+    :param targets: list
+    :param choices:
+    :param big_iteration:
+    :param algorithm:
+    :param problem:
+    :param dict_for_results: {
+        'alg_name': {
+            'coverage': matrix[iteration][problem] = coverage,
+            'collisions': matrix[iteration][problem] = collisions,
+            'positions': {
+                iteration: {
+                    problem: {
+                        'agent_name (robot, target)': 'pos_name'
+                    }
+                }
+            }
+        }
+    }
+    :return:
+    """
+    dict_for_results[algorithm.name]['coverage'][big_iteration][problem] = calculate_coverage(robots, targets)
+    dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots)
+
+    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], iteration=big_iteration)
+    dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
+    # dict_for_results['problems'][problem] = graph
 
 
 def initialize_start_positions(graph, robots, targets):
@@ -147,6 +209,16 @@ def plot_field(graph, robots, targets, fig, ax):
     plt.pause(0.05)
 
 
-def pickle_results(dict_for_results, dict_for_plots):
+def pickle_results(dict_for_results):
     if PICKLE_RESULTS:
-        pass
+        try:
+            time_suffix_str = time.strftime("%d.%m.%Y-%H:%M:%S")
+            file_name = f'results/{time_suffix_str}_{ADDING_TO_FILE_NAME}.results'
+            # open the file for writing
+            with open(file_name, 'wb') as fileObject:
+                pickle.dump(dict_for_results, fileObject)
+            print('Pickled successfully!')
+            return file_name
+        except RuntimeError:
+            print('[ERROR] Pickle failed!')
+    return None

@@ -167,6 +167,7 @@ class BigSimulationRobotNode(RobotNode):
         # self.domain = domain
         self.pos_node = pos_node
         self.prev_pos_node = None
+        self.next_pos_node = None
         self.sr = SR
 
     def update_domain(self):
