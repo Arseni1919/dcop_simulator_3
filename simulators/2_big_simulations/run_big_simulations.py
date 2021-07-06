@@ -13,11 +13,11 @@ def main():
 
     for problem in range(B_NUMBER_OF_PROBLEMS):
         graph = create_graph(dict_for_results, problem)
-        initialize_start_positions(graph, robots, targets)
+        initialize_nodes_before_algorithms(graph, robots, targets)
 
         for alg_num, (alg_name, params) in enumerate(ALGORITHMS_TO_CHECK):
             reset_agents(graph, robots, targets)
-            algorithm = get_the_algorithm_object(alg_name)
+            algorithm = get_the_algorithm_object(alg_name, params)
             algorithm.init_nodes_before_big_loops(graph, robots, targets)
 
             for big_iteration in range(B_ITERATIONS_IN_BIG_LOOPS):

@@ -19,6 +19,14 @@ for a1, a2 in itertools.product(a,a):
     print(f'{a1} amd {a2}')
 print(list(itertools.product(a,a)))
 
+print(list(map(lambda x: x == 3, [1,2,3])))
+
+
+import time
+start_time = time.time()
+# your script
+elapsed_time = time.time() - start_time
+print(time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
 
 
 

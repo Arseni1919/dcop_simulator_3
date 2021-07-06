@@ -3,8 +3,12 @@ from simulators.functions import *
 
 
 class MetaAlgorithm(abc.ABC):
-    def __init__(self, name):
+
+    name = 'MetaAlgorithm'
+
+    def __init__(self, name, params):
         self.name = name
+        self.params = params
 
     @abc.abstractmethod
     def init_nodes_before_big_loops(self, graph, robots, targets):

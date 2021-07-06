@@ -17,7 +17,7 @@ def main():
     for iteration in range(S_ITERATIONS):
         send_messages(all_agents, iteration)
         print_table_of_messages(all_agents, iteration)
-        choices = print_and_return_choices(all_agents, iteration)
+        choices = print_and_return_choices(all_agents)
         collisions.append(choices)
 
     plot_results(all_agents, collisions)

@@ -5,18 +5,7 @@ def plot_coverage_vs_iters(file_name):
     results_dict = load_file(file_name)
     fig, ax = plt.subplots()
     # add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimension_to_avrg, alg_name, alg_label, color)
-    matrix_name = 'coverage'
-    dim = 1
-    add_graph(ax, 0, 0, results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
-    add_graph(ax, 3, 4, results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST', 'tab:brown')
-    add_graph(ax, 3, 0, results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST\n(including breakdowns)', 'tab:purple')
-    add_graph(ax, 3, 3, results_dict, matrix_name, dim, 'DSA_MST', 'CADSA', 'tab:cyan')
-    add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'Max-sum_MST', 'Max-sum_MST', 'g')
-    add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST', 'Max-sum_MST\n(including breakdowns)',
-              'tab:orange')
-    add_graph(ax, 2, 1, results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'm')
-
-
+    add_list_of_graphs(ax, results_dict, 'coverage')
     # ax.legend(loc='upper right')
     # ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', prop={'size': 15})

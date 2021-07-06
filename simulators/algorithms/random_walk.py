@@ -4,15 +4,14 @@ import time
 from simulators.algorithms.MetaAlgorithm import *
 
 
-
 class RandomWalk(MetaAlgorithm):
+    name = 'RandomWalk'
 
-    def __init__(self, name):
-        super(RandomWalk, self).__init__(name)
-        pass
+    def __init__(self, name, params=None):
+        super(RandomWalk, self).__init__(name, params)
 
     def send_message(self, from_node, to_node):
-        pass
+        raise RuntimeError
 
     def move(self, graph, robots, targets):
         for node in robots:

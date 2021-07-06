@@ -148,18 +148,21 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
     :return:
     """
     dict_for_results[algorithm.name]['coverage'][big_iteration][problem] = calculate_coverage(robots, targets)
-    dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots)
+    dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots, big_iteration)
 
-    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], iteration=big_iteration)
+    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots])
     dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
     # dict_for_results['problems'][problem] = graph
 
 
-def initialize_start_positions(graph, robots, targets):
+def initialize_nodes_before_algorithms(graph, robots, targets):
     pos_to_robots = random.sample(graph, len(robots) + len(targets))
     for pos_node, agent in zip(pos_to_robots, [*robots, *targets]):
         agent.pos_node = pos_node
         agent.initial_pos_node = pos_node
+
+    if DIFF_CRED:
+        set_diff_cred(robots, MIN_CRED, MAX_CRED)
 
 
 def create_fig_ax():

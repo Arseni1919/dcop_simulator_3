@@ -32,21 +32,26 @@ MINUS_INF = -70000
 
 B_WIDTH = 50
 B_HEIGHT = B_WIDTH
-B_N_NODES = 50
-B_MAX_DISTANCE_OF_NEARBY_POS = B_WIDTH/3
-B_SIZE_ROBOT_NODE = B_WIDTH/50
-B_SIZE_TARGET_NODE = B_WIDTH/50
-B_MIN_NEARBY_POS = 4
-B_MAX_NEARBY_POS = 7
+B_MAX_DISTANCE_OF_NEARBY_POS = B_WIDTH / 3
+B_SIZE_ROBOT_NODE = B_WIDTH / 50
+B_SIZE_TARGET_NODE = B_WIDTH / 50
+B_MIN_NEARBY_POS = 2
+B_MAX_NEARBY_POS = 5
+
+
 # B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 5
-B_ITERATIONS_IN_SMALL_LOOPS = 30
-# B_ITERATIONS_IN_BIG_LOOPS = 20
+B_ITERATIONS_IN_BIG_LOOPS = 10
+# B_ITERATIONS_IN_SMALL_LOOPS = 30
+B_ITERATIONS_IN_SMALL_LOOPS = 20
+
 # B_NUMBER_OF_PROBLEMS = 50
 B_NUMBER_OF_PROBLEMS = 5
-B_NUM_OF_ROBOTS = 7
+B_N_NODES = 500
+B_NUM_OF_ROBOTS = 20
 # B_NUM_OF_ROBOTS = 1
 B_NUM_OF_TARGETS = 10
+
+
 SR = 10
 MR = B_MAX_DISTANCE_OF_NEARBY_POS
 
@@ -66,12 +71,29 @@ ADDING_TO_FILE_NAME += 'targets_apart_' if TARGETS_APART else ''
 ADDING_TO_FILE_NAME += 'delay-v2_%s' % DELAY_OF_COLLISION if EXECUTE_DELAY else ''
 
 ALGORITHMS_TO_CHECK = [
-    ('CAMS', {}),
-    ('Random-Walk', {}),
+    # ('CAMS_diff_creds', {
+    #     'class': 'CAMS',
+    #     'diff_creds': {
+    #         'min': 5,
+    #         'max': 30,
+    #     },
+    # }),
+    ('Max_sum_MST', {
+        'class': 'Max_sum_MST'
+    }),
+    ('CAMS', {
+        'class': 'CAMS'
+    }),
+    ('Random-Walk', {
+        'class': 'RandomWalk'
+    }),
     # ('Max-sum_MST', {}),
     # ('DSA_MST', {}),
 ]
 
+DIFF_CRED = True
+# DIFF_CRED = False
+MIN_CRED, MAX_CRED = 5, 30
 # -------------------------------------------------- #
 NEED_TO_PLOT_FIELD = True
 # NEED_TO_PLOT_FIELD = False
@@ -92,4 +114,3 @@ LOAD_PREVIOUS_POSITIONS = False
 LOAD_PREVIOUS_WEIGHTS = False
 SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False
-

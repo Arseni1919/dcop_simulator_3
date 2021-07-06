@@ -1,12 +1,14 @@
+import random
 from typing import List
 from simulators.algorithms.MetaAlgorithm import *
 from simulators.nodes import *
 
 
 class CAMS(MetaAlgorithm):
-    def __init__(self, name):
-        super(CAMS, self).__init__(name)
-        pass
+    name = 'CAMS'
+
+    def __init__(self, name, params=None):
+        super(CAMS, self).__init__(name, params)
 
     def init_nodes_before_big_loops(self,
                                     graph: List[BigSimulationPositionNode],
@@ -15,6 +17,10 @@ class CAMS(MetaAlgorithm):
         # print('in init_nodes_before_big_loops')
         # update
         _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
+        if 'diff_creds' in self.params:
+            set_diff_cred(robots, self.params['diff_creds']['min'], self.params['diff_creds']['max'])
+        pass
+
 
     def init_nodes_before_small_loops(self,
                                       graph: List[BigSimulationPositionNode],
@@ -33,6 +39,9 @@ class CAMS(MetaAlgorithm):
         # neighbours - Targets and Robots
         self.add_nei_targets_robots(targets, robots)
 
+        # FMR
+        self.FMR_correction(targets)
+
         # neighbours - Positions and Robots
         self.add_nei_positions_robots(graph, robots)
 
@@ -49,18 +58,17 @@ class CAMS(MetaAlgorithm):
             tracker.step(problem, alg_num, big_iteration, iteration)
 
     def send_message(self, from_node, to_node):
-        pass
+        raise RuntimeError
 
     def move(self, graph, robots, targets):
         pos_nodes_dict = {pos_node.name: pos_node for pos_node in graph}
         # choices: {'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}
-        choices = print_and_return_choices([*graph, *robots, *targets], B_ITERATIONS_IN_SMALL_LOOPS-1)
+        choices = print_and_return_choices([*graph, *robots, *targets])
         for robot in robots:
             list_of_robot_choices = choices[robot.name]
             next_position = pos_nodes_dict[random.sample(list_of_robot_choices, 1)[0]]
             robot.prev_pos_node = robot.pos_node
             robot.pos_node = next_position
-
 
     def add_nei_targets_robots(self, targets, robots):
         for robot in robots:
@@ -77,6 +85,14 @@ class CAMS(MetaAlgorithm):
                 pos_node = pos_nodes_dict[pos_node_name]
                 pos_node.neighbours.append(robot)
                 robot.neighbours.append(pos_node)
+
+    def FMR_correction(self, targets):
+        for target in targets:
+            target.fmr_set = select_FMR_nei(target)
+            for robot in target.neighbours[:]:
+                if robot not in target.fmr_set:
+                    target.neighbours.remove(robot)
+                    robot.neighbours.remove(target)
 
 
 CAMS_alg = CAMS('CAMS')

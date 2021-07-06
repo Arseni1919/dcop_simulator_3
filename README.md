@@ -38,7 +38,7 @@ ___
 - [`matplotlib.pyplot.plot`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
 - [markers in `matplotlib`](https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers)
 - [Build-in Function in Python](https://docs.python.org/3/library/functions.html)
-- [badges in GitHub via `shields.io`](https://shields.io/)
+- [Badges in GitHub's README.md page via `shields.io`](https://shields.io/)
 
 
 

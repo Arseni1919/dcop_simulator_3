@@ -163,6 +163,7 @@ class BigSimulationTargetNode(TargetNode):
         if cells_near_me is None:
             self.cells_near_me = []
         self.pos_node = pos_node
+        self.fmr_set = []
 
     def update_cells_near_me(self, robots, graph):
         cells_near_me = []
@@ -174,6 +175,10 @@ class BigSimulationTargetNode(TargetNode):
                     cells_near_me.append(nearby_pos_node_name)
 
         self.cells_near_me = list(set(cells_near_me))
+
+    def clean_neighbours(self):
+        self.neighbours = []
+        self.fmr_set = []
 
     def clear_cells_near_me(self):
         self.cells_near_me = []
