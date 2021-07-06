@@ -162,50 +162,57 @@ def initialize_start_positions(graph, robots, targets):
         agent.initial_pos_node = pos_node
 
 
+def create_fig_ax():
+    if NEED_TO_PLOT_FIELD:
+        return plt.subplots(figsize=[6.4, 6.4])
+    else:
+        return 0, 0
+
 def plot_field(graph, robots, targets, fig, ax):
-    # fig.clf()
-    ax.clear()
-    padding = 4
-    ax.set_xlim([0 - padding, B_WIDTH + padding])
-    ax.set_ylim([0 - padding, B_WIDTH + padding])
+    if NEED_TO_PLOT_FIELD:
+        # fig.clf()
+        ax.clear()
+        padding = 4
+        ax.set_xlim([0 - padding, B_WIDTH + padding])
+        ax.set_ylim([0 - padding, B_WIDTH + padding])
 
-    # POSITIONS
-    ax.scatter(
-        [pos_node.pos[0] for pos_node in graph],
-        [pos_node.pos[1] for pos_node in graph],
-        color='g', alpha=0.3, marker="s"
-    )
+        # POSITIONS
+        ax.scatter(
+            [pos_node.pos[0] for pos_node in graph],
+            [pos_node.pos[1] for pos_node in graph],
+            color='g', alpha=0.3, marker="s"
+        )
 
-    # POSITION ANNOTATIONS
-    # for pos_node in graph:
-    #     ax.annotate(pos_node.num, pos_node.pos, fontsize=5)
+        # POSITION ANNOTATIONS
+        # for pos_node in graph:
+        #     ax.annotate(pos_node.num, pos_node.pos, fontsize=5)
 
-    # EDGES: edge lines on the graph
-    for pos_node in graph:
-        x_edges_list, y_edges_list = [], []
-        for nearby_node_name, nearby_node in pos_node.nearby_position_nodes.items():
-            x_edges_list.extend([pos_node.pos[0], nearby_node.pos[0]])
-            y_edges_list.extend([pos_node.pos[1], nearby_node.pos[1]])
-        plt.plot(x_edges_list, y_edges_list, color='g', alpha=0.3)
+        # EDGES: edge lines on the graph
+        for pos_node in graph:
+            x_edges_list, y_edges_list = [], []
+            for nearby_node_name, nearby_node in pos_node.nearby_position_nodes.items():
+                x_edges_list.extend([pos_node.pos[0], nearby_node.pos[0]])
+                y_edges_list.extend([pos_node.pos[1], nearby_node.pos[1]])
+            plt.plot(x_edges_list, y_edges_list, color='g', alpha=0.3)
 
-    # ROBOTS
-    for robot in robots:
-        circle1 = plt.Circle(robot.pos_node.pos, B_SIZE_ROBOT_NODE, color='b', alpha=0.3)
-        ax.add_patch(circle1)
-        ax.annotate(robot.name, robot.pos_node.pos, fontsize=5)
+        # ROBOTS
+        for robot in robots:
+            circle1 = plt.Circle(robot.pos_node.pos, B_SIZE_ROBOT_NODE, color='b', alpha=0.3)
+            ax.add_patch(circle1)
+            ax.annotate(robot.name, robot.pos_node.pos, fontsize=5)
 
-    # TARGETS
-    for target in targets:
-        rect = plt.Rectangle(target.pos_node.pos - (B_SIZE_TARGET_NODE / 2, B_SIZE_TARGET_NODE / 2), B_SIZE_TARGET_NODE,
-                             B_SIZE_TARGET_NODE, color='r', alpha=0.3)
-        ax.add_patch(rect)
-        ax.annotate(target.name, target.pos_node.pos, fontsize=5)
+        # TARGETS
+        for target in targets:
+            rect = plt.Rectangle(target.pos_node.pos - (B_SIZE_TARGET_NODE / 2, B_SIZE_TARGET_NODE / 2), B_SIZE_TARGET_NODE,
+                                 B_SIZE_TARGET_NODE, color='r', alpha=0.3)
+            ax.add_patch(rect)
+            ax.annotate(target.name, target.pos_node.pos, fontsize=5)
 
-    # light up nodes upon the changes
-    if LIGHT_UP_THE_CHANGES:
-        pass
+        # light up nodes upon the changes
+        if LIGHT_UP_THE_CHANGES:
+            pass
 
-    plt.pause(0.05)
+        plt.pause(0.05)
 
 
 def pickle_results(dict_for_results):

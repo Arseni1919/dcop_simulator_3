@@ -6,7 +6,7 @@ from simulators.algorithms.algorithms import *
 def main():
     start = time.time()
     dict_for_results = create_measurement_dicts()
-    fig, ax = plt.subplots(figsize=[6.4, 6.4])
+    fig, ax = create_fig_ax()
 
     targets = create_targets()
     robots = create_robots()
@@ -22,7 +22,7 @@ def main():
 
             for big_iteration in range(B_ITERATIONS_IN_BIG_LOOPS):
                 algorithm.init_nodes_before_small_loops(graph, robots, targets)
-                algorithm.send_messages(big_iteration, graph, robots, targets)
+                algorithm.send_messages(big_iteration, graph, robots, targets, problem, alg_num, tracker)
                 algorithm.move(graph, robots, targets)
 
                 tracker.step(problem, alg_num, big_iteration)

@@ -11,10 +11,11 @@ class Tracker:
         self.done = 5
         self.biggest = 20
 
-    def step(self, problem, alg_num, iteration):
+    def step(self, problem, alg_num, curr_bigger_iteration, curr_smaller_iteration=0):
         self.curr_problem = problem
         self.curr_alg_num = alg_num
-        self.curr_bigger_iteration = iteration
+        self.curr_bigger_iteration = curr_bigger_iteration
+        self.curr_smaller_iteration = curr_smaller_iteration
         self._print_progress()
 
     def _print_progress(self):

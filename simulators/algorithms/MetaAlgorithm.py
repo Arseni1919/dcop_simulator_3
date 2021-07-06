@@ -15,7 +15,7 @@ class MetaAlgorithm(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def send_messages(self, iteration, graph, robots, targets):
+    def send_messages(self, iteration, graph, robots, targets, problem, alg_num, tracker):
         pass
 
     @abc.abstractmethod

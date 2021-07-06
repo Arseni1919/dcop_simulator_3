@@ -68,8 +68,8 @@ class FunctionNode(Node):
                                              self._prev_iter_brings(iteration, comb_of_other_nei_pos, list_of_other_nei)
                                      )
                                      )
-        if self.name == 'pos1' and var_nei.name == 'robot1':
-            print(f'message from {self.name} to {var_nei.name} is: {message}')
+        # if self.name == 'pos1' and var_nei.name == 'robot1':
+        #     print(f'message from {self.name} to {var_nei.name} is: {message}')
         message = flatten_message(message)
         var_nei.message_box[iteration][self.name] = message
 
@@ -165,13 +165,15 @@ class BigSimulationTargetNode(TargetNode):
         self.pos_node = pos_node
 
     def update_cells_near_me(self, robots, graph):
-        self.clear_cells_near_me()
+        cells_near_me = []
         pos_dict = {pos.name: pos for pos in graph}
         for robot in robots:
             for nearby_pos_node_name in robot.domain:
                 nearby_pos_node = pos_dict[nearby_pos_node_name]
                 if distance(self.pos_node.pos, nearby_pos_node.pos) < robot.sr:
-                    self.cells_near_me.append(nearby_pos_node_name)
+                    cells_near_me.append(nearby_pos_node_name)
+
+        self.cells_near_me = list(set(cells_near_me))
 
     def clear_cells_near_me(self):
         self.cells_near_me = []

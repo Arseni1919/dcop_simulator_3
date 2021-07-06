@@ -1,5 +1,7 @@
 # [DCOP_MST](https://www.bgu.ac.il/~zivanr/files/DCOP_MST_JAAMAS.pdf) Simulator (Version 3)
 
+![](https://img.shields.io/github/followers/Arseni1919?style=social)
+
 ## Small Simulations
 
 [Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)

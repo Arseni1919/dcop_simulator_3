@@ -1,5 +1,4 @@
 from typing import List
-
 from simulators.algorithms.MetaAlgorithm import *
 from simulators.nodes import *
 
@@ -13,6 +12,7 @@ class CAMS(MetaAlgorithm):
                                     graph: List[BigSimulationPositionNode],
                                     robots: List[BigSimulationRobotNode],
                                     targets: List[BigSimulationTargetNode]):
+        # print('in init_nodes_before_big_loops')
         # update
         _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
 
@@ -20,7 +20,7 @@ class CAMS(MetaAlgorithm):
                                       graph: List[BigSimulationPositionNode],
                                       robots: List[BigSimulationRobotNode],
                                       targets: List[BigSimulationTargetNode]):
-
+        # print('in init_nodes_before_small_loops')
         # update robots domains
         _ = [robot.update_domain() for robot in robots]
 
@@ -39,11 +39,14 @@ class CAMS(MetaAlgorithm):
         # init message boxes
         init_message_boxes([*graph, *robots, *targets], B_ITERATIONS_IN_SMALL_LOOPS)
 
-    def send_messages(self, big_iteration, graph, robots, targets):
+    def send_messages(self, big_iteration, graph, robots, targets, problem, alg_num, tracker):
         for iteration in range(B_ITERATIONS_IN_SMALL_LOOPS):
-            for agent in [*graph, *robots, *targets]:
+            all_agents = [*graph, *robots, *targets]
+            for agent in all_agents:
                 for nei in agent.neighbours:
                     agent.send_message_to(nei, iteration)
+
+            tracker.step(problem, alg_num, big_iteration, iteration)
 
     def send_message(self, from_node, to_node):
         pass
@@ -60,20 +63,20 @@ class CAMS(MetaAlgorithm):
 
 
     def add_nei_targets_robots(self, targets, robots):
-        for target in targets:
-            for robot in robots:
-                for pos_node_name in robot.domain:
-                    if pos_node_name in target.cells_near_me:
-                        target.neighbours.append(robot)
-                        robot.neighbours.append(target)
+        for robot in robots:
+            for target in targets:
+                in_range = [pos_node_name in target.cells_near_me for pos_node_name in robot.domain]
+                if any(in_range):
+                    target.neighbours.append(robot)
+                    robot.neighbours.append(target)
 
     def add_nei_positions_robots(self, graph, robots):
-        for pos_node in graph:
-            for robot in robots:
-                for pos_node_name in robot.domain:
-                    if pos_node_name == pos_node.name:
-                        pos_node.neighbours.append(robot)
-                        robot.neighbours.append(pos_node)
+        pos_nodes_dict = {pos_node.name: pos_node for pos_node in graph}
+        for robot in robots:
+            for pos_node_name in robot.domain:
+                pos_node = pos_nodes_dict[pos_node_name]
+                pos_node.neighbours.append(robot)
+                robot.neighbours.append(pos_node)
 
 
 CAMS_alg = CAMS('CAMS')
