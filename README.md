@@ -1,8 +1,8 @@
 # [DCOP_MST](https://www.bgu.ac.il/~zivanr/files/DCOP_MST_JAAMAS.pdf) Simulator (Version 3)
 
 <p align="center">
-    <a href="https://github.com/Arseni1919" alt="Follow">
-        <img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
+    <a href="#" alt=""><img src="https://img.shields.io/badge/status-stable-green" /></a>
+    <a href="https://github.com/Arseni1919" alt="Follow"><img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
 </p>
 
 ## Small Simulations
@@ -33,6 +33,7 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 - [`matplotlib.pyplot.plot`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
 - [markers in `matplotlib`](https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers)
 - [Build-in Function in Python](https://docs.python.org/3/library/functions.html)
+- []()
 
 
 
