@@ -28,8 +28,7 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 
 ## Paper
 
----
----
+___
 
 ## Credits
 
