@@ -17,8 +17,8 @@ class CAMS(MetaAlgorithm):
         # print('in init_nodes_before_big_loops')
         # update
         _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
-        if 'diff_creds' in self.params:
-            set_diff_cred(robots, self.params['diff_creds']['min'], self.params['diff_creds']['max'])
+        # if 'diff_creds' in self.params:
+        #     set_diff_cred(robots, self.params['diff_creds']['min'], self.params['diff_creds']['max'])
         pass
 
 
