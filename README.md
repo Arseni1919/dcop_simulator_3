@@ -28,6 +28,9 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 
 ## Paper
 
+---
+---
+
 ## Credits
 
 - [Scikit-Learn - NearestNeighbors](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html)
