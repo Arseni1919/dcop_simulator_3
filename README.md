@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/Arseni1919" alt="Follow">
-        <img src="https://img.shields.io/github/follow/Arseni1919?style=social" /></a>
+        <img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
 </p>
 
 ## Small Simulations
