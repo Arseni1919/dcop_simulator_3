@@ -44,8 +44,8 @@ def calculate_collisions(robots, big_iteration):
     return collisions
 
 
-def print_minutes(start):
-    end = time.time()
+def print_minutes(start, end):
+
     print()
     print(f'\nThe program finished in {time.strftime("%H:%M:%S", time.gmtime(end - start))}.')
 
@@ -86,7 +86,7 @@ def print_and_return_choices(all_agents, s_iteration):
             str_for_print += f'\n{colored(a.name, "green")} {choose_str}: ' \
                              f'{cells_with_highest_value} with the highest value: {max_value:.2f}'
             return_value[a.name] = cells_with_highest_value
-    print(str_for_print)
+    # print(str_for_print)
     # print_all_pos_sum_weights(all_agents, iteration)
     return return_value
 

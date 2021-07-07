@@ -41,12 +41,12 @@ B_MAX_NEARBY_POS = 5
 
 
 # B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 1
+B_ITERATIONS_IN_BIG_LOOPS = 5
 # B_ITERATIONS_IN_SMALL_LOOPS = 30
-B_ITERATIONS_IN_SMALL_LOOPS = 1
+B_ITERATIONS_IN_SMALL_LOOPS = 5
 
 # B_NUMBER_OF_PROBLEMS = 50
-B_NUMBER_OF_PROBLEMS = 1
+B_NUMBER_OF_PROBLEMS = 3
 B_N_NODES = 100
 B_NUM_OF_ROBOTS = 10
 # B_NUM_OF_ROBOTS = 1
@@ -89,23 +89,23 @@ ALGORITHMS_TO_CHECK = [
     ('CAMS', {
         'class': 'CAMS'
     }),
-    ('CADSA', {
-        'class': 'CADSA',
-    }),
-    ('Max-sum_MST_breakdowns', {
-        'class': 'Max_sum_MST',
-        'breakdowns': True,
-    }),
-    ('DSA_MST_breakdowns', {
-        'class': 'DSA_MST',
-        'breakdowns': True,
-    }),
-    ('DSA_MST', {
-        'class': 'DSA_MST',
-    }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-    }),
+    # ('CADSA', {
+    #     'class': 'CADSA',
+    # }),
+    # ('Max-sum_MST_breakdowns', {
+    #     'class': 'Max_sum_MST',
+    #     'breakdowns': True,
+    # }),
+    # ('DSA_MST_breakdowns', {
+    #     'class': 'DSA_MST',
+    #     'breakdowns': True,
+    # }),
+    # ('DSA_MST', {
+    #     'class': 'DSA_MST',
+    # }),
+    # ('Max_sum_MST', {
+    #     'class': 'Max_sum_MST',
+    # }),
     # ('Random-Walk', {
     #     'class': 'RandomWalk'
     # }),
