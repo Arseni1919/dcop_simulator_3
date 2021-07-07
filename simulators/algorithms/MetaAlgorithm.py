@@ -30,6 +30,10 @@ class MetaAlgorithm(abc.ABC):
     def move(self, graph, robots, targets):
         pass
 
+    @abc.abstractmethod
+    def breakdowns_correction(self, robots):
+        pass
+
 
 
 

@@ -71,6 +71,11 @@ class CAMS(MetaAlgorithm):
             robot.prev_pos_node = robot.pos_node
             robot.pos_node = next_position
 
+        self.breakdowns_correction(robots)
+
+    def breakdowns_correction(self, robots):
+        breakdowns_correction(robots, self.params)
+
     def add_nei_targets_robots(self, targets, robots):
         for robot in robots:
             for target in targets:

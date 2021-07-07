@@ -29,10 +29,27 @@ class RandomWalk(MetaAlgorithm):
         list(map(init_message_box, robots))
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
-        return [robot.update_domain() for robot in robots]
+        # update robots domains
+        _ = [robot.update_domain() for robot in robots]
+
+        # clean neighbours
+        _ = [agent.clean_neighbours() for agent in [*graph, *robots, *targets]]
+
+        self.set_neighbours(robots)
+
+    def set_neighbours(self, robots):
+        for robot1 in robots:
+            for robot2 in robots:
+                intersections = [pos1 in robot2.domain for pos1 in robot1.domain]
+                if any(intersections):
+                    robot1.neighbours.append(robot2)
+
 
     def send_messages(self, iteration, graph, robots, targets, problem, alg_num, tracker):
         pass
+
+    def breakdowns_correction(self, robots):
+        breakdowns_correction(robots, self.params)
 
 
 random_walk = RandomWalk('Random-Walk')

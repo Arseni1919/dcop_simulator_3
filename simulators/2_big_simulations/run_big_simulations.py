@@ -16,18 +16,18 @@ def main():
         initialize_nodes_before_algorithms(graph, robots, targets)
 
         for alg_num, (alg_name, params) in enumerate(ALGORITHMS_TO_CHECK):
-            reset_agents(graph, robots, targets)
+            i_graph, i_robots, i_targets = reset_agents(graph, robots, targets)
             algorithm = get_the_algorithm_object(alg_name, params)
-            algorithm.init_nodes_before_big_loops(graph, robots, targets)
+            algorithm.init_nodes_before_big_loops(i_graph, i_robots, i_targets)
 
             for big_iteration in range(B_ITERATIONS_IN_BIG_LOOPS):
-                algorithm.init_nodes_before_small_loops(graph, robots, targets)
-                algorithm.send_messages(big_iteration, graph, robots, targets, problem, alg_num, tracker)
-                algorithm.move(graph, robots, targets)
+                algorithm.init_nodes_before_small_loops(i_graph, i_robots, i_targets)
+                algorithm.send_messages(big_iteration, i_graph, i_robots, i_targets, problem, alg_num, tracker)
+                algorithm.move(i_graph, i_robots, i_targets)
 
                 tracker.step(problem, alg_num, big_iteration)
-                plot_field(graph, robots, targets, fig, ax)
-                update_statistics(graph, robots, targets, big_iteration, algorithm, problem, dict_for_results)
+                plot_field(i_graph, i_robots, i_targets, alg_name, problem, big_iteration, fig, ax)
+                update_statistics(i_graph, i_robots, i_targets, big_iteration, algorithm, problem, dict_for_results)
 
     print_minutes(start)
     file_name = pickle_results(dict_for_results)

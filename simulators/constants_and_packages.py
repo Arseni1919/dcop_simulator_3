@@ -41,7 +41,7 @@ B_MAX_NEARBY_POS = 5
 
 
 # B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 5
+B_ITERATIONS_IN_BIG_LOOPS = 50
 # B_ITERATIONS_IN_SMALL_LOOPS = 30
 B_ITERATIONS_IN_SMALL_LOOPS = 10
 
@@ -82,11 +82,22 @@ ALGORITHMS_TO_CHECK = [
     #         'max': 30,
     #     },
     # }),
+    ('Max-sum_MST_breakdowns', {
+        'class': 'Max_sum_MST',
+        'breakdowns': True,
+    }),
+    ('DSA_MST_breakdowns', {
+        'class': 'DSA_MST',
+        'breakdowns': True,
+    }),
+    ('CADSA', {
+        'class': 'CADSA',
+    }),
     ('DSA_MST', {
-        'class': 'DSA_MST'
+        'class': 'DSA_MST',
     }),
     ('Max_sum_MST', {
-        'class': 'Max_sum_MST'
+        'class': 'Max_sum_MST',
     }),
     ('CAMS', {
         'class': 'CAMS'
@@ -94,7 +105,10 @@ ALGORITHMS_TO_CHECK = [
     ('Random-Walk', {
         'class': 'RandomWalk'
     }),
-    # ('Max-sum_MST', {}),
+    ('Random-Walk_breakdowns', {
+        'class': 'RandomWalk',
+        'breakdowns': True,
+    }),
 
 ]
 

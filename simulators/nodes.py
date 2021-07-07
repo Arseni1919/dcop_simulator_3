@@ -192,6 +192,8 @@ class BigSimulationRobotNode(RobotNode):
         self.pos_node = pos_node
         self.prev_pos_node = None
         self.next_pos_node = None
+        self.breakdown_pose = None
+        self.breakdowns = False
         self.sr = SR
         self.mr = MR
 

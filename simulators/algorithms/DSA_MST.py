@@ -48,6 +48,11 @@ class DSA_MST(MetaAlgorithm):
             node.prev_pos_node = node.pos_node
             node.pos_node = next_pos_node
 
+        self.breakdowns_correction(robots)
+
+    def breakdowns_correction(self, robots):
+        breakdowns_correction(robots, self.params)
+
     def get_robot_pos_dsa_mst(self, robot, graph, robots, targets):
         """
         1. temp_req_set

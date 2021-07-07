@@ -189,6 +189,25 @@ def within_sr_from_most(robot, robot_pos_name_set, target_set, pos_dict_name_pos
     return within_sr_range_list, target_set_to_send
 
 
+def breakdowns_correction(robots, params):
+    if 'breakdowns' in params:
+        for robot in robots[:]:
+            if not robot.breakdowns:
+                for nei_robot in robots[:]:
+                    if robot.name != nei_robot.name and robot.pos_node is nei_robot.pos_node:
+                        robot.breakdowns = True
+                        robot.breakdown_pose = robot.pos_node
+                        print(f'\n{robot.name} and {nei_robot.name} in breakdown')
+                        break
+        for robot in robots[:]:
+            if robot.breakdowns:
+                # robots.remove(robot)
+                robot.prev_pos_node = robot.breakdown_pose
+                robot.pos_node = robot.breakdown_pose
+
+
+
+
 
 
 

@@ -82,6 +82,7 @@ def reset_delay(x):
 def reset_agents(graph, robots, targets):
     list(map(init_pos, robots))
     list(map(reset_delay, robots))
+    return graph[:], robots[:], targets[:]
 
 
 def move_to_new_positions(iteration, graph, robots, targets, algorithm: MetaAlgorithm):
@@ -108,7 +109,7 @@ def create_measurement_dicts():
     for alg_name, params in ALGORITHMS_TO_CHECK:
         positions_dict = {
             itr: {
-                prob: {} for prob in range(B_NUMBER_OF_PROBLEMS)
+                problem_i: {} for problem_i in range(B_NUMBER_OF_PROBLEMS)
             }
             for itr in range(B_ITERATIONS_IN_BIG_LOOPS)
         }
@@ -117,8 +118,10 @@ def create_measurement_dicts():
             'coverage': np.zeros((B_ITERATIONS_IN_BIG_LOOPS, B_NUMBER_OF_PROBLEMS)),
             'collisions': np.zeros((B_ITERATIONS_IN_BIG_LOOPS, B_NUMBER_OF_PROBLEMS)),
             'positions': positions_dict,
+            'params': params,
         }
         dict_for_results['problems'] = {i: 0 for i in range(B_NUMBER_OF_PROBLEMS)}
+
     return dict_for_results
 
 
@@ -172,13 +175,19 @@ def create_fig_ax():
         return 0, 0
 
 
-def plot_field(graph, robots, targets, fig, ax):
+def plot_field(graph, robots, targets, alg_name, problem, big_iteration, fig, ax):
     if NEED_TO_PLOT_FIELD:
         # fig.clf()
         ax.clear()
         padding = 4
         ax.set_xlim([0 - padding, B_WIDTH + padding])
         ax.set_ylim([0 - padding, B_WIDTH + padding])
+
+        # title
+        ax.set_title(
+            f'{alg_name} '
+            f'\nProblem:({problem+1}/{B_NUMBER_OF_PROBLEMS}) Iteration: ({big_iteration+1}/{B_ITERATIONS_IN_BIG_LOOPS})'
+        )
 
         # POSITIONS
         ax.scatter(
@@ -213,7 +222,6 @@ def plot_field(graph, robots, targets, fig, ax):
             # range of mr
             circle_mr = plt.Circle(robot.pos_node.pos, robot.mr, color='tab:purple', alpha=0.05)
             ax.add_patch(circle_mr)
-
 
         # TARGETS
         for target in targets:
