@@ -41,12 +41,12 @@ B_MAX_NEARBY_POS = 5
 
 
 # B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 50
+B_ITERATIONS_IN_BIG_LOOPS = 1
 # B_ITERATIONS_IN_SMALL_LOOPS = 30
-B_ITERATIONS_IN_SMALL_LOOPS = 10
+B_ITERATIONS_IN_SMALL_LOOPS = 1
 
 # B_NUMBER_OF_PROBLEMS = 50
-B_NUMBER_OF_PROBLEMS = 3
+B_NUMBER_OF_PROBLEMS = 1
 B_N_NODES = 100
 B_NUM_OF_ROBOTS = 10
 # B_NUM_OF_ROBOTS = 1
@@ -82,6 +82,16 @@ ALGORITHMS_TO_CHECK = [
     #         'max': 30,
     #     },
     # }),
+    ('CAMS_breakdowns', {
+        'class': 'CAMS',
+        'breakdowns': True,
+    }),
+    ('CAMS', {
+        'class': 'CAMS'
+    }),
+    ('CADSA', {
+        'class': 'CADSA',
+    }),
     ('Max-sum_MST_breakdowns', {
         'class': 'Max_sum_MST',
         'breakdowns': True,
@@ -90,25 +100,19 @@ ALGORITHMS_TO_CHECK = [
         'class': 'DSA_MST',
         'breakdowns': True,
     }),
-    ('CADSA', {
-        'class': 'CADSA',
-    }),
     ('DSA_MST', {
         'class': 'DSA_MST',
     }),
     ('Max_sum_MST', {
         'class': 'Max_sum_MST',
     }),
-    ('CAMS', {
-        'class': 'CAMS'
-    }),
-    ('Random-Walk', {
-        'class': 'RandomWalk'
-    }),
-    ('Random-Walk_breakdowns', {
-        'class': 'RandomWalk',
-        'breakdowns': True,
-    }),
+    # ('Random-Walk', {
+    #     'class': 'RandomWalk'
+    # }),
+    # ('Random-Walk_breakdowns', {
+    #     'class': 'RandomWalk',
+    #     'breakdowns': True,
+    # }),
 
 ]
 

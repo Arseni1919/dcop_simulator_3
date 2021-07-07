@@ -15,7 +15,7 @@ class CAMS(MetaAlgorithm):
                                     robots: List[BigSimulationRobotNode],
                                     targets: List[BigSimulationTargetNode]):
         # print('in init_nodes_before_big_loops')
-        # update
+        # update dict_of_weights
         _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
         # if 'diff_creds' in self.params:
         #     set_diff_cred(robots, self.params['diff_creds']['min'], self.params['diff_creds']['max'])
@@ -27,6 +27,9 @@ class CAMS(MetaAlgorithm):
                                       robots: List[BigSimulationRobotNode],
                                       targets: List[BigSimulationTargetNode]):
         # print('in init_nodes_before_small_loops')
+        # update dict_of_weights
+        _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
+
         # update robots domains
         _ = [robot.update_domain() for robot in robots]
 

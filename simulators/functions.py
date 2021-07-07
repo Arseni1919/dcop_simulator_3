@@ -197,7 +197,7 @@ def breakdowns_correction(robots, params):
                     if robot.name != nei_robot.name and robot.pos_node is nei_robot.pos_node:
                         robot.breakdowns = True
                         robot.breakdown_pose = robot.pos_node
-                        print(f'\n{robot.name} and {nei_robot.name} in breakdown')
+                        # print(f'\n{robot.name} and {nei_robot.name} in breakdown')
                         break
         for robot in robots[:]:
             if robot.breakdowns:

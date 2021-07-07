@@ -69,19 +69,8 @@ def create_robots():
     return robots
 
 
-def init_pos(x):
-    x.pos_node = x.initial_pos_node
-    x.prev_pos_node = None
-    x.next_pos_node = None
-
-
-def reset_delay(x):
-    x.delay = 0
-
-
 def reset_agents(graph, robots, targets):
-    list(map(init_pos, robots))
-    list(map(reset_delay, robots))
+    _ = [x.reset() for x in robots]
     return graph[:], robots[:], targets[:]
 
 
@@ -170,12 +159,12 @@ def initialize_nodes_before_algorithms(graph, robots, targets):
 
 def create_fig_ax():
     if NEED_TO_PLOT_FIELD:
-        return plt.subplots(figsize=[6.4, 6.4])
+        return plt.subplots(figsize=[6.5, 6.5])
     else:
         return 0, 0
 
 
-def plot_field(graph, robots, targets, alg_name, problem, big_iteration, fig, ax):
+def plot_field(graph, robots, targets, alg_name, alg_num, problem, big_iteration, start, fig, ax):
     if NEED_TO_PLOT_FIELD:
         # fig.clf()
         ax.clear()
@@ -183,11 +172,12 @@ def plot_field(graph, robots, targets, alg_name, problem, big_iteration, fig, ax
         ax.set_xlim([0 - padding, B_WIDTH + padding])
         ax.set_ylim([0 - padding, B_WIDTH + padding])
 
-        # title
+        # titles
         ax.set_title(
-            f'{alg_name} '
-            f'\nProblem:({problem+1}/{B_NUMBER_OF_PROBLEMS}) Iteration: ({big_iteration+1}/{B_ITERATIONS_IN_BIG_LOOPS})'
+            f'Problem:({problem+1}/{B_NUMBER_OF_PROBLEMS})   Iteration: ({big_iteration+1}/{B_ITERATIONS_IN_BIG_LOOPS})'
+            f'\n{alg_name} ({alg_num+1}/{len(ALGORITHMS_TO_CHECK)}) '
         )
+        ax.set_xlabel(f'\nTime of the run: {time.strftime("%H:%M:%S", time.gmtime(time.time() - start))}')
 
         # POSITIONS
         ax.scatter(

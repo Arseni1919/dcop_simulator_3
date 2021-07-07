@@ -26,7 +26,7 @@ def main():
                 algorithm.move(i_graph, i_robots, i_targets)
 
                 tracker.step(problem, alg_num, big_iteration)
-                plot_field(i_graph, i_robots, i_targets, alg_name, problem, big_iteration, fig, ax)
+                plot_field(i_graph, i_robots, i_targets, alg_name, alg_num, problem, big_iteration, start, fig, ax)
                 update_statistics(i_graph, i_robots, i_targets, big_iteration, algorithm, problem, dict_for_results)
 
     print_minutes(start)
