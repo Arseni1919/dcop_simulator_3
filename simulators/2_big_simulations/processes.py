@@ -142,7 +142,7 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
     dict_for_results[algorithm.name]['coverage'][big_iteration][problem] = calculate_coverage(robots, targets)
     dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots, big_iteration)
 
-    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots])
+    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], s_iteration=B_ITERATIONS_IN_SMALL_LOOPS-1)
     dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
     # dict_for_results['problems'][problem] = graph
 

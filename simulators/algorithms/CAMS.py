@@ -67,7 +67,7 @@ class CAMS(MetaAlgorithm):
     def move(self, graph, robots, targets):
         pos_nodes_dict = {pos_node.name: pos_node for pos_node in graph}
         # choices: {'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}
-        choices = print_and_return_choices([*graph, *robots, *targets])
+        choices = print_and_return_choices([*graph, *robots, *targets], B_ITERATIONS_IN_SMALL_LOOPS-1)
         for robot in robots:
             list_of_robot_choices = choices[robot.name]
             next_position = pos_nodes_dict[random.sample(list_of_robot_choices, 1)[0]]

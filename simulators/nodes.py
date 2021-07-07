@@ -67,8 +67,8 @@ class FunctionNode(Node):
                                              self._prev_iter_brings(iteration, comb_of_other_nei_pos, list_of_other_nei)
                                      )
                                      )
-        # if self.name == 'pos1' and var_nei.name == 'robot1':
-        #     print(f'message from {self.name} to {var_nei.name} is: {message}')
+        if self.name == 'pos2' and var_nei.name == 'robot1':
+            print(f'message from {self.name} to {var_nei.name} is: {message}')
         message = flatten_message(message)
         var_nei.message_box[iteration][self.name] = message
 
