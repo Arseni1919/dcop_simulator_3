@@ -2,7 +2,6 @@ import random
 import time
 
 from simulators.algorithms.MetaAlgorithm import *
-from simulators.select_pos import select_pos
 
 class DSA_MST(MetaAlgorithm):
     name = 'DSA_MST'
