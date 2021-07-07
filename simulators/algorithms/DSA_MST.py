@@ -45,13 +45,9 @@ class DSA_MST(MetaAlgorithm):
 
     def move(self, graph, robots, targets):
         for node in robots:
-            next_position = self.get_robot_pos_dsa_mst(node, graph, robots, targets)
-            # possible_next_positions = list(node.pos_node.nearby_position_nodes.values())
-            # possible_next_positions.append(node.pos_node)
-            # # print(f'in: {node.pos_node.num}, to move: {[n.num for n in possible_next_positions]}')
-            # next_position = random.sample(possible_next_positions, 1)[0]
+            next_pos_node = self.get_robot_pos_dsa_mst(node, graph, robots, targets)
             node.prev_pos_node = node.pos_node
-            node.pos_node = next_position
+            node.pos_node = next_pos_node
 
     def get_robot_pos_dsa_mst(self, robot, graph, robots, targets):
         """
@@ -67,20 +63,10 @@ class DSA_MST(MetaAlgorithm):
             output:
             pos = (x, y)
         """
-
-        temp_req_set = self.calculate_temp_req(targets, robot.neighbour_robots)
-        pos_dict = {p_node.name: p_node.pos for p_node in graph}
-        pos_set = [pos_dict[pos_name] for pos_name in robot.domain]
-        new_pos = select_pos(pos_set, temp_req_set, robot)
-        if self.dsa_condition(robot, new_pos, robot.pos_node.pos, temp_req_set):
-            next_position_node_pos = new_pos
-        else:
-            next_position_node_pos = robot.pos_node.pos
-
-        for pos_node in graph:
-            if pos_node.pos == next_position_node_pos:
-                return pos_node
-        return RuntimeError
+        new_pos_node = select_pos(robot, targets, graph)
+        if self.dsa_condition(robot, new_pos_node, robot.pos_node.pos, targets):
+            return new_pos_node
+        return robot.pos_node
 
     def calculate_temp_req(self, targets, neighbours):
         """
@@ -91,12 +77,12 @@ class DSA_MST(MetaAlgorithm):
         for target in targets:
             curr_tuple = (target, target.req)
             for nei in neighbours:
-                if distance(nei.pos_node.pos, target.pos_node_pos) < nei.sr:
+                if distance(nei.pos_node.pos, target.pos_node.pos) < nei.sr:
                     curr_tuple = (target, max(0, curr_tuple[1] - nei.cred))
             temp_req_set.append(curr_tuple)
         return temp_req_set
 
-    def dsa_condition(self, agent, new_pos, curr_pos, temp_req_set):
+    def dsa_condition(self, agent, new_pos_node, curr_pos, targets):
         """
         input:
         output:
@@ -106,12 +92,13 @@ class DSA_MST(MetaAlgorithm):
         p. Zhang et al. showed that the value of p has a major effect on the quality of solutions
         found by DSA [63].
         """
+        temp_req_set = self.calculate_temp_req(targets, agent.neighbours)
         curr_value = 0
         new_value = 0
         for (target, temp_req) in temp_req_set:
-            if distance(new_pos, target.pos_node_pos) < agent.sr:
+            if distance(new_pos_node.pos, target.pos_node.pos) < agent.sr:
                 new_value += min(agent.cred, temp_req)
-            if distance(curr_pos, target.pos_node_pos) < agent.sr:
+            if distance(curr_pos, target.pos_node.pos) < agent.sr:
                 new_value += min(agent.cred, temp_req)
         if new_value >= curr_value:
             return random.random() < 0.7

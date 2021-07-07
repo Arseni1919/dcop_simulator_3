@@ -17,8 +17,9 @@ import os
 from scipy.stats import ttest_ind
 
 S_ITERATIONS = 20
-S_FLATTEN = True
 MINUS_INF = -70000
+FLATTEN_MESSAGE = True
+# FLATTEN_MESSAGE = False
 
 # ------------------------------------------------------------------------ #
 # ------------------------------------------------------------------------ #
@@ -30,12 +31,12 @@ MINUS_INF = -70000
 # ------------------------------------------------------------------------ #
 # ------------------------------------------------------------------------ #
 
-B_WIDTH = 50
+B_WIDTH = 100
 B_HEIGHT = B_WIDTH
 B_MAX_DISTANCE_OF_NEARBY_POS = B_WIDTH / 3
 B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
-B_MIN_NEARBY_POS = 2
+B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
 
 
@@ -45,15 +46,15 @@ B_ITERATIONS_IN_BIG_LOOPS = 5
 B_ITERATIONS_IN_SMALL_LOOPS = 10
 
 # B_NUMBER_OF_PROBLEMS = 50
-B_NUMBER_OF_PROBLEMS = 5
-B_N_NODES = 500
-B_NUM_OF_ROBOTS = 20
+B_NUMBER_OF_PROBLEMS = 3
+B_N_NODES = 100
+B_NUM_OF_ROBOTS = 10
 # B_NUM_OF_ROBOTS = 1
-B_NUM_OF_TARGETS = 10
+B_NUM_OF_TARGETS = 7
 
 
-SR = 10
-MR = B_MAX_DISTANCE_OF_NEARBY_POS
+MR = B_MAX_DISTANCE_OF_NEARBY_POS/2.5
+SR = MR
 
 GRID_SIDE_SIZE = 50
 # GRID_SIDE_SIZE = 20
@@ -62,6 +63,9 @@ DELAY_OF_COLLISION = 100
 EXECUTE_DELAY = False
 # TARGETS_APART = True
 TARGETS_APART = False
+DIFF_CRED = True
+# DIFF_CRED = False
+MIN_CRED, MAX_CRED = 10, 40
 
 ADDING_TO_FILE_NAME = ''
 ADDING_TO_FILE_NAME += '%sT-%sR_' % (B_NUM_OF_TARGETS, B_NUM_OF_ROBOTS)
@@ -78,6 +82,9 @@ ALGORITHMS_TO_CHECK = [
     #         'max': 30,
     #     },
     # }),
+    ('DSA_MST', {
+        'class': 'DSA_MST'
+    }),
     ('Max_sum_MST', {
         'class': 'Max_sum_MST'
     }),
@@ -88,12 +95,9 @@ ALGORITHMS_TO_CHECK = [
         'class': 'RandomWalk'
     }),
     # ('Max-sum_MST', {}),
-    # ('DSA_MST', {}),
+
 ]
 
-DIFF_CRED = True
-# DIFF_CRED = False
-MIN_CRED, MAX_CRED = 5, 30
 # -------------------------------------------------- #
 NEED_TO_PLOT_FIELD = True
 # NEED_TO_PLOT_FIELD = False

@@ -42,6 +42,7 @@ class Max_sum_MST(CAMS):
         for iteration in range(B_ITERATIONS_IN_SMALL_LOOPS):
             all_agents = [*robots, *targets]
             for agent in all_agents:
+                tracker.step(problem, alg_num, big_iteration, iteration, agent)
                 for nei in agent.neighbours:
                     agent.send_message_to(nei, iteration)
 

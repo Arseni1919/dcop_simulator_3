@@ -37,6 +37,7 @@ ___
 - [`prettytable` package](https://zetcode.com/python/prettytable/)
 - [`matplotlib.pyplot.plot`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
 - [markers in `matplotlib`](https://matplotlib.org/stable/api/markers_api.html#module-matplotlib.markers)
+- [colors in `matplotlib`](https://matplotlib.org/stable/gallery/color/named_colors.html)
 - [Build-in Function in Python](https://docs.python.org/3/library/functions.html)
 - [Badges in GitHub's README.md page via `shields.io`](https://shields.io/)
 

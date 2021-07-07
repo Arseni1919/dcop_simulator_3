@@ -1,6 +1,5 @@
 from simulators.functions import *
 
-
 class Node(abc.ABC):
     def __init__(self, name, num):
         self.name = name
@@ -57,7 +56,7 @@ class FunctionNode(Node):
         message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
         list_of_other_domains, list_of_other_nei = self._create_list_of_domains(var_nei)
         comb_of_other_nei_pos_list = list(itertools.product(*list_of_other_domains))
-
+        # print(f"\r {self.name}'s len of comb_of_other_nei_pos_list: {len(comb_of_other_nei_pos_list)} ...", end='')
         for comb_of_other_nei_pos in comb_of_other_nei_pos_list:
             for pos_i in var_nei.domain:
                 message[pos_i] = max(message[pos_i],

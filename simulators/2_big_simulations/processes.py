@@ -171,6 +171,7 @@ def create_fig_ax():
     else:
         return 0, 0
 
+
 def plot_field(graph, robots, targets, fig, ax):
     if NEED_TO_PLOT_FIELD:
         # fig.clf()
@@ -200,9 +201,19 @@ def plot_field(graph, robots, targets, fig, ax):
 
         # ROBOTS
         for robot in robots:
+            # robot
             circle1 = plt.Circle(robot.pos_node.pos, B_SIZE_ROBOT_NODE, color='b', alpha=0.3)
             ax.add_patch(circle1)
             ax.annotate(robot.name, robot.pos_node.pos, fontsize=5)
+
+            # range of sr
+            circle_sr = plt.Circle(robot.pos_node.pos, robot.sr, color='y', alpha=0.05)
+            ax.add_patch(circle_sr)
+
+            # range of mr
+            circle_mr = plt.Circle(robot.pos_node.pos, robot.mr, color='tab:purple', alpha=0.05)
+            ax.add_patch(circle_mr)
+
 
         # TARGETS
         for target in targets:
