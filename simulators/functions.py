@@ -64,7 +64,7 @@ def create_dict_of_weights(robots):
     return return_value
 
 
-def print_and_return_choices(all_agents, s_iteration):
+def print_and_return_choices(all_agents, s_iteration, need_to_print=False):
     # return_value: {'robot_name': ['pos_i', ...], 'robot_name_2': ['pos_i', ...], ...}
     return_value = {}
     str_for_print = ''
@@ -86,7 +86,8 @@ def print_and_return_choices(all_agents, s_iteration):
             str_for_print += f'\n{colored(a.name, "green")} {choose_str}: ' \
                              f'{cells_with_highest_value} with the highest value: {max_value:.2f}'
             return_value[a.name] = cells_with_highest_value
-    # print(str_for_print)
+    if need_to_print:
+        print(str_for_print)
     # print_all_pos_sum_weights(all_agents, iteration)
     return return_value
 
