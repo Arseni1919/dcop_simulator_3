@@ -12,7 +12,6 @@ def main():
     # scenario_func = scenario_n_6
     print(scenario_func.__name__)
 
-
     all_agents = scenario_func()
     init_message_boxes(all_agents, S_ITERATIONS)
     collisions = []
