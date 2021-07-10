@@ -4,7 +4,7 @@
     <a href="#" alt=""><img src="https://img.shields.io/github/last-commit/Arseni1919/dcop_simulator_3" /></a>
     <a href="#" alt=""><img src="https://img.shields.io/github/repo-size/Arseni1919/dcop_simulator_3" /></a>
     <a href="#" alt=""><img src="https://img.shields.io/github/languages/top/Arseni1919/dcop_simulator_3" /></a>
-<!--     <a href="https://img.shields.io/github/license/Arseni1919/dcop_simulator_3" alt=""><img src="https://img.shields.io/github/license/Arseni1919/dcop_simulator_3" /></a> -->
+    <a href="https://img.shields.io/github/license/Arseni1919/dcop_simulator_3" alt=""><img src="https://img.shields.io/github/license/Arseni1919/dcop_simulator_3" /></a>
     <a href="https://github.com/Arseni1919" alt="Follow"><img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
 </p>
 
