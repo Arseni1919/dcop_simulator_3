@@ -13,16 +13,18 @@
 [Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)
 
 ### Output
+
+#### Messages between agents. And their choices at the end of current iteration.
+
 <p align="center">
     <img src="static/pic1.png" alt="drawing" width="480"/>
 </p>
-Messages between agents. And their choices at the end of current iteration.
+
+#### The graph of those choices (y axis) per iteration (x axis).
 
 <p align="center">
     <img src="static/pic2.png" alt="drawing" width="480"/>
 </p>
-
-The graph of those choices (y axis) per iteration (x axis).
 
 ## Big Simulations
 
@@ -33,9 +35,9 @@ The graph of those choices (y axis) per iteration (x axis).
 You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 
 ### Graph Example
-
-<img src="static/g3.png" alt="drawing" width="480"/>
-
+<p align="center">
+    <img src="static/g3.png" alt="drawing" width="480"/>
+</p>
 ## Results
 
 ## Paper
