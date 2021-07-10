@@ -23,11 +23,15 @@
 
 #### Messages between agents. And their choices at the end of current iteration:
 
+Example from Scenario 2.
+
 <p align="center">
     <img src="static/pic1.png" alt="drawing" width="480"/>
 </p>
 
 #### The graph of chosen robots' positions (y axis) per iteration (x axis):
+
+Example from Scenario 6.
 
 <p align="center">
     <img src="static/pic2.png" alt="drawing" width="480"/>
