@@ -28,10 +28,14 @@ class CADSA(DSA_MST):
     def cadsa_correction(self, robots):
         for robot in robots:
             for robot_nei in robot.neighbours:
+                if robot.next_pos_node is None or robot_nei.next_pos_node is None:
+                    continue
                 if robot.next_pos_node is robot_nei.next_pos_node:
                     if robot.num > robot_nei.num:
-                        robot.next_pos_node = None
-                        break
+                        if robot.next_pos_node is robot.pos_node:
+                            robot_nei.next_pos_node = None
+                        else:
+                            robot.next_pos_node = None
         for node in robots:
             node.prev_pos_node = node.pos_node
             if node.next_pos_node:

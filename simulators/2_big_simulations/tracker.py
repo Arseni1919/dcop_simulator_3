@@ -36,5 +36,8 @@ class Tracker:
                       f'Agent: ({self.agent}), '
                       f'Progress: [{"#" * self.done}{"." * (self.biggest - self.done)}]', 'green'), end='')
 
+    def print_start_of_simulation_time(self):
+        print(f'Start of the simulation: {datetime.datetime.now()}\n')
+
 
 tracker = Tracker()

@@ -4,7 +4,7 @@ from simulators.nodes import *
 from simulators.algorithms.algorithms import *
 from simulators.plots.coverage_vs_iters import *
 from simulators.plots.collisions_vs_iters import *
-
+from tracker import tracker
 # from simulators.constants_and_packages import *
 
 
@@ -110,6 +110,14 @@ def create_measurement_dicts():
             'params': params,
         }
         dict_for_results['problems'] = {i: 0 for i in range(B_NUMBER_OF_PROBLEMS)}
+        dict_for_results['time'] = 0
+        dict_for_results['B_NUMBER_OF_PROBLEMS'] = B_NUMBER_OF_PROBLEMS
+        dict_for_results['B_NUM_OF_ROBOTS'] = B_NUM_OF_ROBOTS
+        dict_for_results['B_NUM_OF_TARGETS'] = B_NUM_OF_TARGETS
+        dict_for_results['B_ITERATIONS_IN_BIG_LOOPS'] = B_ITERATIONS_IN_BIG_LOOPS
+        dict_for_results['B_ITERATIONS_IN_SMALL_LOOPS'] = B_ITERATIONS_IN_SMALL_LOOPS
+        # dict_for_results[''] =
+        # dict_for_results[''] =
 
     return dict_for_results
 
@@ -228,8 +236,9 @@ def plot_field(graph, robots, targets, alg_name, alg_num, problem, big_iteration
         plt.pause(0.05)
 
 
-def pickle_results(dict_for_results):
+def pickle_results(dict_for_results, start, end):
     if PICKLE_RESULTS:
+        dict_for_results['time'] = time.strftime("%H:%M:%S", time.gmtime(end - start))
         try:
             time_suffix_str = time.strftime("%d.%m.%Y-%H:%M:%S")
             file_name = f'results/{time_suffix_str}_{ADDING_TO_FILE_NAME}.results'
@@ -241,3 +250,53 @@ def pickle_results(dict_for_results):
         except RuntimeError:
             print('[ERROR] Pickle failed!')
     return None
+
+
+def check_algorithms():
+    """
+    Quick check of all algorithms. Here we run two iterations with each one to see if everything works correctly.
+    """
+    graph = create_graph({'problems': {1: []}}, 1)
+    targets = create_targets()
+    robots = create_robots()
+    initialize_nodes_before_algorithms(graph, robots, targets)
+    for alg_num, (alg_name, params) in enumerate(ALGORITHMS_TO_CHECK):
+        i_graph, i_robots, i_targets = reset_agents(graph, robots, targets)
+        algorithm = get_the_algorithm_object(alg_name, params)
+        algorithm.init_nodes_before_big_loops(i_graph, i_robots, i_targets)
+
+        for big_iteration in range(2):
+            algorithm.init_nodes_before_small_loops(i_graph, i_robots, i_targets)
+            algorithm.send_messages(big_iteration, i_graph, i_robots, i_targets, 1, alg_num, tracker)
+            algorithm.move(i_graph, i_robots, i_targets)
+    print(f'\r{colored("[MESSAGE] Finished quick check.", color="yellow")}\n')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

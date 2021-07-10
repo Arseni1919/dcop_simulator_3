@@ -34,4 +34,7 @@ import matplotlib.pyplot as plt
 plt.close()
 
 
+import datetime
+print(datetime.datetime.now())
+
 

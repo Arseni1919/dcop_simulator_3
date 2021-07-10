@@ -15,6 +15,7 @@ from pprint import pprint
 from sklearn.neighbors import NearestNeighbors
 import os
 from scipy.stats import ttest_ind
+import datetime
 
 S_ITERATIONS = 20
 MINUS_INF = -70000
@@ -40,13 +41,13 @@ B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
 
 
-# B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 30
+B_ITERATIONS_IN_BIG_LOOPS = 50
+# B_ITERATIONS_IN_BIG_LOOPS = 30
 B_ITERATIONS_IN_SMALL_LOOPS = 5
 # B_ITERATIONS_IN_SMALL_LOOPS = 10
 
-# B_NUMBER_OF_PROBLEMS = 50
-B_NUMBER_OF_PROBLEMS = 10
+B_NUMBER_OF_PROBLEMS = 50
+# B_NUMBER_OF_PROBLEMS = 5
 B_N_NODES = 500
 B_NUM_OF_ROBOTS = 20
 # B_NUM_OF_ROBOTS = 1
@@ -89,30 +90,30 @@ ALGORITHMS_TO_CHECK = [
     ('DSSA', {
         'class': 'DSSA'
     }),
-    # ('DSA_MST', {
-    #     'class': 'DSA_MST',
-    # }),
+    ('DSA_MST', {
+        'class': 'DSA_MST',
+    }),
     # ('CAMS_breakdowns', {
     #     'class': 'CAMS',
     #     'breakdowns': True,
     # }),
-    # ('CADSA', {
-    #     'class': 'CADSA',
-    # }),
-    # ('Max-sum_MST_breakdowns', {
-    #     'class': 'Max_sum_MST',
-    #     'breakdowns': True,
-    # }),
-    # ('DSA_MST_breakdowns', {
-    #     'class': 'DSA_MST',
-    #     'breakdowns': True,
-    # }),
-    # ('Max_sum_MST', {
-    #     'class': 'Max_sum_MST',
-    # }),
-    # ('Random-Walk', {
-    #     'class': 'RandomWalk'
-    # }),
+    ('CADSA', {
+        'class': 'CADSA',
+    }),
+    ('Max-sum_MST_breakdowns', {
+        'class': 'Max_sum_MST',
+        'breakdowns': True,
+    }),
+    ('DSA_MST_breakdowns', {
+        'class': 'DSA_MST',
+        'breakdowns': True,
+    }),
+    ('Max_sum_MST', {
+        'class': 'Max_sum_MST',
+    }),
+    ('Random-Walk', {
+        'class': 'RandomWalk'
+    }),
     # ('Random-Walk_breakdowns', {
     #     'class': 'RandomWalk',
     #     'breakdowns': True,

@@ -4,12 +4,14 @@ from simulators.algorithms.algorithms import *
 
 
 def main():
+    tracker.print_start_of_simulation_time()
     start = time.time()
     dict_for_results = create_measurement_dicts()
     fig, ax = create_fig_ax()
 
     targets = create_targets()
     robots = create_robots()
+    check_algorithms()
 
     for problem in range(B_NUMBER_OF_PROBLEMS):
         graph = create_graph(dict_for_results, problem)
@@ -30,7 +32,7 @@ def main():
                 update_statistics(i_graph, i_robots, i_targets, big_iteration, algorithm, problem, dict_for_results)
 
     end = time.time()
-    file_name = pickle_results(dict_for_results)
+    file_name = pickle_results(dict_for_results, start, end)
     print_and_plot_results(file_name)
     print_minutes(start, end)
 
