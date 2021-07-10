@@ -27,7 +27,7 @@
     <img src="static/pic1.png" alt="drawing" width="480"/>
 </p>
 
-#### The graph of those choices (y axis) per iteration (x axis):
+#### The graph of chosen robots' positions (y axis) per iteration (x axis):
 
 <p align="center">
     <img src="static/pic2.png" alt="drawing" width="480"/>
@@ -50,8 +50,8 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 ### The Run of The Big Simulation
 
 - Blue circles - robots
-- Orange circles - targets
-- Green  points and edges - a graph of a problem
+- Orange squares - targets
+- Green  squares and edges - a graph of a problem
 
 <p align="center">
     <img src="static/pic3.png" alt="drawing" width="480"/>
