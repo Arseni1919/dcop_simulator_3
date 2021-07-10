@@ -14,13 +14,13 @@
 
 ### Output
 
-#### Messages between agents. And their choices at the end of current iteration.
+#### Messages between agents. And their choices at the end of current iteration:
 
 <p align="center">
     <img src="static/pic1.png" alt="drawing" width="480"/>
 </p>
 
-#### The graph of those choices (y axis) per iteration (x axis).
+#### The graph of those choices (y axis) per iteration (x axis):
 
 <p align="center">
     <img src="static/pic2.png" alt="drawing" width="480"/>
@@ -35,9 +35,11 @@
 You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 
 ### Graph Example
+
 <p align="center">
     <img src="static/g3.png" alt="drawing" width="480"/>
 </p>
+
 ## Results
 
 ## Paper
