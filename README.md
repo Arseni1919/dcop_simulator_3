@@ -77,6 +77,7 @@ ___
 - [colors in `matplotlib`](https://matplotlib.org/stable/gallery/color/named_colors.html)
 - [Build-in Function in Python](https://docs.python.org/3/library/functions.html)
 - [Badges in GitHub's README.md page via `shields.io`](https://shields.io/)
+- [Choose an open source license | choosealicense.com](https://choosealicense.com/)
 
 
 
