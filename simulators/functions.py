@@ -44,6 +44,25 @@ def calculate_collisions(robots, big_iteration):
     return collisions
 
 
+def count_collisions(robots):
+    collisions = 0
+    for robot1, robot2 in itertools.product(robots, robots):
+        if robot1.name != robot2.name:
+            if robot1.pos_node.num == robot2.pos_node.num:
+                collisions += 1
+    return collisions / 2
+
+
+def count_future_collisions(robots):
+    collisions = 0
+    for robot1, robot2 in itertools.product(robots, robots):
+        if robot1.name != robot2.name:
+            if robot1.next_pos_node and robot2.next_pos_node:
+                if robot1.next_pos_node.num == robot2.next_pos_node.num:
+                    collisions += 1
+    return collisions / 2
+
+
 def print_minutes(start, end):
 
     print()
@@ -141,8 +160,9 @@ def set_diff_cred(robots, min_v, max_v):
     _ = [set_cred(x) for x in robots]
 
 
-def select_pos(robot, targets, graph):
-    robot_pos_name_set = [pos_name for pos_name in robot.domain]
+def select_pos(robot, targets, graph, robot_pos_name_set=None):
+    if robot_pos_name_set is None:
+        robot_pos_name_set = [pos_name for pos_name in robot.domain]
     pos_dict_name_pos = {pos_node.name: pos_node.pos for pos_node in graph}
     pos_dict_name_pos_node = {pos_node.name: pos_node for pos_node in graph}
     next_pos_name = select_pos_internal(robot, robot_pos_name_set, [t for t in targets], pos_dict_name_pos)

@@ -10,6 +10,10 @@ class CADSA(DSA_MST):
     def __init__(self, name, params=None):
         super(CADSA, self).__init__(name, params)
 
+    def init_message_boxes(self, all_agents):
+        # init_message_boxes(all_agents, iterations=2)
+        pass
+
     def move(self, graph, robots, targets):
         for node in robots:
             next_pos_node = self.get_robot_pos_dsa_mst(node, graph, robots, targets)
@@ -24,7 +28,7 @@ class CADSA(DSA_MST):
     def cadsa_correction(self, robots):
         for robot in robots:
             for robot_nei in robot.neighbours:
-                if robot.pos_node is robot_nei.pos_node:
+                if robot.next_pos_node is robot_nei.next_pos_node:
                     if robot.num > robot_nei.num:
                         robot.next_pos_node = None
                         break

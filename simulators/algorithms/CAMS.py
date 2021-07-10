@@ -31,7 +31,7 @@ class CAMS(MetaAlgorithm):
         _ = [pos_node.update_dict_of_weights(robots) for pos_node in graph]
 
         # update robots domains
-        _ = [robot.update_domain() for robot in robots]
+        _ = [robot.update_domain_and_reset_next_pose_node() for robot in robots]
 
         # update targets cells_near_me
         _ = [target.update_cells_near_me(robots, graph) for target in targets]

@@ -41,16 +41,16 @@ B_MAX_NEARBY_POS = 5
 
 
 # B_ITERATIONS_IN_BIG_LOOPS = 100
-B_ITERATIONS_IN_BIG_LOOPS = 50
-# B_ITERATIONS_IN_SMALL_LOOPS = 30
+B_ITERATIONS_IN_BIG_LOOPS = 30
 B_ITERATIONS_IN_SMALL_LOOPS = 5
+# B_ITERATIONS_IN_SMALL_LOOPS = 10
 
 # B_NUMBER_OF_PROBLEMS = 50
-B_NUMBER_OF_PROBLEMS = 3
-B_N_NODES = 100
-B_NUM_OF_ROBOTS = 10
+B_NUMBER_OF_PROBLEMS = 10
+B_N_NODES = 500
+B_NUM_OF_ROBOTS = 20
 # B_NUM_OF_ROBOTS = 1
-B_NUM_OF_TARGETS = 7
+B_NUM_OF_TARGETS = 10
 
 
 MR = B_MAX_DISTANCE_OF_NEARBY_POS/2.5
@@ -63,6 +63,7 @@ DELAY_OF_COLLISION = 100
 EXECUTE_DELAY = False
 # TARGETS_APART = True
 TARGETS_APART = False
+REQ_OF_TARGETS = 100
 DIFF_CRED = True
 # DIFF_CRED = False
 MIN_CRED, MAX_CRED = 10, 40
@@ -81,14 +82,20 @@ ALGORITHMS_TO_CHECK = [
     #         'min': 5,
     #         'max': 30,
     #     },
-    # }),
-    ('CAMS_breakdowns', {
-        'class': 'CAMS',
-        'breakdowns': True,
-    }),
+    # }),DSSA
     ('CAMS', {
         'class': 'CAMS'
     }),
+    ('DSSA', {
+        'class': 'DSSA'
+    }),
+    # ('DSA_MST', {
+    #     'class': 'DSA_MST',
+    # }),
+    # ('CAMS_breakdowns', {
+    #     'class': 'CAMS',
+    #     'breakdowns': True,
+    # }),
     # ('CADSA', {
     #     'class': 'CADSA',
     # }),
@@ -99,9 +106,6 @@ ALGORITHMS_TO_CHECK = [
     # ('DSA_MST_breakdowns', {
     #     'class': 'DSA_MST',
     #     'breakdowns': True,
-    # }),
-    # ('DSA_MST', {
-    #     'class': 'DSA_MST',
     # }),
     # ('Max_sum_MST', {
     #     'class': 'Max_sum_MST',
@@ -117,8 +121,8 @@ ALGORITHMS_TO_CHECK = [
 ]
 
 # -------------------------------------------------- #
-NEED_TO_PLOT_FIELD = True
-# NEED_TO_PLOT_FIELD = False
+# NEED_TO_PLOT_FIELD = True
+NEED_TO_PLOT_FIELD = False
 SHOW_RANGES = True
 # SHOW_RANGES = False
 PICKLE_RESULTS = True

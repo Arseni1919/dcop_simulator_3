@@ -30,7 +30,7 @@ class RandomWalk(MetaAlgorithm):
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
         # update robots domains
-        _ = [robot.update_domain() for robot in robots]
+        _ = [robot.update_domain_and_reset_next_pose_node() for robot in robots]
 
         # clean neighbours
         _ = [agent.clean_neighbours() for agent in [*graph, *robots, *targets]]

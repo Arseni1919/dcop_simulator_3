@@ -1,4 +1,5 @@
-# [DCOP_MST](https://www.bgu.ac.il/~zivanr/files/DCOP_MST_JAAMAS.pdf) Simulator (Version 3)
+<h1 align="center"><a href="https://www.bgu.ac.il/~zivanr/files/DCOP_MST_JAAMAS.pdf" alt="">DCOP_MST</a> Simulator (Version 3)</h1>
+<!-- [DCOP_MST](https://www.bgu.ac.il/~zivanr/files/DCOP_MST_JAAMAS.pdf) Simulator (Version 3) -->
 
 <p align="center">
     <a href="#" alt=""><img src="https://img.shields.io/github/last-commit/Arseni1919/dcop_simulator_3" /></a>

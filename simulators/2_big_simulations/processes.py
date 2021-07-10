@@ -55,7 +55,7 @@ def print_and_plot_results(file_name):
 
 def create_targets():
     targets = [
-        BigSimulationTargetNode(f'target{i}', i, req=100)
+        BigSimulationTargetNode(f'target{i}', i, req=REQ_OF_TARGETS)
         for i in range(B_NUM_OF_TARGETS)
     ]
     return targets
@@ -142,14 +142,15 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
     dict_for_results[algorithm.name]['coverage'][big_iteration][problem] = calculate_coverage(robots, targets)
     dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots, big_iteration)
 
-    choices = print_and_return_choices(all_agents=[*graph, *robots, *robots], s_iteration=B_ITERATIONS_IN_SMALL_LOOPS-1)
+    choices = print_and_return_choices(all_agents=[*graph, *robots, *targets], s_iteration=B_ITERATIONS_IN_SMALL_LOOPS-1)
     dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
     # dict_for_results['problems'][problem] = graph
 
 
 def initialize_nodes_before_algorithms(graph, robots, targets):
-    pos_to_robots = random.sample(graph, len(robots) + len(targets))
-    for pos_node, agent in zip(pos_to_robots, [*robots, *targets]):
+    pos_to_agents = random.sample(graph, len(robots) + len(targets))
+    # print(f'need:{len(robots) + len(targets)} fact: {len(set(pos_to_agents))}')
+    for pos_node, agent in zip(pos_to_agents, [*robots, *targets]):
         agent.pos_node = pos_node
         agent.initial_pos_node = pos_node
 

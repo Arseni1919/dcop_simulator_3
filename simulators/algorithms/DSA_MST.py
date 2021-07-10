@@ -14,12 +14,13 @@ class DSA_MST(MetaAlgorithm):
 
     def init_nodes_before_big_loops(self, graph, robots, targets):
         def init_message_box(x):
-            x.message_box = {i: {} for i in range(B_ITERATIONS_IN_BIG_LOOPS)}
+            x.message_box = {i: {} for i in range(max(B_ITERATIONS_IN_SMALL_LOOPS, B_ITERATIONS_IN_BIG_LOOPS))}
         list(map(init_message_box, robots))
+        pass
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
         # update robots domains
-        _ = [robot.update_domain() for robot in robots]
+        _ = [robot.update_domain_and_reset_next_pose_node() for robot in robots]
 
         # update targets cells_near_me
         _ = [target.update_cells_near_me(robots, graph) for target in targets]
@@ -30,7 +31,11 @@ class DSA_MST(MetaAlgorithm):
         self.set_neighbours(robots)
 
         # init message boxes
-        init_message_boxes([*graph, *robots, *targets], iterations=2)
+        self.init_message_boxes([*graph, *robots, *targets])
+        # init_message_boxes([*graph, *robots, *targets], iterations=2)
+
+    def init_message_boxes(self, all_agents):
+        pass
 
     def set_neighbours(self, robots):
         for robot1 in robots:
@@ -53,7 +58,7 @@ class DSA_MST(MetaAlgorithm):
     def breakdowns_correction(self, robots):
         breakdowns_correction(robots, self.params)
 
-    def get_robot_pos_dsa_mst(self, robot, graph, robots, targets):
+    def get_robot_pos_dsa_mst(self, robot, graph, robots, targets, robot_pos_name_set=None):
         """
         1. temp_req_set
         2. select_pos
@@ -67,7 +72,7 @@ class DSA_MST(MetaAlgorithm):
             output:
             pos = (x, y)
         """
-        new_pos_node = select_pos(robot, targets, graph)
+        new_pos_node = select_pos(robot, targets, graph, robot_pos_name_set)
         if self.dsa_condition(robot, new_pos_node, robot.pos_node.pos, targets):
             return new_pos_node
         return robot.pos_node

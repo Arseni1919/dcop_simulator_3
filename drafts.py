@@ -27,8 +27,11 @@ start_time = time.time()
 # your script
 elapsed_time = time.time() - start_time
 # print(time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
-print(f'sum: {sum([True, False, True])}')
-
+# print(f'sum: {sum([True, False, True])}')
+any([not x for x in [1, 2, 2]])
+print(any([not x for x in [1, 2, 2]]))
+import matplotlib.pyplot as plt
+plt.close()
 
 
 

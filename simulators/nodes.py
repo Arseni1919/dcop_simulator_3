@@ -197,9 +197,10 @@ class BigSimulationRobotNode(RobotNode):
         self.sr = SR
         self.mr = MR
 
-    def update_domain(self):
+    def update_domain_and_reset_next_pose_node(self):
         self.domain = [node.name for node in self.pos_node.nearby_position_nodes.values()]
         self.domain.insert(0, self.pos_node.name)
+        self.next_pos_node = None
 
     def reset(self):
         self.pos_node = self.initial_pos_node

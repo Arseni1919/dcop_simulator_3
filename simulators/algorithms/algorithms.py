@@ -5,6 +5,7 @@ from simulators.algorithms.MetaAlgorithm import *
 from simulators.algorithms.Max_sum_MST import Max_sum_MST
 from simulators.algorithms.DSA_MST import DSA_MST
 from simulators.algorithms.CADSA import CADSA
+from simulators.algorithms.DSSA import DSSA
 
 dictionary_of_algorithms = {
     RandomWalk.name: RandomWalk,
@@ -13,6 +14,8 @@ dictionary_of_algorithms = {
     Max_sum_MST.name: Max_sum_MST,
     DSA_MST.name: DSA_MST,
     CADSA.name: CADSA,
+    DSSA.name: DSSA,
+
 }
 
 

@@ -94,6 +94,7 @@ def add_list_of_graphs(ax, results_dict, matrix_name):
     add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tab:orange')
     add_graph(ax, 2, 1, results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'm')
     add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')
+    add_graph(ax, 2, 3, results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'tab:pink')
     # add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'CAMS_diff_creds', 'CAMS_diff_creds', 'g')
 
 # ----------------------------- #
