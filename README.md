@@ -47,6 +47,16 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
     <img src="static/g3.png" alt="drawing" width="480"/>
 </p>
 
+### The Run of The Big Simulation
+
+- Blue circles - robots
+- Orange circles - targets
+- Green  points and edges - a graph of a problem
+
+<p align="center">
+    <img src="static/pic3.png" alt="drawing" width="480"/>
+</p>
+
 ## Results
 
 ## Paper
