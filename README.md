@@ -12,6 +12,18 @@
 
 [Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)
 
+### Output
+<p align="center">
+    <img src="static/pic1.png" alt="drawing" width="480"/>
+</p>
+Messages between agents. And their choices at the end of current iteration.
+
+<p align="center">
+    <img src="static/pic2.png" alt="drawing" width="480"/>
+</p>
+
+The graph of those choices (y axis) per iteration (x axis).
+
 ## Big Simulations
 
 ### Tricks

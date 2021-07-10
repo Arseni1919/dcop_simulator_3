@@ -103,7 +103,7 @@ class DSA_MST(MetaAlgorithm):
             if distance(new_pos_node.pos, target.pos_node.pos) < agent.sr:
                 new_value += min(agent.cred, temp_req)
             if distance(curr_pos, target.pos_node.pos) < agent.sr:
-                new_value += min(agent.cred, temp_req)
+                curr_value += min(agent.cred, temp_req)
         if new_value >= curr_value:
             return random.random() < 0.7
         return False
