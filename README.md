@@ -16,7 +16,7 @@
 - [Results](#results)
 - [Credits](#credits)
 
-## Small Simulations
+## [Small Simulations](#contents)
 
 [Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)
 
@@ -38,7 +38,7 @@ Example from Scenario 6.
     <img src="static/pic2.png" alt="drawing" width="480"/>
 </p>
 
-## Big Simulations
+## [Big Simulations](#contents)
 
 ### Tricks
 
@@ -62,13 +62,13 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
     <img src="static/pic3.png" alt="drawing" width="480"/>
 </p>
 
-## Results
+## [Results](#contents)
 
-## Paper
+## [Paper](#contents)
 
 ___
 
-## Credits
+## [Credits](#contents)
 
 - [Scikit-Learn - NearestNeighbors](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html)
 - [`abc` class - Python](https://docs.python.org/3/library/abc.html)
