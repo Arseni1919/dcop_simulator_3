@@ -8,6 +8,13 @@
     <a href="https://github.com/Arseni1919" alt="Follow"><img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
 </p>
 
+## Contents
+
+- [Small Simulations](#small-simulations)
+- [Big Simulations](#big-simulations)
+- [Results](#results)
+- [Credits](#credits)
+
 ## Small Simulations
 
 [Scenario Graphs](https://docs.google.com/presentation/d/19qJKU9vRQ1SmxZYmR9qyt2unhXwN3FUkiivTAfr2eWE/edit?usp=sharing)
