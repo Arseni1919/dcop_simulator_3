@@ -44,6 +44,14 @@ def calculate_collisions(robots, big_iteration):
     return collisions
 
 
+def calculate_chosen_positions(robots):
+    return_dict = {robot.name: '' for robot in robots}
+    for robot in robots:
+        return_dict[robot.name] = robot.pos_node.name
+    return return_dict
+
+
+
 def count_collisions(robots):
     collisions = 0
     for robot1, robot2 in itertools.product(robots, robots):

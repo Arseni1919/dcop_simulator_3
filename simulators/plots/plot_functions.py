@@ -64,7 +64,8 @@ def plot_positions_graph(graph):
 
 
 # ------------ ADD ------------ #
-def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimension_to_avrg, alg_name, alg_label, color):
+def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimension_to_avrg, alg_name, alg_label, color,
+              need_to_plot_variance=True):
     if alg_name in graph_dict:
         print(colored(f'There {alg_name} is inside the dictionary.', 'green'))
         line_index = 0 if line_index == len(lines) else line_index
@@ -76,9 +77,9 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
         marker = markers[marker_index]
         # print(f'{alg_name}: li:{line_index} mi:{marker_index}')
         to_ax.plot(range(len(avr)), avr, '%s%s' % (marker, line), label=alg_label, color=color)
-
-        to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
-                           alpha=0.2, antialiased=True, color=color)
+        if need_to_plot_variance:
+            to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
+                               alpha=0.2, antialiased=True, color=color)
     else:
         print(colored(f'There {alg_name} is not inside the dictionary.', 'red'))
 
@@ -93,7 +94,7 @@ def add_list_of_graphs(ax, results_dict, matrix_name):
     add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'g')
     add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tab:orange')
     add_graph(ax, 2, 1, results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'm')
-    add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')
+    # add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')
     add_graph(ax, 2, 3, results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'tab:pink')
     # add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'CAMS_diff_creds', 'CAMS_diff_creds', 'g')
 

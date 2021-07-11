@@ -5,11 +5,12 @@ from simulators.plots.plot_functions import *
 
 def main():
     # scenario_func = scenario_n_1  # !
-    scenario_func = scenario_n_2
+    # scenario_func = scenario_n_2
     # scenario_func = scenario_n_3
     # scenario_func = scenario_n_4
     # scenario_func = scenario_n_5
     # scenario_func = scenario_n_6
+    scenario_func = scenario_n_7
     print(scenario_func.__name__)
 
     all_agents = scenario_func()

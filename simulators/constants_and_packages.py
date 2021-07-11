@@ -43,7 +43,7 @@ B_MAX_NEARBY_POS = 5
 
 B_ITERATIONS_IN_BIG_LOOPS = 50
 # B_ITERATIONS_IN_BIG_LOOPS = 30
-B_ITERATIONS_IN_SMALL_LOOPS = 5
+B_ITERATIONS_IN_SMALL_LOOPS = 8
 # B_ITERATIONS_IN_SMALL_LOOPS = 10
 
 B_NUMBER_OF_PROBLEMS = 50
@@ -87,33 +87,33 @@ ALGORITHMS_TO_CHECK = [
     ('CAMS', {
         'class': 'CAMS'
     }),
-    ('DSSA', {
-        'class': 'DSSA'
-    }),
-    ('DSA_MST', {
-        'class': 'DSA_MST',
-    }),
+    # ('DSSA', {
+    #     'class': 'DSSA'
+    # }),
+    # ('DSA_MST', {
+    #     'class': 'DSA_MST',
+    # }),
     # ('CAMS_breakdowns', {
     #     'class': 'CAMS',
     #     'breakdowns': True,
     # }),
-    ('CADSA', {
-        'class': 'CADSA',
-    }),
-    ('Max-sum_MST_breakdowns', {
-        'class': 'Max_sum_MST',
-        'breakdowns': True,
-    }),
-    ('DSA_MST_breakdowns', {
-        'class': 'DSA_MST',
-        'breakdowns': True,
-    }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-    }),
-    ('Random-Walk', {
-        'class': 'RandomWalk'
-    }),
+    # ('CADSA', {
+    #     'class': 'CADSA',
+    # }),
+    # ('Max-sum_MST_breakdowns', {
+    #     'class': 'Max_sum_MST',
+    #     'breakdowns': True,
+    # }),
+    # ('DSA_MST_breakdowns', {
+    #     'class': 'DSA_MST',
+    #     'breakdowns': True,
+    # }),
+    # ('Max_sum_MST', {
+    #     'class': 'Max_sum_MST',
+    # }),
+    # ('Random-Walk', {
+    #     'class': 'RandomWalk'
+    # }),
     # ('Random-Walk_breakdowns', {
     #     'class': 'RandomWalk',
     #     'breakdowns': True,
@@ -128,8 +128,6 @@ SHOW_RANGES = True
 # SHOW_RANGES = False
 PICKLE_RESULTS = True
 # PICKLE_RESULTS = False
-# NEED_TO_PLOT_VARIANCE, NEED_TO_PLOT_MIN_MAX = False, True
-NEED_TO_PLOT_VARIANCE, NEED_TO_PLOT_MIN_MAX = True, False
 LIGHT_UP_THE_CHANGES = True
 # LIGHT_UP_THE_CHANGES = False
 AMOUNT_OF_STD = 1
