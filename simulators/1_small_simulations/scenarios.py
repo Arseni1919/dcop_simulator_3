@@ -164,12 +164,12 @@ def scenario_n_6():
 
 def scenario_n_7():
     targets = [
-        TargetNode('target0', 0, req=38, cells_near_me=['pos0']),
+        TargetNode('target0', 0, req=21, cells_near_me=['pos0']),
     ]
     robots = [
-        RobotNode('robot0', 0, cred=10, domain=['pos0', 'pos1']),
-        RobotNode('robot1', 1, cred=5, domain=['pos0', 'pos2']),
-        RobotNode('robot2', 2, cred=25, domain=['pos0', 'pos3']),
+        RobotNode('robot0', 0, cred=3, domain=['pos0', 'pos1']),
+        RobotNode('robot1', 1, cred=10, domain=['pos0', 'pos2']),
+        RobotNode('robot2', 2, cred=10, domain=['pos0', 'pos3']),
     ]
     positions = [
         PositionNode('pos0', 0, dict_of_weights=create_dict_of_weights(robots)),
