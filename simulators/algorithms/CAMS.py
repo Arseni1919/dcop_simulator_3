@@ -21,7 +21,6 @@ class CAMS(MetaAlgorithm):
         #     set_diff_cred(robots, self.params['diff_creds']['min'], self.params['diff_creds']['max'])
         pass
 
-
     def init_nodes_before_small_loops(self,
                                       graph: List[BigSimulationPositionNode],
                                       robots: List[BigSimulationRobotNode],

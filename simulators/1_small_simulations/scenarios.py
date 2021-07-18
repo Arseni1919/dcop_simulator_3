@@ -190,9 +190,54 @@ def scenario_n_7():
     return [*targets, *robots, *positions]
 
 
+def scenario_n_8():
+    agents = {
+        'target0': {
+            'num': 0,
+            'req': 21,
+            'cells_near_me': []
+        },
+        'robot0': {
+            'num': 0,
+            'cred': 10,
+            'domain': []
+        },
+    }
+    return create_scenario(agents)
+
+
+def create_scenario(agents):
+    targets, robots, positions = [], [], []
+    positions_dict = {}
+
+    for agent_name, agent_dict in agents.items():
+
+        if 'target' in agent_name:
+            targets.append(
+                TargetNode(agent_name, agent_dict['num'],  req=agent_dict['req'], cells_near_me=[])  # agent_dict['cells_near_me']
+            )
+            for cell in agent_dict['cells_near_me']:
+                if cell not in positions_dict:
+                    positions_dict[cell] = PositionNode(f'pos{cell}', cell, dict_of_weights={})
+
+        if 'robot' in agent_name:
+            robots.append(
+                RobotNode(agent_name, agent_dict['num'], cred=agent_dict['cred'], domain=[])  # agent_dict['domain']
+            )
+            for cell in agent_dict['domain']:
+                if cell not in positions_dict:
+                    positions_dict[cell] = PositionNode(f'pos{cell}', cell, dict_of_weights={})
+
+    for pos_nun, pos_node in positions_dict.items():
+        pos_node.dict_of_weights = create_dict_of_weights(robots)
 
 
 
+    # robots[0].neighbours = [targets[0], positions[0], positions[1]]
+    # targets[0].neighbours = [robots[0], robots[1], robots[2]]
+    # positions[1].neighbours = [robots[0]]
+
+    return [*targets, *robots, *positions]
 
 
 
