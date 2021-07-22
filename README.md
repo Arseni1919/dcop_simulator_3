@@ -69,16 +69,16 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 
 ### Some graph examples:
 
+<h4 align="center">Coverage vs Iterations</h4>
 <p align="center">
     <img src="static/1907fig1.png" alt="drawing" width="480"/>
-</p>
-<h4 align="center">Coverage vs Iterations</h4>
-
-<p align="center">
 <!--     <img src="static/1907fig2.png" alt="drawing" width="480"/> -->
+</p>
+
+<h4 align="center">Collisions vs Iterations</h4>
+<p align="center">
     <img src="static/1907fig3.png" alt="drawing" width="480"/>
 </p>
-    <h4 align="center">Collisions vs Iterations</h4>
 
 
 ## Paper
