@@ -37,4 +37,9 @@ plt.close()
 import datetime
 print(datetime.datetime.now())
 
+a = [1, 2, 7, 4, 5]
+b = [9, 8, 7, 6, 5]
+common = set(a) & set(b)
+print(len(common))
+
 

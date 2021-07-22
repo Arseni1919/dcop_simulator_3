@@ -77,7 +77,7 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
         marker = markers[marker_index]
         # print(f'{alg_name}: li:{line_index} mi:{marker_index}')
         to_ax.plot(range(len(avr)), avr, '%s%s' % (marker, line), label=alg_label, color=color)
-        if need_to_plot_variance:
+        if SHOW_RANGES:
             to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
                                alpha=0.2, antialiased=True, color=color)
     else:

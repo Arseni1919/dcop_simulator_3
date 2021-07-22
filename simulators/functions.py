@@ -155,10 +155,18 @@ def select_FMR_nei(target):
         temp_total_set = total_set[:]
         temp_total_set.remove(selected_to_remove)
         if not cover_target(target, temp_total_set):
-            return total_set
-
+            break
         total_set.remove(selected_to_remove)
-    return total_set
+    # return total_set
+
+    total_set.sort(key=lambda x: x.cred, reverse=True)
+    return_set = []
+    for robot in total_set:
+        if not cover_target(target, return_set):
+            return_set.append(robot)
+    if len(total_set) > len(return_set):
+        pass
+    return return_set
 
 
 def set_diff_cred(robots, min_v, max_v):
