@@ -67,6 +67,14 @@ You need to plug `plt.rcParams["figure.figsize"] = [6.4, 6.4]` before plotting.
 ## Results
 [(back)](#contents)
 
+### Some graph examples:
+
+<p align="center">
+    <img src="static/1907fig1.png" alt="drawing" width="280"/>
+    <img src="static/1907fig2.png" alt="drawing" width="280"/>
+    <img src="static/1907fig3.png" alt="drawing" width="280"/>
+</p>
+
 ## Paper
 [(back)](#contents)
 
