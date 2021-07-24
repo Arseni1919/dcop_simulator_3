@@ -8,10 +8,10 @@ from tracker import tracker
 # from simulators.constants_and_packages import *
 
 
-def create_graph(dict_for_results, problem):
+def create_complex_graph():
     graph = []
     x_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
-    y_list = [np.random.uniform(0, B_WIDTH) for _ in range(B_N_NODES)]
+    y_list = [np.random.uniform(0, B_HEIGHT) for _ in range(B_N_NODES)]
     xy = np.array(list(zip(x_list, y_list)))
     nbrs = NearestNeighbors(n_neighbors=B_MAX_NEARBY_POS + 1, algorithm='ball_tree').fit(xy)
     dists, indcs = nbrs.kneighbors(xy)
@@ -29,6 +29,42 @@ def create_graph(dict_for_results, problem):
                     if len(nearby_pos.nearby_position_nodes) < B_MAX_NEARBY_POS:
                         self_pos.nearby_position_nodes[nearby_pos.name] = nearby_pos
                         nearby_pos.nearby_position_nodes[self_pos.name] = self_pos
+    return graph
+
+
+def create_grid_graph():
+    graph = []
+    padding_w = B_WIDTH / GRID_SIZE_SIDE_WH
+    padding_h = B_HEIGHT / GRID_SIZE_SIDE_WH
+    pos_indx = 0
+    for row in range(GRID_SIZE_SIDE_WH):
+        for column in range(GRID_SIZE_SIDE_WH):
+            pos = np.asarray([row * padding_w, column * padding_h])
+            graph.append(BigSimulationPositionNode(f'pos{pos_indx}', pos_indx, dict_of_weights={}, pos=pos))
+            pos_indx += 1
+
+    for self_pos in graph:
+        for another_pos in graph:
+            is_neighbour = False
+            # UP
+            if (self_pos.pos[0] == another_pos.pos[0]
+                and abs(self_pos.pos[1] - another_pos.pos[1]) == padding_h) \
+                    or (self_pos.pos[1] == another_pos.pos[1]
+                        and abs(self_pos.pos[0] - another_pos.pos[0]) == padding_w):
+                is_neighbour = True
+            if is_neighbour:
+                self_pos.nearby_position_nodes[another_pos.name] = another_pos
+                another_pos.nearby_position_nodes[self_pos.name] = self_pos
+    return graph
+
+
+def create_graph(dict_for_results, problem):
+    if GRAPH_TYPE == 'complex':
+        graph = create_complex_graph()
+    elif GRAPH_TYPE == 'grid':
+        graph = create_grid_graph()
+    else:
+        raise ValueError('[ERROR]: No appropriate value of a GRAPH_TYPE constant.')
     dict_for_results['problems'][problem] = graph
     return graph
 
@@ -92,6 +128,7 @@ def create_measurement_dicts():
                 }
             }
         }
+        ...
     }
     """
     dict_for_results = {}
