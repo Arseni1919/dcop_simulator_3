@@ -9,9 +9,6 @@
     <a href="https://github.com/Arseni1919" alt="Follow"><img src="https://img.shields.io/github/followers/Arseni1919?label=Follow&style=social" /></a>
 </p>
 
-graph LR
-    A-->B
-
 ## Contents
 
 - [Small Simulations](#small-simulations)
