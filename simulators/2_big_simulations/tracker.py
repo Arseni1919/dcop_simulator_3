@@ -29,7 +29,7 @@ class Tracker:
                     (self.curr_problem * len(ALGORITHMS_TO_CHECK) + self.curr_alg_num + 1)
                     / self.final)
         )
-        print(colored(f'\rProblem: ({self.curr_problem + 1}/{B_NUMBER_OF_PROBLEMS}), '
+        print(colored(f'\r[STATUS] Problem: ({self.curr_problem + 1}/{B_NUMBER_OF_PROBLEMS}), '
                       f'Alg: {ALGORITHMS_TO_CHECK[self.curr_alg_num][0]} ({self.curr_alg_num + 1}/{len(ALGORITHMS_TO_CHECK)}), '
                       f'Iter B: ({self.curr_bigger_iteration + 1}/{B_ITERATIONS_IN_BIG_LOOPS}), '
                       f'Iter S: ({self.curr_smaller_iteration}/{B_ITERATIONS_IN_SMALL_LOOPS}), '
@@ -37,7 +37,7 @@ class Tracker:
                       f'Progress: [{"#" * self.done}{"." * (self.biggest - self.done)}]', 'green'), end='')
 
     def print_start_of_simulation_time(self):
-        print(f'Start of the simulation: {datetime.datetime.now()}\n')
+        print(colored(f'[START] Start of the simulation: {datetime.datetime.now()}\n', 'magenta'))
 
 
 tracker = Tracker()

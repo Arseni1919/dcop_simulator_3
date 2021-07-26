@@ -25,7 +25,7 @@ class RandomWalk(MetaAlgorithm):
 
     def init_nodes_before_big_loops(self, graph, robots, targets):
         def init_message_box(x):
-            x.message_box = {i: {} for i in range(B_ITERATIONS_IN_BIG_LOOPS)}
+            x.message_box = {i: {} for i in range(max(B_ITERATIONS_IN_BIG_LOOPS, B_ITERATIONS_IN_SMALL_LOOPS))}
         list(map(init_message_box, robots))
 
     def init_nodes_before_small_loops(self, graph, robots, targets):
@@ -43,7 +43,6 @@ class RandomWalk(MetaAlgorithm):
                 intersections = [pos1 in robot2.domain for pos1 in robot1.domain]
                 if any(intersections):
                     robot1.neighbours.append(robot2)
-
 
     def send_messages(self, iteration, graph, robots, targets, problem, alg_num, tracker):
         pass

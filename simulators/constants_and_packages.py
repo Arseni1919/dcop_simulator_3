@@ -39,21 +39,21 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-# GRAPH_TYPE = 'complex'
-GRAPH_TYPE = 'grid'
-GRID_SIZE_SIDE_WH = 25
+GRAPH_TYPE = 'complex'
+# GRAPH_TYPE = 'grid'
+GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-B_ITERATIONS_IN_BIG_LOOPS = 25
-# B_ITERATIONS_IN_BIG_LOOPS = 30
-B_ITERATIONS_IN_SMALL_LOOPS = 8
-# B_ITERATIONS_IN_SMALL_LOOPS = 10
+B_ITERATIONS_IN_BIG_LOOPS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# B_ITERATIONS_IN_BIG_LOOPS = 10
+B_ITERATIONS_IN_SMALL_LOOPS = 8  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# B_ITERATIONS_IN_SMALL_LOOPS = 2
 
-B_NUMBER_OF_PROBLEMS = 50
-# B_NUMBER_OF_PROBLEMS = 5
-B_N_NODES = 625
-B_NUM_OF_ROBOTS = 20
+B_NUMBER_OF_PROBLEMS = 50   # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# B_NUMBER_OF_PROBLEMS = 3
+B_N_NODES = 625  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+B_NUM_OF_ROBOTS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_NUM_OF_ROBOTS = 1
-B_NUM_OF_TARGETS = 10
+B_NUM_OF_TARGETS = 10  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 MR = B_MAX_DISTANCE_OF_NEARBY_POS/2.5
@@ -77,6 +77,7 @@ ADDING_TO_FILE_NAME += '%sBi-%sSi_' % (B_ITERATIONS_IN_BIG_LOOPS, B_ITERATIONS_I
 ADDING_TO_FILE_NAME += '%sPRBLMS_' % (B_NUMBER_OF_PROBLEMS,)
 ADDING_TO_FILE_NAME += 'targets_apart_' if TARGETS_APART else ''
 ADDING_TO_FILE_NAME += 'delay-v2_%s' % DELAY_OF_COLLISION if EXECUTE_DELAY else ''
+ADDING_TO_FILE_NAME += GRAPH_TYPE
 
 ALGORITHMS_TO_CHECK = [
     # ('CAMS_diff_creds', {
@@ -124,10 +125,10 @@ ALGORITHMS_TO_CHECK = [
 ]
 
 # -------------------------------------------------- #
-NEED_TO_PLOT_FIELD = True
-# NEED_TO_PLOT_FIELD = False
-SHOW_RANGES = True
-# SHOW_RANGES = False
+# NEED_TO_PLOT_FIELD = True
+NEED_TO_PLOT_FIELD = False
+# SHOW_RANGES = True
+SHOW_RANGES = False
 PICKLE_RESULTS = True
 # PICKLE_RESULTS = False
 LIGHT_UP_THE_CHANGES = True

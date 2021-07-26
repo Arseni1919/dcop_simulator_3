@@ -65,7 +65,10 @@ def create_graph(dict_for_results, problem):
         graph = create_grid_graph()
     else:
         raise ValueError('[ERROR]: No appropriate value of a GRAPH_TYPE constant.')
-    dict_for_results['problems'][problem] = graph
+
+    dict_for_results['problems'][problem] = {
+        cell.name: (cell.pos, [nei for nei in cell.nearby_position_nodes.keys()]) for cell in graph
+    }
     return graph
 
 
@@ -282,10 +285,10 @@ def pickle_results(dict_for_results, start, end):
             # open the file for writing
             with open(file_name, 'wb') as fileObject:
                 pickle.dump(dict_for_results, fileObject)
-            print('Pickled successfully!')
+            print(colored('Pickled successfully!', 'green'))
             return file_name
         except RuntimeError:
-            print('[ERROR] Pickle failed!')
+            print(colored('[ERROR] Pickle failed!', 'red'))
     return None
 
 
@@ -293,6 +296,7 @@ def check_algorithms():
     """
     Quick check of all algorithms. Here we run two iterations with each one to see if everything works correctly.
     """
+    print(f'{colored("[MESSAGE] Quickly checking algorithms...", color="yellow")}\n')
     graph = create_graph({'problems': {1: []}}, 1)
     targets = create_targets()
     robots = create_robots()

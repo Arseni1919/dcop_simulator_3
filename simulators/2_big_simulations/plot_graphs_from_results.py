@@ -3,9 +3,8 @@ from simulators.plots.coverage_vs_iters import *
 
 
 def main():
-    # file_name = '11.07.2021-06:21:44_10T-20R_50Bi-5Si_50PRBLMS_.results'
-    file_name = '19.07.2021-21:59:01_10T-20R_25Bi-8Si_50PRBLMS_.results'
-
+    file_name = '25.07.2021-01:08:51_10T-20R_20Bi-8Si_50PRBLMS_complex.results'
+    # file_name = '24.07.2021-15:19:18_10T-20R_20Bi-8Si_50PRBLMS_grid.results'
 
     file_name = f'results/{file_name}'
 
