@@ -236,7 +236,7 @@ def breakdowns_correction(robots, params):
                         robot.breakdowns = True
                         robot.breakdown_pose = robot.pos_node
                         # print(f'\n{robot.name} and {nei_robot.name} in breakdown')
-                        break
+                        # break
         for robot in robots[:]:
             if robot.breakdowns:
                 # robots.remove(robot)

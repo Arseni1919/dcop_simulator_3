@@ -28,18 +28,28 @@ class CADSA(DSA_MST):
     def cadsa_correction(self, robots):
         for robot in robots:
             for robot_nei in robot.neighbours:
-                if robot.next_pos_node is None or robot_nei.next_pos_node is None:
-                    continue
-                if robot.next_pos_node is robot_nei.next_pos_node:
-                    if robot.num > robot_nei.num:
-                        if robot.next_pos_node is robot.pos_node:
-                            robot_nei.next_pos_node = None
-                        else:
-                            robot.next_pos_node = None
+                if robot.num > robot_nei.num and robot.next_pos_node is robot_nei.next_pos_node:
+                    robot_nei.next_pos_node = None
+
+        for robot in robots:
+            for robot_nei in robot.neighbours:
+                if robot.next_pos_node is robot_nei.pos_node:
+                    if robot_nei.next_pos_node is robot_nei.pos_node or robot_nei.next_pos_node is None:
+                        robot.next_pos_node = None
+                if robot_nei.next_pos_node is robot.pos_node:
+                    if robot.next_pos_node is robot.pos_node or robot.next_pos_node is None:
+                        robot_nei.next_pos_node = None
+
         for node in robots:
             node.prev_pos_node = node.pos_node
             if node.next_pos_node:
                 node.pos_node = node.next_pos_node
+
+        for node1 in robots:
+            for node2 in robots:
+                if node1.name != node2.name:
+                    if node1.pos_node is node2.pos_node:
+                        print('collision')
 
 
 

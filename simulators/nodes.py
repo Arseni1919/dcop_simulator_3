@@ -1,4 +1,7 @@
+import time
+
 from simulators.functions import *
+
 
 class Node(abc.ABC):
     def __init__(self, name, num):
@@ -10,6 +13,7 @@ class Node(abc.ABC):
         # --- for big sim --- #
         self.initial_pos_node = None
         self.delay = 0
+        self.times_to_send_message = []
 
         if str(num) not in name:
             raise RuntimeError('num is not in name')
@@ -53,6 +57,7 @@ class FunctionNode(Node):
         return prev_iteration_brings
 
     def send_message_to(self, var_nei, iteration):
+        start_time = time.time()
         message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
         list_of_other_domains, list_of_other_nei = self._create_list_of_domains(var_nei)
         comb_of_other_nei_pos_list = list(itertools.product(*list_of_other_domains))
@@ -71,6 +76,29 @@ class FunctionNode(Node):
             # print(f'message from {self.name} to {var_nei.name} is: {message}')
         message = flatten_message(message)
         var_nei.message_box[iteration][self.name] = message
+        self.times_to_send_message.append(time.time() - start_time)
+        if 'target' in self.name:
+            print('', end='')
+
+    def create_message(self, var_nei, iteration):
+        message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
+        list_of_other_domains, list_of_other_nei = self._create_list_of_domains(var_nei)
+        comb_of_other_nei_pos_list = list(itertools.product(*list_of_other_domains))
+        # print(f"\r {self.name}'s len of comb_of_other_nei_pos_list: {len(comb_of_other_nei_pos_list)} ...", end='')
+        for comb_of_other_nei_pos in comb_of_other_nei_pos_list:
+            for pos_i in var_nei.domain:
+                message[pos_i] = max(message[pos_i],
+                                     (
+                                             self.func(self.comb_for_func(var_nei, pos_i, comb_of_other_nei_pos,
+                                                                          list_of_other_nei)
+                                                       ) +
+                                             self._prev_iter_brings(iteration, comb_of_other_nei_pos, list_of_other_nei)
+                                     )
+                                     )
+        # if self.name == 'pos2' and var_nei.name == 'robot1':
+        # print(f'message from {self.name} to {var_nei.name} is: {message}')
+        message = flatten_message(message)
+        return message
 
 
 class TargetNode(FunctionNode):
@@ -133,6 +161,7 @@ class RobotNode(Node):
             raise RuntimeError('robot is not in name')
 
     def send_message_to(self, func_nei, iteration):
+        start_time = time.time()
         message = {pos_i: 0 for pos_i in self.domain}
 
         if iteration > 0:
@@ -144,6 +173,7 @@ class RobotNode(Node):
 
         message = flatten_message(message)
         func_nei.message_box[iteration][self.name] = message
+        self.times_to_send_message.append(time.time() - start_time)
 
 
 class BigSimulationPositionNode(PositionNode):
@@ -181,6 +211,25 @@ class BigSimulationTargetNode(TargetNode):
 
     def clear_cells_near_me(self):
         self.cells_near_me = []
+
+    def send_message_to(self, var_nei, iteration):
+        fmr_total_cov = 0
+        for nei in self.neighbours:
+            fmr_total_cov += nei.cred
+
+        if fmr_total_cov > self.req:
+            super(BigSimulationTargetNode, self).send_message_to(var_nei, iteration)
+        else:
+            message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
+            for pos_i in var_nei.domain:
+                if pos_i in self.cells_near_me:
+                    message[pos_i] = var_nei.cred
+                else:
+                    message[pos_i] = 0
+            message = flatten_message(message)
+            # message_created = super(BigSimulationTargetNode, self).create_message(var_nei, iteration)
+            var_nei.message_box[iteration][self.name] = message
+
 
 
 class BigSimulationRobotNode(RobotNode):

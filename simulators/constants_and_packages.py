@@ -39,8 +39,8 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-GRAPH_TYPE = 'complex'
-# GRAPH_TYPE = 'grid'
+# GRAPH_TYPE = 'complex'
+GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 B_ITERATIONS_IN_BIG_LOOPS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -51,12 +51,12 @@ B_ITERATIONS_IN_SMALL_LOOPS = 8  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 B_NUMBER_OF_PROBLEMS = 50   # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_NUMBER_OF_PROBLEMS = 3
 B_N_NODES = 625  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-B_NUM_OF_ROBOTS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# B_NUM_OF_ROBOTS = 1
-B_NUM_OF_TARGETS = 10  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# B_NUM_OF_ROBOTS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+B_NUM_OF_ROBOTS = 30
+# B_NUM_OF_TARGETS = 10  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+B_NUM_OF_TARGETS = 20
 
-
-MR = B_MAX_DISTANCE_OF_NEARBY_POS/2.5
+MR = B_MAX_DISTANCE_OF_NEARBY_POS/4.5
 SR = MR
 
 GRID_SIDE_SIZE = 50
@@ -64,12 +64,13 @@ GRID_SIDE_SIZE = 50
 DELAY_OF_COLLISION = 100
 # EXECUTE_DELAY = True
 EXECUTE_DELAY = False
-# TARGETS_APART = True
-TARGETS_APART = False
+TARGETS_APART = True
+# TARGETS_APART = False
 REQ_OF_TARGETS = 100
 DIFF_CRED = True
 # DIFF_CRED = False
-MIN_CRED, MAX_CRED = 10, 40
+# MIN_CRED, MAX_CRED = 10, 40
+MIN_CRED, MAX_CRED = 25, 50  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ADDING_TO_FILE_NAME = ''
 ADDING_TO_FILE_NAME += '%sT-%sR_' % (B_NUM_OF_TARGETS, B_NUM_OF_ROBOTS)
@@ -87,15 +88,16 @@ ALGORITHMS_TO_CHECK = [
     #         'max': 30,
     #     },
     # }),DSSA
-    ('CAMS', {
-        'class': 'CAMS'
-    }),
-    ('DSSA', {
-        'class': 'DSSA'
-    }),
-    ('DSA_MST', {
-        'class': 'DSA_MST',
-    }),
+    # ('CAMS', {
+    #     'class': 'CAMS',
+    #     'breakdowns': True,
+    # }),
+    # ('DSSA', {
+    #     'class': 'DSSA'
+    # }),
+    # ('DSA_MST', {
+    #     'class': 'DSA_MST',
+    # }),
     # ('CAMS_breakdowns', {
     #     'class': 'CAMS',
     #     'breakdowns': True,
@@ -103,20 +105,20 @@ ALGORITHMS_TO_CHECK = [
     ('CADSA', {
         'class': 'CADSA',
     }),
-    ('Max-sum_MST_breakdowns', {
-        'class': 'Max_sum_MST',
-        'breakdowns': True,
-    }),
+    # ('Max-sum_MST_breakdowns', {
+    #     'class': 'Max_sum_MST',
+    #     'breakdowns': True,
+    # }),
     # ('DSA_MST_breakdowns', {
     #     'class': 'DSA_MST',
     #     'breakdowns': True,
     # }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-    }),
-    ('Random-Walk', {
-        'class': 'RandomWalk'
-    }),
+    # ('Max_sum_MST', {
+    #     'class': 'Max_sum_MST',
+    # }),
+    # ('Random-Walk', {
+    #     'class': 'RandomWalk'
+    # }),
     # ('Random-Walk_breakdowns', {
     #     'class': 'RandomWalk',
     #     'breakdowns': True,
@@ -125,8 +127,10 @@ ALGORITHMS_TO_CHECK = [
 ]
 
 # -------------------------------------------------- #
-# NEED_TO_PLOT_FIELD = True
-NEED_TO_PLOT_FIELD = False
+NEED_TO_PLOT_FIELD = True
+# NEED_TO_PLOT_FIELD = False
+# NEED_TO_PRINT_DURATION = True
+NEED_TO_PRINT_DURATION = False
 # SHOW_RANGES = True
 SHOW_RANGES = False
 PICKLE_RESULTS = True

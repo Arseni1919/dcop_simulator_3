@@ -188,7 +188,11 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
     :return:
     """
     dict_for_results[algorithm.name]['coverage'][big_iteration][problem] = calculate_coverage(robots, targets)
-    dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = calculate_collisions(robots, big_iteration)
+    collisions = calculate_collisions(robots, big_iteration)
+    dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = collisions
+    if algorithm.name == 'CAMS':
+        if collisions > 0:
+            print('There is at list one collision.')
     # dict_for_results[algorithm.name]['chosen_positions'][big_iteration][problem] = calculate_chosen_positions(robots)
     choices = print_and_return_choices(all_agents=[*graph, *robots, *targets], s_iteration=B_ITERATIONS_IN_SMALL_LOOPS-1)
     dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
@@ -196,11 +200,38 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
 
 
 def initialize_nodes_before_algorithms(graph, robots, targets):
-    pos_to_agents = random.sample(graph, len(robots) + len(targets))
-    # print(f'need:{len(robots) + len(targets)} fact: {len(set(pos_to_agents))}')
-    for pos_node, agent in zip(pos_to_agents, [*robots, *targets]):
-        agent.pos_node = pos_node
-        agent.initial_pos_node = pos_node
+    if TARGETS_APART:
+        chosen = random.sample(graph, len(robots))
+        for pos_node, agent in zip(chosen, robots):
+            agent.pos_node = pos_node
+            agent.initial_pos_node = pos_node
+
+        positioned_targets = []
+
+        for target in targets:
+            again = True
+            while again:
+                again = False
+                curr_pos = random.sample(graph, 1)[0]
+                for robot in robots:
+                    if distance(robot.pos_node.pos, curr_pos.pos) == 0:
+                        again = True
+                        break
+                for positioned_target in positioned_targets:
+                    if distance(positioned_target.pos_node.pos, curr_pos.pos) < 2 * SR:
+                        again = True
+                        break
+                if not again:
+                    target.pos_node = curr_pos
+                    target.initial_pos_node = curr_pos
+                    positioned_targets.append(target)
+                    # break
+    else:
+        pos_to_agents = random.sample(graph, len(robots) + len(targets))
+        # print(f'need:{len(robots) + len(targets)} fact: {len(set(pos_to_agents))}')
+        for pos_node, agent in zip(pos_to_agents, [*robots, *targets]):
+            agent.pos_node = pos_node
+            agent.initial_pos_node = pos_node
 
     if DIFF_CRED:
         set_diff_cred(robots, MIN_CRED, MAX_CRED)
@@ -311,6 +342,21 @@ def check_algorithms():
             algorithm.send_messages(big_iteration, i_graph, i_robots, i_targets, 1, alg_num, tracker)
             algorithm.move(i_graph, i_robots, i_targets)
     print(f'\r{colored("[MESSAGE] Finished quick check.", color="yellow")}\n')
+
+
+def print_duration(i_graph, i_robots, i_targets):
+    if NEED_TO_PRINT_DURATION:
+
+        def print_mean_and_var(name, list_of_nodes):
+            a = []
+            for i in list_of_nodes:
+                a.extend(i.times_to_send_message)
+            print(f'{name} -> mean: {np.mean(a) * 10**3: .2f} ms, var: {np.var(a) * 10**3: .2f} ms')
+
+        print(f'\nTime it takes to send messages:')
+        print_mean_and_var('positions', i_graph)
+        print_mean_and_var('targets', i_targets)
+        print_mean_and_var('robots', i_robots)
 
 
 
