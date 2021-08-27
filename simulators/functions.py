@@ -42,6 +42,7 @@ def calculate_collisions(robots, big_iteration):
                     if robot2.prev_pos_node and robot2.prev_pos_node == robot2.pos_node:
                         continue
                 collisions += 1
+                # print(f'robot one - {robot1.name}, robot two - {robot2.name}')
     return collisions
 
 

@@ -49,6 +49,8 @@ class CADSA(DSA_MST):
             for node2 in robots:
                 if node1.name != node2.name:
                     if node1.pos_node is node2.pos_node:
+                        node1.pos_node = node1.prev_pos_node
+                        node2.pos_node = node2.prev_pos_node
                         print('collision')
 
 

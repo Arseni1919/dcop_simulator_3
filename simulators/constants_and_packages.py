@@ -39,8 +39,8 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-# GRAPH_TYPE = 'complex'
-GRAPH_TYPE = 'grid'
+GRAPH_TYPE = 'complex'
+# GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 B_ITERATIONS_IN_BIG_LOOPS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -81,6 +81,31 @@ ADDING_TO_FILE_NAME += 'delay-v2_%s' % DELAY_OF_COLLISION if EXECUTE_DELAY else 
 ADDING_TO_FILE_NAME += GRAPH_TYPE
 
 ALGORITHMS_TO_CHECK = [
+    ('CAMS', {
+        'class': 'CAMS',
+        'breakdowns': True,
+    }),
+    ('DSSA', {
+        'class': 'DSSA'
+    }),
+    ('DSA_MST', {
+        'class': 'DSA_MST',
+    }),
+    ('CADSA', {
+        'class': 'CADSA',
+    }),
+    ('Max-sum_MST_breakdowns', {
+        'class': 'Max_sum_MST',
+        'breakdowns': True,
+    }),
+    ('Max_sum_MST', {
+        'class': 'Max_sum_MST',
+    }),
+    ('Random-Walk', {
+        'class': 'RandomWalk'
+    }),
+
+
     # ('CAMS_diff_creds', {
     #     'class': 'CAMS',
     #     'diff_creds': {
@@ -88,36 +113,13 @@ ALGORITHMS_TO_CHECK = [
     #         'max': 30,
     #     },
     # }),DSSA
-    # ('CAMS', {
-    #     'class': 'CAMS',
-    #     'breakdowns': True,
-    # }),
-    # ('DSSA', {
-    #     'class': 'DSSA'
-    # }),
-    # ('DSA_MST', {
-    #     'class': 'DSA_MST',
-    # }),
     # ('CAMS_breakdowns', {
     #     'class': 'CAMS',
-    #     'breakdowns': True,
-    # }),
-    ('CADSA', {
-        'class': 'CADSA',
-    }),
-    # ('Max-sum_MST_breakdowns', {
-    #     'class': 'Max_sum_MST',
     #     'breakdowns': True,
     # }),
     # ('DSA_MST_breakdowns', {
     #     'class': 'DSA_MST',
     #     'breakdowns': True,
-    # }),
-    # ('Max_sum_MST', {
-    #     'class': 'Max_sum_MST',
-    # }),
-    # ('Random-Walk', {
-    #     'class': 'RandomWalk'
     # }),
     # ('Random-Walk_breakdowns', {
     #     'class': 'RandomWalk',
@@ -127,8 +129,8 @@ ALGORITHMS_TO_CHECK = [
 ]
 
 # -------------------------------------------------- #
-NEED_TO_PLOT_FIELD = True
-# NEED_TO_PLOT_FIELD = False
+# NEED_TO_PLOT_FIELD = True
+NEED_TO_PLOT_FIELD = False
 # NEED_TO_PRINT_DURATION = True
 NEED_TO_PRINT_DURATION = False
 # SHOW_RANGES = True
