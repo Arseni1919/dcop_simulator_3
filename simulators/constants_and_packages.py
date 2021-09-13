@@ -39,9 +39,10 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-GRAPH_TYPE = 'complex'
-# GRAPH_TYPE = 'grid'
-GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# GRAPH_TYPE = 'complex'
+GRAPH_TYPE = 'grid'
+# GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+GRID_SIZE_SIDE_WH = 5
 
 B_ITERATIONS_IN_BIG_LOOPS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_ITERATIONS_IN_BIG_LOOPS = 10
@@ -51,13 +52,14 @@ B_ITERATIONS_IN_SMALL_LOOPS = 8  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 B_NUMBER_OF_PROBLEMS = 50   # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_NUMBER_OF_PROBLEMS = 3
 B_N_NODES = 625  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# B_NUM_OF_ROBOTS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-B_NUM_OF_ROBOTS = 30
-# B_NUM_OF_TARGETS = 10  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-B_NUM_OF_TARGETS = 20
+# B_NUM_OF_ROBOTS = 30  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+B_NUM_OF_ROBOTS = 5
+# B_NUM_OF_TARGETS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+B_NUM_OF_TARGETS = 1
 
-MR = B_MAX_DISTANCE_OF_NEARBY_POS/4.5
-SR = MR
+# MR = B_MAX_DISTANCE_OF_NEARBY_POS/4.5  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+MR = 25
+SR = MR  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 GRID_SIDE_SIZE = 50
 # GRID_SIDE_SIZE = 20
@@ -66,7 +68,7 @@ DELAY_OF_COLLISION = 100
 EXECUTE_DELAY = False
 TARGETS_APART = True
 # TARGETS_APART = False
-REQ_OF_TARGETS = 100
+REQ_OF_TARGETS = 100  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 DIFF_CRED = True
 # DIFF_CRED = False
 # MIN_CRED, MAX_CRED = 10, 40
@@ -85,25 +87,25 @@ ALGORITHMS_TO_CHECK = [
         'class': 'CAMS',
         'breakdowns': True,
     }),
-    ('DSSA', {
-        'class': 'DSSA'
-    }),
-    ('DSA_MST', {
-        'class': 'DSA_MST',
-    }),
-    ('CADSA', {
-        'class': 'CADSA',
-    }),
-    ('Max-sum_MST_breakdowns', {
-        'class': 'Max_sum_MST',
-        'breakdowns': True,
-    }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-    }),
-    ('Random-Walk', {
-        'class': 'RandomWalk'
-    }),
+    # ('DSSA', {
+    #     'class': 'DSSA'
+    # }),
+    # ('DSA_MST', {
+    #     'class': 'DSA_MST',
+    # }),
+    # ('CADSA', {
+    #     'class': 'CADSA',
+    # }),
+    # ('Max-sum_MST_breakdowns', {
+    #     'class': 'Max_sum_MST',
+    #     'breakdowns': True,
+    # }),
+    # ('Max_sum_MST', {
+    #     'class': 'Max_sum_MST',
+    # }),
+    # ('Random-Walk', {
+    #     'class': 'RandomWalk'
+    # }),
 
 
     # ('CAMS_diff_creds', {
@@ -129,14 +131,14 @@ ALGORITHMS_TO_CHECK = [
 ]
 
 # -------------------------------------------------- #
-# NEED_TO_PLOT_FIELD = True
-NEED_TO_PLOT_FIELD = False
+NEED_TO_PLOT_FIELD = True
+# NEED_TO_PLOT_FIELD = False
 # NEED_TO_PRINT_DURATION = True
 NEED_TO_PRINT_DURATION = False
 # SHOW_RANGES = True
 SHOW_RANGES = False
-PICKLE_RESULTS = True
-# PICKLE_RESULTS = False
+# PICKLE_RESULTS = True
+PICKLE_RESULTS = False
 LIGHT_UP_THE_CHANGES = True
 # LIGHT_UP_THE_CHANGES = False
 AMOUNT_OF_STD = 1
@@ -146,5 +148,5 @@ FILE_NAME = "last_weights.txt"
 LOAD_PREVIOUS_POSITIONS = False
 # LOAD_PREVIOUS_WEIGHTS = True
 LOAD_PREVIOUS_WEIGHTS = False
-SAVE_WEIGHTS = True
+# SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False

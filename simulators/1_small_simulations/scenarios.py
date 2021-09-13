@@ -5,7 +5,7 @@ def scenario_n_1():
     agents = {
         'target0': {
             'num': 0,
-            'req': 30,
+            'req': 50,
             'cells_near_me': [0]
         },
         'robot0': {
