@@ -42,7 +42,7 @@ B_MAX_NEARBY_POS = 5
 # GRAPH_TYPE = 'complex'
 GRAPH_TYPE = 'grid'
 # GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-GRID_SIZE_SIDE_WH = 5
+GRID_SIZE_SIDE_WH = 4
 
 B_ITERATIONS_IN_BIG_LOOPS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_ITERATIONS_IN_BIG_LOOPS = 10
@@ -53,12 +53,12 @@ B_NUMBER_OF_PROBLEMS = 50   # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_NUMBER_OF_PROBLEMS = 3
 B_N_NODES = 625  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # B_NUM_OF_ROBOTS = 30  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-B_NUM_OF_ROBOTS = 5
+B_NUM_OF_ROBOTS = 3
 # B_NUM_OF_TARGETS = 20  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 B_NUM_OF_TARGETS = 1
 
 # MR = B_MAX_DISTANCE_OF_NEARBY_POS/4.5  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-MR = 25
+MR = 30
 SR = MR  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 GRID_SIDE_SIZE = 50
@@ -71,8 +71,8 @@ TARGETS_APART = True
 REQ_OF_TARGETS = 100  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 DIFF_CRED = True
 # DIFF_CRED = False
-# MIN_CRED, MAX_CRED = 10, 40
-MIN_CRED, MAX_CRED = 25, 50  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+MIN_CRED, MAX_CRED = 40, 45
+# MIN_CRED, MAX_CRED = 25, 50  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ADDING_TO_FILE_NAME = ''
 ADDING_TO_FILE_NAME += '%sT-%sR_' % (B_NUM_OF_TARGETS, B_NUM_OF_ROBOTS)
