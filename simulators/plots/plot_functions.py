@@ -87,14 +87,16 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
 def add_list_of_graphs(ax, results_dict, matrix_name):
     dim=1
     add_graph(ax, 0, 0, results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
-    add_graph(ax, 0, 1, results_dict, matrix_name, dim, 'Random-Walk_breakdowns', 'Random-Walk\n(including breakdowns)', 'tab:olive')
     add_graph(ax, 3, 4, results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST', 'tab:brown')
-    add_graph(ax, 3, 0, results_dict, matrix_name, dim, 'DSA_MST_breakdowns', 'DSA_MST\n(including breakdowns)', 'tab:purple')
     add_graph(ax, 3, 3, results_dict, matrix_name, dim, 'CADSA', 'CADSA', 'tab:cyan')
-    add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'g')
-    add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tab:orange')
     add_graph(ax, 2, 3, results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'y')
+    add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'g')
+    add_graph(ax, 2, 4, results_dict, matrix_name, dim, 'Max_sum_MST_delta', 'Max-sum_MST (delta)', 'c')
+    add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tab:orange')
     add_graph(ax, 2, 1, results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'm')
+    add_graph(ax, 2, 2, results_dict, matrix_name, dim, 'CAMS_delta', 'CAMS (delta)', 'tab:purple')
+    # add_graph(ax, 0, 1, results_dict, matrix_name, dim, 'Random-Walk_breakdowns', 'Random-Walk\n(including breakdowns)', 'tab:olive')
+    # add_graph(ax, 3, 0, results_dict, matrix_name, dim, 'DSA_MST_breakdowns', 'DSA_MST\n(including breakdowns)', 'tab:purple')
     # add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')
     # add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'CAMS_diff_creds', 'CAMS_diff_creds', 'g')
 

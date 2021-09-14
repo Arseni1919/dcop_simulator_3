@@ -50,12 +50,12 @@ class CAMS(Max_sum_MST):
             for agent in all_agents:
                 tracker.step(problem, alg_num, big_iteration, iteration, agent)
                 for nei in agent.neighbours:
-                    agent.send_message_to(nei, iteration)
+                    agent.send_message_to(nei, iteration, params=self.params)
 
             tracker.step(problem, alg_num, big_iteration, iteration)
-            print_table_of_messages(all_agents, iteration)
+            # print_table_of_messages(all_agents, iteration)
             # input()
-        input()
+        # input()
 
     def add_nei_positions_robots(self, graph, robots):
         pos_nodes_dict = {pos_node.name: pos_node for pos_node in graph}

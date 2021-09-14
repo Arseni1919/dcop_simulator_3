@@ -45,7 +45,7 @@ class Max_sum_MST(MetaAlgorithm):
             for agent in all_agents:
                 tracker.step(problem, alg_num, big_iteration, iteration, agent)
                 for nei in agent.neighbours:
-                    agent.send_message_to(nei, iteration)
+                    agent.send_message_to(nei, iteration, params=self.params)
 
             tracker.step(problem, alg_num, big_iteration, iteration)
 

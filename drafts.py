@@ -23,8 +23,12 @@ import numpy as np
 # print(list(itertools.product(a,a)))
 #
 # print(list(map(lambda x: x == 3, [1,2,3])))
-
-
+import math
+l = [1,2,10, 8]
+print(f'sum: {sum(l)}')
+print(f'max: {max(l)}')
+print(f'min: {min(l)}')
+print(f'min: {math.count(l)}')
 import time
 # start_time = time.time()
 # your script

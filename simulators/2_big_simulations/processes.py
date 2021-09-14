@@ -192,7 +192,7 @@ def update_statistics(graph, robots, targets, big_iteration, algorithm, problem,
     dict_for_results[algorithm.name]['collisions'][big_iteration][problem] = collisions
     if algorithm.name == 'CAMS':
         if collisions > 0:
-            print('There is at list one collision.')
+            print(f'There are {collisions} collisions during the run of {algorithm.name} algorithm.')
     # dict_for_results[algorithm.name]['chosen_positions'][big_iteration][problem] = calculate_chosen_positions(robots)
     choices = print_and_return_choices(all_agents=[*graph, *robots, *targets], s_iteration=B_ITERATIONS_IN_SMALL_LOOPS-1)
     dict_for_results[algorithm.name]['positions'][big_iteration][problem] = choices
@@ -267,8 +267,8 @@ def plot_field(graph, robots, targets, alg_name, alg_num, problem, big_iteration
         )
 
         # POSITION ANNOTATIONS
-        # for pos_node in graph:
-        #     ax.annotate(pos_node.num, pos_node.pos, fontsize=5)
+        for pos_node in graph:
+            ax.annotate(pos_node.num, pos_node.pos, fontsize=5)
 
         # EDGES: edge lines on the graph
         for pos_node in graph:
@@ -311,7 +311,7 @@ def pickle_results(dict_for_results, start, end):
     if PICKLE_RESULTS:
         dict_for_results['time'] = time.strftime("%H:%M:%S", time.gmtime(end - start))
         try:
-            time_suffix_str = time.strftime("%d.%m.%Y-%H:%M:%S")
+            time_suffix_str = time.strftime("%Y.%m.%d-%H:%M:%S")
             file_name = f'results/{time_suffix_str}_{ADDING_TO_FILE_NAME}.results'
             # open the file for writing
             with open(file_name, 'wb') as fileObject:

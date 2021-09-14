@@ -19,7 +19,7 @@ class Node(abc.ABC):
             raise RuntimeError('num is not in name')
 
     @abc.abstractmethod
-    def send_message_to(self, nei, iteration):
+    def send_message_to(self, nei, iteration, params=None):
         pass
 
     def clean_neighbours(self):
@@ -56,7 +56,7 @@ class FunctionNode(Node):
             prev_iteration_brings += self.message_box[iteration - 1][other_nei.name][other_nei_pos]
         return prev_iteration_brings
 
-    def send_message_to(self, var_nei, iteration):
+    def send_message_to(self, var_nei, iteration, params=None):
         start_time = time.time()
         message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
         list_of_other_domains, list_of_other_nei = self._create_list_of_domains(var_nei)
@@ -160,7 +160,7 @@ class RobotNode(Node):
         if 'robot' not in name:
             raise RuntimeError('robot is not in name')
 
-    def send_message_to(self, func_nei, iteration):
+    def send_message_to(self, func_nei, iteration, params=None):
         start_time = time.time()
         message = {pos_i: 0 for pos_i in self.domain}
 
@@ -212,7 +212,17 @@ class BigSimulationTargetNode(TargetNode):
     def clear_cells_near_me(self):
         self.cells_near_me = []
 
-    def send_message_to(self, var_nei, iteration):
+    def send_message_to(self, var_nei, iteration, params=None):
+        if params:
+            if 'delta' in params:
+                self.CAMS_func_reduced_delta(var_nei, iteration)
+            else:
+                self.CAMS_func_no_reduced_delta(var_nei, iteration)
+        else:
+            self.CAMS_func_reduced_delta(var_nei, iteration)
+
+
+    def CAMS_func_no_reduced_delta(self, var_nei, iteration):
         fmr_total_cov = 0
         for nei in self.neighbours:
             fmr_total_cov += nei.cred
@@ -230,6 +240,26 @@ class BigSimulationTargetNode(TargetNode):
             # message_created = super(BigSimulationTargetNode, self).create_message(var_nei, iteration)
             var_nei.message_box[iteration][self.name] = message
 
+    def CAMS_func_reduced_delta(self, var_nei, iteration):
+        fmr_cov_list = []
+        for nei in self.neighbours:
+            fmr_cov_list.append(nei.cred)
+
+        delta = max(0, sum(fmr_cov_list) - self.req)
+        if delta > min(fmr_cov_list):
+            raise RuntimeError('delta > min(fmr_cov_list)')
+        if delta > 0:
+            print('', end='')
+        delta_divided = round(delta / len(fmr_cov_list), 2)
+
+        message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
+        for pos_i in var_nei.domain:
+            if pos_i in self.cells_near_me:
+                message[pos_i] = var_nei.cred - delta_divided
+            else:
+                message[pos_i] = 0
+        message = flatten_message(message)
+        var_nei.message_box[iteration][self.name] = message
 
 
 class BigSimulationRobotNode(RobotNode):
