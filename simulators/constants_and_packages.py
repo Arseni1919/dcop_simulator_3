@@ -39,8 +39,8 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-# GRAPH_TYPE = 'complex'
-GRAPH_TYPE = 'grid'
+GRAPH_TYPE = 'complex'
+# GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # GRID_SIZE_SIDE_WH = 4
 
