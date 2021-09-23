@@ -68,15 +68,15 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
               need_to_plot_variance=True):
     if alg_name in graph_dict:
         print(colored(f'There {alg_name} is inside the dictionary.', 'green'))
-        line_index = 0 if line_index == len(lines) else line_index
-        marker_index = 0 if marker_index == len(markers) else marker_index
+        # line_index = 0 if line_index == len(lines) else line_index
+        # marker_index = 0 if marker_index == len(markers) else marker_index
         matrix = graph_dict[alg_name][matrix_name]
         avr = np.average(matrix, dimension_to_avrg)
         std = np.std(matrix, dimension_to_avrg)
-        line = lines[line_index]
-        marker = markers[marker_index]
+        # line = lines[line_index]
+        # marker = markers[marker_index]
         # print(f'{alg_name}: li:{line_index} mi:{marker_index}')
-        to_ax.plot(range(len(avr)), avr, '%s%s' % (marker, line), label=alg_label, color=color)
+        to_ax.plot(range(len(avr)), avr, '%s%s' % (line_index, marker_index), label=alg_label, color=color)
         if SHOW_RANGES:
             to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
                                alpha=0.2, antialiased=True, color=color)
@@ -85,16 +85,26 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
 
 
 def add_list_of_graphs(ax, results_dict, matrix_name):
+    # lines = ['-', '--', '-.', ':', ]
+    # lines.reverse()
+    # markers = ['o', '+', '.', ',', '_', '*']
+    # markers.reverse()
+    # add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimension_to_avrg, alg_name, alg_label, color, need_to_plot_variance=True)
     dim=1
-    add_graph(ax, 0, 0, results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
-    add_graph(ax, 3, 4, results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST', 'tab:brown')
-    add_graph(ax, 3, 3, results_dict, matrix_name, dim, 'CADSA', 'CADSA', 'tab:cyan')
-    add_graph(ax, 2, 3, results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'y')
-    add_graph(ax, 1, 4, results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'g')
-    add_graph(ax, 2, 4, results_dict, matrix_name, dim, 'Max_sum_MST_delta', 'Max-sum_MST (delta)', 'c')
-    add_graph(ax, 1, 2, results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tab:orange')
-    add_graph(ax, 2, 1, results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'm')
-    add_graph(ax, 2, 2, results_dict, matrix_name, dim, 'CAMS_delta', 'CAMS (delta)', 'tab:purple')
+    add_graph(ax, ':', '*', results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
+
+    add_graph(ax, '-', '1', results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST', 'tab:blue')
+    add_graph(ax, '--', '1', results_dict, matrix_name, dim, 'CADSA', 'CADSA', 'tab:cyan')
+    add_graph(ax, ':', '1', results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'tab:purple')
+
+    add_graph(ax, '-', "+", results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'tab:brown')
+    add_graph(ax, '--', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta', 'Max-sum_MST (delta 1)', 'goldenrod')
+    add_graph(ax, ':', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta_from_single', 'Max-sum_MST (delta 2)', 'darkred')
+    add_graph(ax, '-.', "+", results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tomato')
+
+    add_graph(ax, '-.', ".", results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'indigo')
+    add_graph(ax, '--', ".", results_dict, matrix_name, dim, 'CAMS_delta', 'CAMS (delta 1)', 'tab:pink')
+    add_graph(ax, ':', ".", results_dict, matrix_name, dim, 'CAMS_delta_from_single', 'CAMS (delta 2)', 'm')
     # add_graph(ax, 0, 1, results_dict, matrix_name, dim, 'Random-Walk_breakdowns', 'Random-Walk\n(including breakdowns)', 'tab:olive')
     # add_graph(ax, 3, 0, results_dict, matrix_name, dim, 'DSA_MST_breakdowns', 'DSA_MST\n(including breakdowns)', 'tab:purple')
     # add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')

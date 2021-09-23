@@ -39,8 +39,8 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 3
 B_MAX_NEARBY_POS = 5
-GRAPH_TYPE = 'complex'
-# GRAPH_TYPE = 'grid'
+# GRAPH_TYPE = 'complex'
+GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # GRID_SIZE_SIDE_WH = 4
 
@@ -86,11 +86,34 @@ ALGORITHMS_TO_CHECK = [
     ('CAMS', {
         'class': 'CAMS',
         'breakdowns': True,
+        'type': 'basic',
     }),
     ('CAMS_delta', {
         'class': 'CAMS',
         'breakdowns': True,
-        'delta': True,
+        'type': 'delta',
+    }),
+    ('CAMS_delta_from_single', {
+        'class': 'CAMS',
+        'breakdowns': True,
+        'type': 'delta_from_single',
+    }),
+    ('Max-sum_MST_breakdowns', {
+        'class': 'Max_sum_MST',
+        'breakdowns': True,
+        'type': 'basic',
+    }),
+    ('Max_sum_MST', {
+        'class': 'Max_sum_MST',
+        'type': 'basic',
+    }),
+    ('Max_sum_MST_delta', {
+        'class': 'Max_sum_MST',
+        'type': 'delta',
+    }),
+    ('Max_sum_MST_delta_from_single', {
+        'class': 'Max_sum_MST',
+        'type': 'delta_from_single',
     }),
     ('DSSA', {
         'class': 'DSSA'
@@ -100,17 +123,6 @@ ALGORITHMS_TO_CHECK = [
     }),
     ('CADSA', {
         'class': 'CADSA',
-    }),
-    ('Max-sum_MST_breakdowns', {
-        'class': 'Max_sum_MST',
-        'breakdowns': True,
-    }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-    }),
-    ('Max_sum_MST_delta', {
-        'class': 'Max_sum_MST',
-        'delta': True,
     }),
     ('Random-Walk', {
         'class': 'RandomWalk'

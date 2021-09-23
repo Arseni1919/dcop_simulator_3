@@ -72,18 +72,6 @@ def create_graph(dict_for_results, problem):
     return graph
 
 
-def print_t_test(file_name):
-    results_dict = load_file(file_name)
-    length_of_name = min([len(x) for x, y in ALGORITHMS_TO_CHECK])
-    for alg_name1, _ in ALGORITHMS_TO_CHECK:
-        matrix1 = results_dict[alg_name1]['coverage']
-        for alg_name2, _ in ALGORITHMS_TO_CHECK:
-            if alg_name1 != alg_name2:
-                matrix2 = results_dict[alg_name2]['coverage']
-                print(f'{alg_name1[:length_of_name]} <-> {alg_name2[:length_of_name]} '
-                      f'\tP_value: {ttest_ind(matrix1[-1], matrix2[-1])[1]: 10.2f}')
-
-
 def print_and_plot_results(file_name):
     plt.close()
     print('Plotting the results...')

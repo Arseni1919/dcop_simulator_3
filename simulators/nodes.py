@@ -214,10 +214,14 @@ class BigSimulationTargetNode(TargetNode):
 
     def send_message_to(self, var_nei, iteration, params=None):
         if params:
-            if 'delta' in params:
+            if params['type'] == 'delta':
                 self.CAMS_func_reduced_delta(var_nei, iteration)
-            else:
+            elif params['type'] == 'basic':
                 self.CAMS_func_no_reduced_delta(var_nei, iteration)
+            elif params['type'] == 'delta_from_single':
+                self.CAMS_func_reduced_delta_from_single(var_nei, iteration)
+            else:
+                raise ValueError('[ERROR]: no correct param value (inside BigSimulationTargetNode)')
         else:
             self.CAMS_func_reduced_delta(var_nei, iteration)
 
@@ -256,6 +260,28 @@ class BigSimulationTargetNode(TargetNode):
         for pos_i in var_nei.domain:
             if pos_i in self.cells_near_me:
                 message[pos_i] = var_nei.cred - delta_divided
+            else:
+                message[pos_i] = 0
+        message = flatten_message(message)
+        var_nei.message_box[iteration][self.name] = message
+
+    def CAMS_func_reduced_delta_from_single(self, var_nei, iteration):
+        fmr_cov_list = []
+        for nei in self.neighbours:
+            fmr_cov_list.append(nei.cred)
+
+        delta = max(0, sum(fmr_cov_list) - self.req)
+        if delta > min(fmr_cov_list):
+            raise RuntimeError('delta > min(fmr_cov_list)')
+        if delta > 0:
+            print('', end='')
+        # delta_divided = round(delta / len(fmr_cov_list), 2)
+        delta_to_reduce = 0 if self.neighbours[0].num == var_nei.num else delta
+
+        message = {pos_i: MINUS_INF for pos_i in var_nei.domain}
+        for pos_i in var_nei.domain:
+            if pos_i in self.cells_near_me:
+                message[pos_i] = var_nei.cred - delta_to_reduce
             else:
                 message[pos_i] = 0
         message = flatten_message(message)
