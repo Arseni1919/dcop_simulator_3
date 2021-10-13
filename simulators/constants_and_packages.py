@@ -37,8 +37,8 @@ B_HEIGHT = B_WIDTH
 B_MAX_DISTANCE_OF_NEARBY_POS = B_WIDTH / 3
 B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
-B_MIN_NEARBY_POS = 3
-B_MAX_NEARBY_POS = 5
+B_MIN_NEARBY_POS = 8
+B_MAX_NEARBY_POS = 12
 GRAPH_TYPE = 'complex'
 # GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -81,40 +81,41 @@ ADDING_TO_FILE_NAME += '%sPRBLMS_' % (B_NUMBER_OF_PROBLEMS,)
 ADDING_TO_FILE_NAME += 'targets_apart_' if TARGETS_APART else ''
 ADDING_TO_FILE_NAME += 'delay-v2_%s' % DELAY_OF_COLLISION if EXECUTE_DELAY else ''
 ADDING_TO_FILE_NAME += GRAPH_TYPE
+ADDING_TO_FILE_NAME += f'_{B_MIN_NEARBY_POS}_{B_MAX_NEARBY_POS}' if GRAPH_TYPE == 'complex' else ''
 
 ALGORITHMS_TO_CHECK = [
-    ('CAMS', {
-        'class': 'CAMS',
-        'breakdowns': True,
-        'type': 'basic',
-    }),
+    # ('CAMS', {
+    #     'class': 'CAMS',
+    #     'breakdowns': True,
+    #     'type': 'basic',
+    # }),
     ('CAMS_delta', {
         'class': 'CAMS',
         'breakdowns': True,
         'type': 'delta',
     }),
-    ('CAMS_delta_from_single', {
-        'class': 'CAMS',
-        'breakdowns': True,
-        'type': 'delta_from_single',
-    }),
+    # ('CAMS_delta_from_single', {
+    #     'class': 'CAMS',
+    #     'breakdowns': True,
+    #     'type': 'delta_from_single',
+    # }),
     ('Max-sum_MST_breakdowns', {
         'class': 'Max_sum_MST',
         'breakdowns': True,
         'type': 'basic',
     }),
-    ('Max_sum_MST', {
-        'class': 'Max_sum_MST',
-        'type': 'basic',
-    }),
+    # ('Max_sum_MST', {
+    #     'class': 'Max_sum_MST',
+    #     'type': 'basic',
+    # }),
     ('Max_sum_MST_delta', {
         'class': 'Max_sum_MST',
         'type': 'delta',
     }),
-    ('Max_sum_MST_delta_from_single', {
-        'class': 'Max_sum_MST',
-        'type': 'delta_from_single',
-    }),
+    # ('Max_sum_MST_delta_from_single', {
+    #     'class': 'Max_sum_MST',
+    #     'type': 'delta_from_single',
+    # }),
     ('DSSA', {
         'class': 'DSSA'
     }),

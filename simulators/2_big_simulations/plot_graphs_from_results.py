@@ -9,8 +9,12 @@ def main():
     # file_name = '27.08.2021-12:44:18_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex.results'
     # file_name = '2021.09.14-15:50:09_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex.results'
     # file_name = '2021.09.14-16:07:23_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
-    file_name = '2021.09.23-14:00:41_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
-    file_name = '2021.09.23-14:22:40_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex.results'
+
+    # file_name = '2021.09.23-14:00:41_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
+    # file_name = '2021.09.23-14:22:40_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex.results'
+
+    # file_name = '2021.10.05-18:35:07_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
+    file_name = '2021.10.06-10:49:35_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_8_12.results'
 
     file_name = f'results/{file_name}'
 

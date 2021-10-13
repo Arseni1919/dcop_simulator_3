@@ -97,14 +97,15 @@ def add_list_of_graphs(ax, results_dict, matrix_name):
     add_graph(ax, '--', '1', results_dict, matrix_name, dim, 'CADSA', 'CADSA', 'tab:cyan')
     add_graph(ax, ':', '1', results_dict, matrix_name, dim, 'DSSA', 'DSSA', 'tab:purple')
 
-    add_graph(ax, '-', "+", results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'tab:brown')
-    add_graph(ax, '--', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta', 'Max-sum_MST (delta 1)', 'goldenrod')
-    add_graph(ax, ':', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta_from_single', 'Max-sum_MST (delta 2)', 'darkred')
+    # add_graph(ax, '-', "+", results_dict, matrix_name, dim, 'Max_sum_MST', 'Max-sum_MST', 'tab:brown')
+    add_graph(ax, '--', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta', 'Max-sum_MST', 'goldenrod')
+    # add_graph(ax, ':', "+", results_dict, matrix_name, dim, 'Max_sum_MST_delta_from_single', 'Max-sum_MST (delta 2)', 'darkred')
     add_graph(ax, '-.', "+", results_dict, matrix_name, dim, 'Max-sum_MST_breakdowns', 'Max-sum_MST\n(including breakdowns)', 'tomato')
 
-    add_graph(ax, '-.', ".", results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'indigo')
-    add_graph(ax, '--', ".", results_dict, matrix_name, dim, 'CAMS_delta', 'CAMS (delta 1)', 'tab:pink')
-    add_graph(ax, ':', ".", results_dict, matrix_name, dim, 'CAMS_delta_from_single', 'CAMS (delta 2)', 'm')
+    # add_graph(ax, '-.', ".", results_dict, matrix_name, dim, 'CAMS', 'CAMS', 'indigo')
+    add_graph(ax, '--', ".", results_dict, matrix_name, dim, 'CAMS_delta', 'CAMS', 'tab:pink')
+    # add_graph(ax, ':', ".", results_dict, matrix_name, dim, 'CAMS_delta_from_single', 'CAMS (delta 2)', 'm')
+
     # add_graph(ax, 0, 1, results_dict, matrix_name, dim, 'Random-Walk_breakdowns', 'Random-Walk\n(including breakdowns)', 'tab:olive')
     # add_graph(ax, 3, 0, results_dict, matrix_name, dim, 'DSA_MST_breakdowns', 'DSA_MST\n(including breakdowns)', 'tab:purple')
     # add_graph(ax, 3, 1, results_dict, matrix_name, dim, 'CAMS_breakdowns', 'CAMS\n(including breakdowns)', 'tab:gray')
