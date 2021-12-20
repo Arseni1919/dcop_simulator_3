@@ -39,8 +39,8 @@ B_SIZE_ROBOT_NODE = B_WIDTH / 50
 B_SIZE_TARGET_NODE = B_WIDTH / 50
 B_MIN_NEARBY_POS = 8
 B_MAX_NEARBY_POS = 12
-GRAPH_TYPE = 'complex'
-# GRAPH_TYPE = 'grid'
+# GRAPH_TYPE = 'complex'
+GRAPH_TYPE = 'grid'
 GRID_SIZE_SIDE_WH = 25  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # GRID_SIZE_SIDE_WH = 4
 
@@ -68,13 +68,14 @@ DELAY_OF_COLLISION = 100
 EXECUTE_DELAY = False
 TARGETS_APART = True
 # TARGETS_APART = False
-REQ_OF_TARGETS = 100  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+REQ_OF_TARGETS = 500  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 DIFF_CRED = True
 # DIFF_CRED = False
 # MIN_CRED, MAX_CRED = 40, 45
 MIN_CRED, MAX_CRED = 25, 50  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ADDING_TO_FILE_NAME = ''
+ADDING_TO_FILE_NAME += '%s_req_' % REQ_OF_TARGETS
 ADDING_TO_FILE_NAME += '%sT-%sR_' % (B_NUM_OF_TARGETS, B_NUM_OF_ROBOTS)
 ADDING_TO_FILE_NAME += '%sBi-%sSi_' % (B_ITERATIONS_IN_BIG_LOOPS, B_ITERATIONS_IN_SMALL_LOOPS)
 ADDING_TO_FILE_NAME += '%sPRBLMS_' % (B_NUMBER_OF_PROBLEMS,)
