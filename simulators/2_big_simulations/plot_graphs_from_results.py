@@ -15,7 +15,7 @@ def main():
 
     # file_name = '2021.10.05-18:35:07_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
     # file_name = '2021.10.06-10:49:35_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_8_12.results'
-    file_name = '2021.12.20-14:00:41_300_req_20T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
+    file_name = '2021.12.24-11:36:06_200_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
 
     file_name = f'results/{file_name}'
 
