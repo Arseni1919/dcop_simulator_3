@@ -20,9 +20,9 @@ def main():
     # file_name = '2021.12.24-11:36:06_200_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
     # file_name = '2021.12.24-15:49:11_200_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
     # file_name = '2021.12.25-10:35:46_400_req_5T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
-    # file_name = '2021.12.25-12:37:43_400_req_5T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
+    file_name = '2021.12.25-12:37:43_400_req_5T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
 
-    file_name = '2021.12.25-14:42:04_400_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
+    # file_name = '2021.12.25-14:42:04_400_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_grid.results'
     # file_name = '2021.12.25-19:15:54_400_req_10T-30R_20Bi-8Si_50PRBLMS_targets_apart_complex_3_7.results'
 
     file_name = f'results/{file_name}'

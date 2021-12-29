@@ -70,15 +70,18 @@ def add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimensio
         print(colored(f'There {alg_name} is inside the dictionary.', 'green'))
         # line_index = 0 if line_index == len(lines) else line_index
         # marker_index = 0 if marker_index == len(markers) else marker_index
-        matrix = graph_dict[alg_name][matrix_name]
+        from_iter_indx, to_iter_indx = 10, 20
+        # x_axis = range(len(avr))
+        x_axis = list(range(from_iter_indx, to_iter_indx))
+        matrix = graph_dict[alg_name][matrix_name][from_iter_indx:to_iter_indx, :]
         avr = np.average(matrix, dimension_to_avrg)
         std = np.std(matrix, dimension_to_avrg)
         # line = lines[line_index]
         # marker = markers[marker_index]
         # print(f'{alg_name}: li:{line_index} mi:{marker_index}')
-        to_ax.plot(range(len(avr)), avr, '%s%s' % (line_index, marker_index), label=alg_label, color=color)
+        to_ax.plot(x_axis, avr, '%s%s' % (line_index, marker_index), label=alg_label, color=color)
         if SHOW_RANGES:
-            to_ax.fill_between(range(len(avr)), avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
+            to_ax.fill_between(x_axis, avr - AMOUNT_OF_STD * std, avr + AMOUNT_OF_STD * std,
                                alpha=0.2, antialiased=True, color=color)
     else:
         print(colored(f'There {alg_name} is not inside the dictionary.', 'red'))
@@ -91,7 +94,7 @@ def add_list_of_graphs(ax, results_dict, matrix_name):
     # markers.reverse()
     # add_graph(to_ax, line_index, marker_index, graph_dict, matrix_name, dimension_to_avrg, alg_name, alg_label, color, need_to_plot_variance=True)
     dim=1
-    add_graph(ax, ':', '*', results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
+    # add_graph(ax, ':', '*', results_dict, matrix_name, dim, 'Random-Walk', 'Random-Walk', 'b')
 
     add_graph(ax, '-', '1', results_dict, matrix_name, dim, 'DSA_MST', 'DSA_MST', 'tab:blue')
     add_graph(ax, '--', '1', results_dict, matrix_name, dim, 'CADSA', 'CADSA', 'tab:cyan')
